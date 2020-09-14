@@ -1,0 +1,91 @@
+
+@font-face {
+    font-family: 'OPTIEdgarBold';
+    src: url('fonts/OPTIEdgarBold-Extended.otf') format("opentype");
+}
+/*=================*/
+body {
+    overflow: hidden;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+}
+#container {
+    display: flex;
+    flex-direction: column;
+}
+.row {
+    display: flex;
+    flex-direction: row;
+}
+.row-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px;
+}
+.bar {
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+}
+.progress-bar {
+    width: 148px;
+    background-color: #40454c;
+    height: 8px;
+    border: solid 1px black;
+    border-radius: 6px;
+    filter: drop-shadow(0px 0px 2px #212121);
+    position: relative;
+    overflow: hidden;
+}
+.progress-bar > span {
+    width: 0%;
+    height: 100%;
+    position: absolute;
+    transition: width 0.1s;
+}
+.progress-bar-red > span {
+    background: linear-gradient(0.25turn, #ff4b4b, #ff9797);
+}
+.progress-bar-blue > span {
+    background: linear-gradient(0.25turn, #4b51ff, #9d97ff);
+}
+.data-text {
+    font-family: 'OPTIEdgarBold';
+    text-align: right;
+    margin-right: 9px;
+    font-size: 15px;
+    margin-top: -2px;
+    z-index: 1;
+    color: white;
+    text-shadow: 0px 0px 3px #ffa51f, 0px 0px 14px #000, 0px 0px 14px #000, 0px 0px 14px #000, 0px 0px 14px #000;
+}
+/*===============
+COUNT
+===============*/
+.count-bg {
+    opacity: 0.8;
+    filter: grayscale(1);
+    position: absolute;
+    z-index: -1;
+}
+/*================
+DRK
+==================*/
+
+/*==============
+ANIMATIONS
+ex: animation: redBluePulse 2s 0s infinite;
+===============*/
+@keyframes redBluePulse {
+    0% {
+        filter: drop-shadow(0px 0px 4px red) drop-shadow(1px 0px 4px rgb(80, 0, 228));
+    }
+    50% {
+        filter: drop-shadow(0px 0px 9px rgba(255, 0, 255, 0.274)) drop-shadow(1px 0px 4px rgba(0, 0, 255, 0));
+    }
+    100% {
+        filter: drop-shadow(0px 0px 4px red) drop-shadow(1px 0px 4px rgb(80, 0, 228));
+    }
+}
