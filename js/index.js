@@ -26,21 +26,21 @@ function logData(line){
 
 function logAction(line){
     var casterId = line[2];
-    var actionId = line[4];
-    //var targetId = line[6];
-    var actionName = line[5];
-    if(debug){
-        console.log("ACTION     " + actionName + "  " + actionId);
-    }
 
     if(casterId == me.id) {
+        var actionId = line[4];
+        var actionName = line[5];
+        if(debug){ console.log("ACTION     " + actionName + "  " + actionId);}
+        //
         for(buffId in me.buffs) {
-            if(me.buffs[buffId] != false) {
-                if(actions[me.job].buffs[buffId].type === "gcds") { // KEEPING TRACK OF GCDS
-                    if(actions[me.job].buffs[buffId].ids.indexOf(actionId) !== -1) {
-                        me.buffs[buffId].count++;
-                        setCount(buffId, me.buffs[buffId].count);
-                    }
+            if(me.buffs[buffId].active) {
+                switch(actions[me.job].buffs[buffId].type) {
+                    case "gcds":
+                        if(actions[me.job].buffs[buffId].ids.indexOf(actionId) !== -1) {
+                            me.buffs[buffId].count++;
+                            setCount(buffId, me.buffs[buffId].count);
+                        }
+                        break;
                 }
             }
         }
@@ -48,56 +48,61 @@ function logAction(line){
 }
 
 function gainBuff(line){
-    var buffId = line[2];
-    var buffTime = parseFloat(line[4]);
     var sourceId = line[5];
-    //var targetId = line[7];
-    var buffName = line[3];
-    if(debug) {
-        console.log("BUFF     " + buffName + " - " + buffId);
-    }
 
-    if(sourceId == me.id && buffId in actions[me.job].buffs) {
-        if(actions[me.job].buffs[buffId].type === "gcds") { // KEEPING TRACK OF GCDS
-            me.buffs[buffId] = {
-                type: "gcds",
-                max: actions[me.job].buffs[buffId].max,
-                count: 0
-            };
-        }
-        else if(actions[me.job].buffs[buffId].type === "timer") { // KEEPING TRACK OF TIMERS
-            me.buffs[buffId] = {
-                type: "timer",
-                startTime: (new Date(line[1])).getTime(),
-                max: actions[me.job].buffs[buffId].max,
-                count: parseFloat(buffTime)
-            };
-            if(!(buffId in me.intervals)) {
-                me.intervals[buffId] = setInterval(function(){
-                    if(me.buffs[buffId] != false) {
-                        var count = 2 + me.buffs[buffId].count - ((new Date()).getTime() - me.buffs[buffId].startTime) / 1000; // have to offset this for some reason
-                        setCount(buffId, Math.max(0,count));
+    if(sourceId == me.id) {
+        var buffId = line[2];
+        var buffTime = parseFloat(line[4]);
+        var buffName = line[3];
+        if(debug) { console.log("BUFF     " + buffName + " - " + buffId); }
+        //
+        if(buffId in actions[me.job].buffs) {
+            switch(actions[me.job].buffs[buffId].type) {
+                case "gcds": // KEEPING TRACK OF GCDS
+                    me.buffs[buffId] = {
+                        type: "gcds",
+                        max: actions[me.job].buffs[buffId].max,
+                        count: 0,
+                        active: true
+                    };
+                    break;
+                case "timer": // KEEPING TRACK OF TIMERS
+                    me.buffs[buffId] = {
+                        type: "timer",
+                        startTime: (new Date(line[1])).getTime(),
+                        max: actions[me.job].buffs[buffId].max,
+                        count: parseFloat(buffTime),
+                        active: true
+                    };
+                    if(!(buffId in me.intervals)) {
+                        me.intervals[buffId] = setInterval(function(){
+                            if(buffId in me.buffs && me.buffs[buffId].active) {
+                                var count = 1 + me.buffs[buffId].count - ((new Date()).getTime() - me.buffs[buffId].startTime) / 1000; // have to offset this for some reason
+                                setCount(buffId, Math.max(0,count));
+                            }
+                        }, REFRESH);
                     }
-                }, REFRESH);
+                    break;
             }
-        };
+        }
     }
 }
 
 function loseBuff(line){
     var buffId = line[2];
     var targetId = line[7];
-    if(debug) {
-        console.log("LOSEBUFF   " + buffId);
-    }
 
-    if(targetId == me.id && me.buffs[buffId] != false) {
-        if(me.buffs[buffId].type === "gcds") {
+    if(targetId == me.id && buffId in me.buffs &&  me.buffs[buffId].active) {
+        if(debug) { console.log("LOSEBUFF   " + buffId); }
+        //
+        switch(me.buffs[buffId].type) {
+            case "gcds":
+                break;
+            case "timer":
+                clearInterval(me.intervals[buffId]);
+                break;
         }
-        else if(me.buffs[buffId].type === "timer") {
-            clearInterval(me.intervals[buffId].interval);
-        }
-        me.buffs[buffId] = false;
+        me.buffs[buffId].active = false;
         setTimeout(function(){
             setCount(buffId, 0);
         }, TIMEOUT);
@@ -108,24 +113,21 @@ function loseBuff(line){
 function resize(){
 }
 
-function reload(){
-    location.reload();
-}
-
 //addOverlayListener('LogLine', (data) => {
 //  console.log(data.line);
 //});
 addOverlayListener('onPlayerChangedEvent', (data) => {
-    var name = data.detail.name;
-    var id = (data.detail.id).toString(16).toUpperCase();
     var job = data.detail.job;
-    if(name !== me.name || id !== me.id || job !== me.job) {
+    if(job !== me.job) {
+        var name = data.detail.name;
+        var id = (data.detail.id).toString(16).toUpperCase();
+
         me.name = name;
         me.id = id;
         me.job = job;
         me.buffs = {};
         for(buffId in actions[job].buffs) {
-            me.buffs[buffId] = false;
+            me.buffs[buffId] = {active: false};
         }
         console.log("SETJOB " + job);
         setJob(job);

@@ -1,3 +1,3 @@
 var config = {
-    edges: "Round"
+    edges: "round"
 };

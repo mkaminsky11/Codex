@@ -1,5 +1,9 @@
-document.querySelector("#settings-apply").addEventListener("click", function(e){
+document.getElementById("settings-apply").addEventListener("click", function(e){
     setSettings();
+});
+// CHANGE CONFIG
+document.getElementById("codex-edges").addEventListener("change", function(e){
+    config.edges = e.target.value;
 });
 
 // GET / SET
@@ -11,8 +15,11 @@ function getSettings() {
             config[key] = s[key];
         }
     }
-    // TODO: change selects
+    // CHANGE FIELDS
+    document.getElementById("codex-edges").value = config.edges;
 }
 function setSettings() {
     localStorage.setItem("CodexSettings", JSON.stringify(config));
 }
+
+getSettings();

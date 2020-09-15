@@ -2,7 +2,6 @@
 
 Extra job gauges for FFXIV
 
-+ TODO: options menu
 + TODO: when unlocked, show resize handle
 + TODO: images or whatever
 
@@ -20,12 +19,11 @@ Add a new Miniparse overlay, and point the url to `https://mkaminsky11.github.io
 + Storm's Eye Timer
 
 ### PLD
-+ **TODO**: GCDS used in Req
-+ **TODO**: GCDS used in Fight or Flight
-+ **TODO**: Time left on goring blade
++ GCDS used in Fight or Flight
++ Time left on Goring Blade
 
 ### GNB
-+ **TODO**: GCDS used in No Mercy
++ GCDS used in No Mercy
 
 ### SCH
 + **TODO**: Biolysis tracker
@@ -35,7 +33,6 @@ Add a new Miniparse overlay, and point the url to `https://mkaminsky11.github.io
 
 ### AST
 + **TODO**: Combust Tracker
-+ **TODO**: Card cd tracker
 
 ### MNK
 ???
@@ -77,7 +74,7 @@ Add a new Miniparse overlay, and point the url to `https://mkaminsky11.github.io
 
 
 ### Options
-+ **TODO**: round or square corners
++ round or square corners
 + **TODO**: silver border or none
 + **TODO**: material UI or base FFXIV
 + **TODO**: hide specific gauges

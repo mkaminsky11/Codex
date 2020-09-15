@@ -29,6 +29,18 @@ body {
     justify-content: center;
     padding: 4px;
 }
+.data-text {
+    font-family: 'OPTIEdgarBold';
+    text-align: right;
+    margin-right: 9px;
+    font-size: 15px;
+    margin-top: -2px;
+    z-index: 1;
+    color: white;
+    text-shadow: 0px 0px 3px #ffa51f, 0px 0px 14px #000, 0px 0px 14px #000, 0px 0px 14px #000, 0px 0px 14px #000;
+    user-select: none;
+}
+/*==== BAR =====*/
 .bar {
     display: flex;
     flex-direction: column;
@@ -44,11 +56,14 @@ body {
     position: relative;
     overflow: hidden;
 }
+.edges-corners {
+    border-radius: 0px;
+}
 .progress-bar > span {
     width: 0%;
     height: 100%;
     position: absolute;
-    transition: width 0.1s;
+    transition: width 0.2s;
 }
 [type='timer'] .progress-bar > span{
     transition: none;
@@ -64,39 +79,4 @@ body {
 }
 .progress-bar-green > span {
     background: linear-gradient(0.25turn, #baff4b, #c4ff97);
-}
-.data-text {
-    font-family: 'OPTIEdgarBold';
-    text-align: right;
-    margin-right: 9px;
-    font-size: 15px;
-    margin-top: -2px;
-    z-index: 1;
-    color: white;
-    text-shadow: 0px 0px 3px #ffa51f, 0px 0px 14px #000, 0px 0px 14px #000, 0px 0px 14px #000, 0px 0px 14px #000;
-    user-select: none;
-}
-/*===============
-COUNT
-===============*/
-.count-bg {
-    opacity: 0.8;
-    filter: grayscale(1);
-    position: absolute;
-    z-index: -1;
-}
-/*==============
-ANIMATIONS
-ex: animation: redBluePulse 2s 0s infinite;
-===============*/
-@keyframes redBluePulse {
-    0% {
-        filter: drop-shadow(0px 0px 4px red) drop-shadow(1px 0px 4px rgb(80, 0, 228));
-    }
-    50% {
-        filter: drop-shadow(0px 0px 9px rgba(255, 0, 255, 0.274)) drop-shadow(1px 0px 4px rgba(0, 0, 255, 0));
-    }
-    100% {
-        filter: drop-shadow(0px 0px 4px red) drop-shadow(1px 0px 4px rgb(80, 0, 228));
-    }
 }

@@ -10,7 +10,7 @@ function setJob(job) {
         var item = actions[job].buffs[buffId].visual;
         if(item.type === "BAR") {
             row.innerHTML = "<div class='bar'>" + 
-                            "<div class='progress-bar progress-bar-" + item.color + "'>" +
+                            "<div class='progress-bar progress-bar-" + item.color + " edges-" + config.edges + "'>" +
                             "<span style='width:0%'></span>" +
                             "</div><span class='data-text'>0</span>" +
                             "</div></div>";

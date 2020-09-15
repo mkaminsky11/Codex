@@ -1,9 +1,3 @@
-/*
-GNB:
-
-nm (20s 9) -> 1,2,3,ammo1,ammo2,ammo3,aoe1,aoe2,sonic,burst strike,fated circle
-*/
-
 var actions = {
     DRK: {
         buffs: {
@@ -40,6 +34,36 @@ var actions = {
                 max: 60,
                 type: "timer",
                 visual: {type: "BAR", color: "blue"}
+            }
+        }
+    },
+    PLD: {
+        buffs: {
+            "4c": {
+                name: "Fight or Flight",
+                time: 25,
+                max: 11,
+                type: "gcds",
+                ids: ["09", "0F", "DD3", "404C", "DD2", "1CD5", "4049"], // fast blade, riot blade, royal authority, atonement, goring blade, total eclipse, prominence
+                visual: {type: "BAR", color: "blue"}
+            },
+            "2d5": {
+                name: "Goring Blade",
+                max: 21,
+                type: "timer",
+                visual: {type: "BAR", color: "orange"}
+            }
+        }
+    },
+    GNB: {
+        buffs: {
+            "727": {
+                name: "No Mercy",
+                time: 20,
+                max: 9,
+                type: "gcds",
+                ids: ["3F0D","3F15","3F09","3F0B","3F11","3F22","3F19","3F12","3F13","3F16","3F23"], // demon slice, demon slaughter, keen edge, brutal shell, solid barrel, burst strike, sonic break, gnashing, savage, wicked, fated
+                visual: {type: "BAR", color: "orange"}
             }
         }
     }
