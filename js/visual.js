@@ -27,6 +27,12 @@ function setCount(buffId, count) {
             elem.querySelector(".data-text").innerHTML = countString;
             var width = 100 * count / actions[me.job].buffs[buffId].max;
             elem.querySelector(".progress-bar > span").setAttribute("style","width:" + width + "%");
+            if(width <= 30) {
+                elem.querySelector(".progress-bar > span").classList.add("progress-bar-flash");
+            }
+            else {
+                elem.querySelector(".progress-bar > span").classList.remove("progress-bar-flash");
+            }
         }
     }
 }

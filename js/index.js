@@ -74,14 +74,15 @@ function gainBuff(line){
                         count: parseFloat(buffTime),
                         active: true
                     };
-                    if(!(buffId in me.intervals)) {
-                        me.intervals[buffId] = setInterval(function(){
-                            if(buffId in me.buffs && me.buffs[buffId].active) {
-                                var count = 1 + me.buffs[buffId].count - ((new Date()).getTime() - me.buffs[buffId].startTime) / 1000; // have to offset this for some reason
-                                setCount(buffId, Math.max(0,count));
-                            }
-                        }, REFRESH);
+                    if(buffId in me.intervals) {
+                        clearInterval(me.intervals[buffId]);
                     }
+                    me.intervals[buffId] = setInterval(function(){
+                        if(buffId in me.buffs && me.buffs[buffId].active) {
+                            var count = 1 + me.buffs[buffId].count - ((new Date()).getTime() - me.buffs[buffId].startTime) / 1000; // have to offset this for some reason
+                            setCount(buffId, Math.max(0,count));
+                        }
+                    }, REFRESH);
                     break;
             }
         }
@@ -90,9 +91,9 @@ function gainBuff(line){
 
 function loseBuff(line){
     var buffId = line[2];
-    var targetId = line[7];
+    var sourceId = line[5];
 
-    if(targetId == me.id && buffId in me.buffs &&  me.buffs[buffId].active) {
+    if(sourceId == me.id && buffId in me.buffs &&  me.buffs[buffId].active) {
         if(debug) { console.log("LOSEBUFF   " + buffId); }
         //
         switch(me.buffs[buffId].type) {
@@ -100,6 +101,7 @@ function loseBuff(line){
                 break;
             case "timer":
                 clearInterval(me.intervals[buffId]);
+                setCount(buffId, 0);
                 break;
         }
         me.buffs[buffId].active = false;

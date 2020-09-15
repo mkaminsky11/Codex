@@ -2,8 +2,12 @@
 
 Extra job gauges for FFXIV
 
+## Okay, But Why?
+Tired of Storm's Eye being a tiny number on your buff bar? Yeah, me too. Can't tell if you fit that gcd into your No Mercy window? Same.
+
 + TODO: when unlocked, show resize handle
-+ TODO: images or whatever
++ TODO: demo images
++ TODO: notifications?
 
 ## Installation
 Add a new Miniparse overlay, and point the url to `https://mkaminsky11.github.io/Codex/index.html` to get the latest version.
@@ -20,60 +24,63 @@ Add a new Miniparse overlay, and point the url to `https://mkaminsky11.github.io
 
 ### PLD
 + GCDS used in Fight or Flight
-+ Time left on Goring Blade
++ Goring Blade tracker
 
 ### GNB
 + GCDS used in No Mercy
 
 ### SCH
-+ **TODO**: Biolysis tracker
++  Biolysis tracker
 
 ### WHM
-+ **TODO**: Dia tracker
++ Dia tracker
 
 ### AST
-+ **TODO**: Combust Tracker
++ Combust Tracker
 
 ### MNK
-???
++ GCDS used in Riddle of Fire
++ GCDS used in Brotherhood
++ GCDS used in Perfect Balance
 
 ### DRG
-+ **TODO**: dot tracker (???)
-???
++ **TODO**: GCDS used in Litany
++ **TODO**: GCDS used in Lance Charge
 
 ### NIN
-???
++ **TODO**: GCDS used in Trick
 
 ### SAM
-+ **TODO**: dot tracker
-???
++ **TODO**: Jinpu tracker
++ **TODO**: Shifu tracker
++ **TODO**: Higanbana tracker
 
 ### BRD
-+ **TODO**: gcds under Raging Strikes
-+ **TODO**: dot tracker
++ **TODO**: GCDS used in Raging Strikes
++ **TODO**: Caustic Bite tracker
++ **TODO**: Stormbite tracker
 
 ### MCH
-???
++ **TODO**: GCDS used in Overheat
++ **TODO**: GCDS used in Wildfire
 
 ### DNC
-???
++ **TODO**: GCDS used in Devilment
++ **TODO**: GCDS used in Technical Finish
 
 ### BLM
-???
++ **TODO**: Thunder tracker
 
 ### SMN
-+ **TODO**: dot tracker
-???
++ **TODO**: Bio tracker
++ **TODO**: Miasma tracker
++ **TODO**: GCDS used in Devotion
 
 ### RDM
-???
-
-### BLU
-+ **TODO**: dot tracker
-???
++ **TODO**: GCDS used in Embolden
 
 
-### Options
+## Options
 + round or square corners
 + **TODO**: silver border or none
 + **TODO**: material UI or base FFXIV

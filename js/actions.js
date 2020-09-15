@@ -1,4 +1,7 @@
 var actions = {
+    //==================
+    // TANKS
+    //==================
     DRK: {
         buffs: {
             "7b4": {
@@ -66,5 +69,69 @@ var actions = {
                 visual: {type: "BAR", color: "orange"}
             }
         }
-    }
+    },
+    //================
+    // HEALERS
+    //================
+    SCH: {
+        buffs: {
+            "767": {
+                name: "Biolysis",
+                max: 30,
+                type: "timer",
+                visual: {type: "BAR", color: "green"}
+            }
+        }
+    },
+    WHM: {
+        buffs: {
+            "74f": {
+                name: "Dia",
+                max: 30,
+                type: "timer",
+                visual: {type: "BAR", color: "blue"}
+            }
+        }
+    },
+    AST: {
+        buffs: {
+            "759": {
+                name: "Combust",
+                max: 30,
+                type: "timer",
+                visual: {type: "BAR", color: "blue"}
+            }
+        }
+    },
+    //===============
+    // MELEE DPS
+    //==============
+    MNK: {
+        buffs: {
+            "6e": {
+                name: "Perfect Balance",
+                time: 10,
+                max: 5,
+                type: "gcds",
+                ids: ["35","36","38","4A","3D","42","3E","4059","46"], // bootshine, true strike, snap punch, dragon kick, twin snakes, demolish, arm, 4-point, rockbreaker, 6-sided, tornado
+                visual: {type: "BAR", color: "yellow"}
+            },
+            "4a1": {
+                name: "Brotherhood",
+                time: 15,
+                max: 7,
+                type: "gcds",
+                ids: ["35","36","38","4A","3D","42","3E","4059","46","405C","DD7"], // bootshine, true strike, snap punch, dragon kick, twin snakes, demolish, arm, 4-point, rockbreaker, 6-sided, tornado
+                visual: {type: "BAR", color: "orange"}
+            },
+            "49d": {
+                name: "Riddle of Fire",
+                time: 20,
+                max: 9,
+                type: "gcds",
+                ids: ["35","36","38","4A","3D","42","3E","4059","46","405C","DD7"], // bootshine, true strike, snap punch, dragon kick, twin snakes, demolish, arm, 4-point, rockbreaker, 6-sided, tornado
+                visual: {type: "BAR", color: "red"}
+            }
+        }
+    },
 };

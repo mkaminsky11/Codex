@@ -55,6 +55,15 @@ body {
     filter: drop-shadow(0px 0px 2px #212121);
     position: relative;
     overflow: hidden;
+    filter: brightness(1);
+}
+.progress-bar-flash {
+    animation: flash 2s infinite;
+}
+@keyframes flash {
+    0%   {filter: brightness(1)}
+    50%  {filter: brightness(2)}
+    100% {filter: brightness(1)}
 }
 .edges-corners {
     border-radius: 0px;
@@ -64,6 +73,10 @@ body {
     height: 100%;
     position: absolute;
     transition: width 0.2s;
+    border-radius: 6px 0px 0px 6px;
+}
+.edges-corners > span {
+    border-radius: 0px 0px 0px 0px;
 }
 [type='timer'] .progress-bar > span{
     transition: none;
@@ -79,4 +92,7 @@ body {
 }
 .progress-bar-green > span {
     background: linear-gradient(0.25turn, #baff4b, #c4ff97);
+}
+.progress-bar-yellow > span {
+    background: linear-gradient(0.25turn, #fcff4b, #fffc97);
 }
