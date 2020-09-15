@@ -45,11 +45,20 @@ body {
     position: absolute;
     transition: width 0.1s;
 }
+[type='timer'] .progress-bar > span{
+    transition: none;
+}
 .progress-bar-red > span {
     background: linear-gradient(0.25turn, #ff4b4b, #ff9797);
 }
 .progress-bar-blue > span {
     background: linear-gradient(0.25turn, #4b51ff, #9d97ff);
+}
+.progress-bar-orange > span {
+    background: linear-gradient(0.25turn, #ffa64b, #ffd197);
+}
+.progress-bar-green > span {
+    background: linear-gradient(0.25turn, #baff4b, #c4ff97);
 }
 .data-text {
     font-family: 'OPTIEdgarBold';
@@ -60,6 +69,7 @@ body {
     z-index: 1;
     color: white;
     text-shadow: 0px 0px 3px #ffa51f, 0px 0px 14px #000, 0px 0px 14px #000, 0px 0px 14px #000, 0px 0px 14px #000;
+    user-select: none;
 }
 /*===============
 COUNT
@@ -70,10 +80,6 @@ COUNT
     position: absolute;
     z-index: -1;
 }
-/*================
-DRK
-==================*/
-
 /*==============
 ANIMATIONS
 ex: animation: redBluePulse 2s 0s infinite;

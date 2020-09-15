@@ -1,8 +1,10 @@
 var me = {
-    buffs: {}
+    buffs: {},
+    intervals: {}
 };
 
 var TIMEOUT = 5000;
+var REFRESH = 10;
 
 function logData(line){
     switch(line[0]){
@@ -31,9 +33,11 @@ function logAction(line){
 
     if(casterId == me.id) {
         for(buffId in me.buffs) {
-            if(actions[me.job].buffs[buffId].ids.indexOf(actionId) !== -1) {
-                me.buffs[buffId].count++;
-                setCount(buffId, me.buffs[buffId].count);
+            if(actions[me.job].buffs[buffId].type === "gcds") { // KEEPING TRACK OF GCDS
+                if(actions[me.job].buffs[buffId].ids.indexOf(actionId) !== -1) {
+                    me.buffs[buffId].count++;
+                    setCount(buffId, me.buffs[buffId].count);
+                }
             }
         }
     }
@@ -41,6 +45,7 @@ function logAction(line){
 
 function gainBuff(line){
     var buffId = line[2];
+    var buffTime = parseFloat(line[4]);
     var sourceId = line[5];
     //var targetId = line[7];
     var buffName = line[3];
@@ -48,14 +53,27 @@ function gainBuff(line){
     console.log("BUFF     " + buffName + " - " + buffId);
 
     if(sourceId == me.id && buffId in actions[me.job].buffs) {
-        var duration = actions[me.job].buffs[buffId].time * 1000;
-        var time = (new Date()).getTime();
-        me.buffs[buffId] = {
-            startTime: time,
-            endTime: time + duration,
-            duration: duration,
-            max: actions[me.job].buffs[buffId].max,
-            count: 0
+        if(actions[me.job].buffs[buffId].type === "gcds") { // KEEPING TRACK OF GCDS
+            me.buffs[buffId] = {
+                type: "gcds",
+                max: actions[me.job].buffs[buffId].max,
+                count: 0
+            };
+        }
+        else if(actions[me.job].buffs[buffId].type === "timer") { // KEEPING TRACK OF TIMERS
+            me.buffs[buffId] = {
+                type: "timer",
+                max: actions[me.job].buffs[buffId].max,
+                count: buffTime
+            };
+            if(!(buffId in me.intervals)) {
+                me.intervals[buffId] = setInterval(function(){
+                    if(buffId in me.buffs) {
+                        me.buffs[buffId].count = Math.max(0, me.buffs[buffId].count - REFRESH / 1000);
+                        setCount(buffId, me.buffs[buffId].count);
+                    }
+                }, REFRESH);
+            }
         };
     }
 }
@@ -67,6 +85,11 @@ function loseBuff(line){
     console.log("LOSEBUFF   " + buffId);
 
     if(targetId == me.id && buffId in me.buffs) {
+        if(me.buffs[buffId].type === "gcds") {
+        }
+        else if(me.buffs[buffId].type === "timer") {
+            clearInterval(me.intervals[buffId].interval);
+        }
         delete me.buffs[buffId];
         setTimeout(function(){
             setCount(buffId, 0);
@@ -78,7 +101,9 @@ function loseBuff(line){
 function resize(){
 }
 
-
+addOverlayListener('LogLine', (data) => {
+    //console.log(data.line);
+});
 addOverlayListener('onPlayerChangedEvent', (data) => {
     var name = data.detail.name;
     var id = (data.detail.id).toString(16).toUpperCase();
