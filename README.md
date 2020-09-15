@@ -29,21 +29,20 @@ Add a new Miniparse overlay, and point the url to `https://mkaminsky11.github.io
 
 ### SCH
 + **TODO**: Biolysis tracker
-???
 
 ### WHM
 + **TODO**: Dia tracker
-???
 
 ### AST
 + **TODO**: Combust Tracker
-+ **TODO**: Highest DPS Melee/Ranged (???)
++ **TODO**: Card cd tracker
 
 ### MNK
 ???
 
 ### DRG
-+ **TODO**: dot tracker
++ **TODO**: dot tracker (???)
+???
 
 ### NIN
 ???

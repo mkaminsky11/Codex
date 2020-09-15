@@ -8,7 +8,7 @@ var actions = {
     DRK: {
         buffs: {
             "7b4": {
-                name: "DELERIUM",
+                name: "Delerium",
                 time: 10,
                 max: 5,
                 type: "gcds",
@@ -16,7 +16,7 @@ var actions = {
                 visual: { type: "BAR", color: "red"}
             },
             "2e6": {
-                name: "BLOOD WEAPON",
+                name: "Blood Weapon",
                 time: 10,
                 max: 5,
                 type: "gcds",
@@ -28,7 +28,7 @@ var actions = {
     WAR: {
         buffs: {
             "499": {
-                name: "INNER RELEASE",
+                name: "Inner Release",
                 time: 10,
                 max: 5,
                 type: "gcds",
@@ -36,7 +36,7 @@ var actions = {
                 visual: {type: "BAR", color: "orange"}
             },
             "5a": {
-                name: "STORMS EYE",
+                name: "Storms Eye",
                 max: 60,
                 type: "timer",
                 visual: {type: "BAR", color: "blue"}
