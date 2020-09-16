@@ -1,3 +1,4 @@
 var config = {
-    edges: "round"
+    edges: "round",
+    zoom: 1
 };

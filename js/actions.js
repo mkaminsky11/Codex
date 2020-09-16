@@ -45,7 +45,7 @@ var actions = {
                 name: "Storms Eye",
                 max: 60,
                 type: "timer",
-                visual: {type: "BAR", color: "blue"}
+                visual: {type: "BAR", color: "red"}
             }
         }
     },

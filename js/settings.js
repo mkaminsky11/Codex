@@ -15,6 +15,10 @@ function getSettings() {
             config[key] = s[key];
         }
     }
+
+    var style = document.createElement('style');
+    style.innerHTML = "body{zoom:" + config.zoom + ";}";
+    document.head.appendChild(style);
 }
 
 // RELOAD WHEN SETTINGS ARE CHANGED

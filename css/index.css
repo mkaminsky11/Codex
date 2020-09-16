@@ -29,16 +29,28 @@ body {
     justify-content: center;
     padding: 4px;
 }
+.data-row {
+    margin-top: -2px;
+    display: flex;
+    flex-direction: row-reverse;
+}
 .data-text {
     font-family: 'OPTIEdgarBold';
     text-align: right;
     margin-right: 9px;
     font-size: 15px;
-    margin-top: -2px;
     z-index: 1;
     color: white;
     text-shadow: 0px 0px 3px #ffa51f, 0px 0px 14px #000, 0px 0px 14px #000, 0px 0px 14px #000, 0px 0px 14px #000;
     user-select: none;
+}
+.data-icon {
+    width: 25px;
+    margin-top: -1px;
+    z-index: 2;
+}
+.flex-1 {
+    flex: 1;
 }
 .hide {
     display: none !important;
@@ -83,7 +95,7 @@ body {
     border-left: none;
 }
 .arrow-red .arrow-active::after, .arrow-red .arrow-active::before {
-    background: linear-gradient(0, #ff1515, #ff9797);
+    background: linear-gradient(0, #ff4b4b, #ff9797);
 }
 .arrow-blue .arrow-active::after, .arrow-blue .arrow-active::before {
     background: linear-gradient(0, #4b51ff, #9d97ff);

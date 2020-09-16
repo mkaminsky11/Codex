@@ -1,32 +1,40 @@
 var container = document.getElementById("container");
 function setJob(job) {
     container.innerHTML = "";
-    for(buffId in actions[job].buffs) {
-        var row = document.createElement("div");
-        row.setAttribute("class","row");
-        row.setAttribute("id", buffId);
-        row.setAttribute("type", actions[job].buffs[buffId].type);
-        if(actions[job].buffs[buffId].hidden) {
-            row.classList.add("hide");
-        }
-
-        var item = actions[job].buffs[buffId].visual;
-        if(item.type === "BAR") {
-            row.innerHTML = "<div class='bar'>" + 
-                            "<div class='progress-bar progress-bar-" + item.color + " edges-" + config.edges + "'>" +
-                            "<span style='width:0%'></span>" +
-                            "</div><span class='data-text'>0</span>" +
-                            "</div></div>";
-        }
-        else if(item.type === "ARROW") {
-            var h = "<div class='arrow-row arrow-" + item.color + "'>";
-            for(var i = 0; i < actions[job].buffs[buffId].max; i++) {
-                h = h + "<div class='arrow'></div>";
+    if(job in actions) {
+        for(buffId in actions[job].buffs) {
+            var row = document.createElement("div");
+            row.setAttribute("class","row");
+            row.setAttribute("id", buffId);
+            row.setAttribute("type", actions[job].buffs[buffId].type);
+            if(actions[job].buffs[buffId].hidden) {
+                row.classList.add("hide");
             }
-            h = h + "</div>";
-            row.innerHTML = h;
+
+            var item = actions[job].buffs[buffId].visual;
+            if(item.type === "BAR") {
+                var icon = "";
+                if(item.icon) {
+                    icon = "<img class='data-icon' src='" + item.icon + "'/>";
+                }
+                row.innerHTML = "<div class='bar'>" + 
+                                "<div class='progress-bar progress-bar-" + item.color + " edges-" + config.edges + "'>" +
+                                "<span style='width:0%'></span>" +
+                                "</div>" + 
+                                "<div class='data-row'>" + 
+                                "<span class='data-text'>0</span><span class='flex-1'></span>" + icon +
+                                "</div></div></div>";
+            }
+            else if(item.type === "ARROW") {
+                var h = "<div class='arrow-row arrow-" + item.color + "'>";
+                for(var i = 0; i < actions[job].buffs[buffId].max; i++) {
+                    h = h + "<div class='arrow'></div>";
+                }
+                h = h + "</div>";
+                row.innerHTML = h;
+            }
+            container.appendChild(row);
         }
-        container.appendChild(row);
     }
 }
 

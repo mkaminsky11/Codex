@@ -5,6 +5,9 @@ document.getElementById("settings-apply").addEventListener("click", function(e){
 document.getElementById("codex-edges").addEventListener("change", function(e){
     config.edges = e.target.value;
 });
+document.getElementById("codex-zoom").addEventListener("change", function(e){
+    config.zoom = e.target.value;
+});
 
 // GET / SET
 function getSettings() {
@@ -17,6 +20,7 @@ function getSettings() {
     }
     // CHANGE FIELDS
     document.getElementById("codex-edges").value = config.edges;
+    document.getElementById("codex-zoom").value = config.zoom;
 }
 function setSettings() {
     localStorage.setItem("CodexSettings", JSON.stringify(config));

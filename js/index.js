@@ -4,7 +4,6 @@ var me = {
     timers: {},
     pet: {name: "", id: ""}
 };
-
 var TIMEOUT = 5000;
 var REFRESH = 100;
 var debug = false;
