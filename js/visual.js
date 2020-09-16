@@ -18,13 +18,22 @@ function setJob(job) {
                             "</div><span class='data-text'>0</span>" +
                             "</div></div>";
         }
+        else if(item.type === "ARROW") {
+            var h = "<div class='arrow-row arrow-" + item.color + "'>";
+            for(var i = 0; i < actions[job].buffs[buffId].max; i++) {
+                h = h + "<div class='arrow'></div>";
+            }
+            h = h + "</div>";
+            row.innerHTML = h;
+        }
         container.appendChild(row);
     }
 }
 
 function setCount(buffId, count) {
     if(buffId in actions[me.job].buffs) {
-        if(actions[me.job].buffs[buffId].visual.type === "BAR") {
+        var type = actions[me.job].buffs[buffId].visual.type;
+        if(type === "BAR") {
             var elem = document.querySelector(".row[id='" + buffId + "']");
             var countString = count.toFixed(0);
             elem.querySelector(".data-text").innerHTML = countString;
@@ -36,6 +45,16 @@ function setCount(buffId, count) {
             else {
                 elem.querySelector(".progress-bar > span").classList.remove("progress-bar-flash");
             }
+        }
+        else if(type === "ARROW") {
+            document.querySelectorAll(".row[id='" + buffId + "'] .arrow").forEach(function(item, idx) {
+                if(idx < count) {
+                    item.classList.add("arrow-active");
+                }
+                else {
+                    item.classList.remove("arrow-active");
+                }
+            });
         }
     }
 }

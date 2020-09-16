@@ -22,7 +22,6 @@ It provides some nice functions that aren't in the base OverlayPlugin
 + TODO: notifications?
 + TODO: multi-dots
 + TODO: icons
-+ TODO: arrow bars
 
 ## Jobs
 

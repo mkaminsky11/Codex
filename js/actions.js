@@ -12,7 +12,7 @@ var actions = {
                 ids: [
                     "1CE0", "1CDF"      // bloodspiller, quiet
                 ],
-                visual: { type: "BAR", color: "red"}
+                visual: { type: "ARROW", color: "red"}
             },
             "2e6": {
                 name: "Blood Weapon",
@@ -39,7 +39,7 @@ var actions = {
                 ids: [
                     "DDD", "DDE"    // fell cleave, decimate
                 ],
-                visual: {type: "BAR", color: "orange"}
+                visual: {type: "ARROW", color: "orange"}
             },
             "5a": {
                 name: "Storms Eye",
@@ -134,7 +134,7 @@ var actions = {
                     "35","36","38","4A","3D","42",   // bootshine, true strike, snap punch, dragon kick, twin snakes, demolish
                     "3E","4059","46"                 // arm, 4-point, rockbreaker
                 ],
-                visual: {type: "BAR", color: "yellow"}
+                visual: {type: "ARROW", color: "yellow"}
             },
             "4a1": {
                 name: "Brotherhood",
@@ -274,6 +274,17 @@ var actions = {
     },
     MCH: {
         buffs: {
+            "4339": {
+                name: "Hypercharge",
+                time: 9,                   // not the actual time, but need some wiggle room
+                max: 5,
+                combo: true,                // this one is different, for some reason
+                type: "gcds",
+                ids: [
+                    "1CF2", "4071"          // heat blast, auto crossbow
+                ],
+                visual: {type: "ARROW", color: "orange"}
+            },
             "79a": {
                 name: "Wildfire",
                 time: 10,
@@ -285,18 +296,7 @@ var actions = {
                     "1CF2", "4071"          // heat blast, auto crossbow
                 ],
                 visual: {type: "BAR", color: "red"}
-            },
-            "4339": {
-                name: "Hypercharge",
-                time: 9,                   // not the actual time, but need some wiggle room
-                max: 5,
-                combo: true,                // this one is different, for some reason
-                type: "gcds",
-                ids: [
-                    "1CF2", "4071"          // heat blast, auto crossbow
-                ],
-                visual: {type: "BAR", color: "orange"}
-            },
+            }
         }
     },
     DNC: {

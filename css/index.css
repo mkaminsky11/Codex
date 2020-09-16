@@ -43,6 +43,63 @@ body {
 .hide {
     display: none !important;
 }
+/*==== ARROW =====*/
+.arrow-row {
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    margin-left: 10px;
+}
+.arrow {
+    height: 30px;
+    width: 25px;
+    position: relative;
+    transform: rotate(-90deg);
+    margin-left: 4px;
+}
+.arrow::before {
+    content: '';
+    position: absolute;
+    top: 0px;
+    left: -1px;
+    height: 24px;
+    width: 13px;
+    background: #40454c;
+    transform: skew(0deg, 31deg);
+    border: solid 1px black;
+    border-right: none;
+}
+.arrow::after {
+    content: '';
+    position: absolute;
+    top: 0px;
+    right: -1px;
+    height: 24px;
+    width: 13px;
+    background: #40454c;
+    transform: skew(0deg, -31deg);
+    border: solid 1px black;
+    border-left: none;
+}
+.arrow-red .arrow-active::after, .arrow-red .arrow-active::before {
+    background: linear-gradient(0, #ff1515, #ff9797);
+}
+.arrow-blue .arrow-active::after, .arrow-blue .arrow-active::before {
+    background: linear-gradient(0, #4b51ff, #9d97ff);
+}
+.arrow-orange .arrow-active::after, .arrow-orange .arrow-active::before {
+    background: linear-gradient(0, #ffa64b, #ffd197);
+}
+.arrow-green .arrow-active::after, .arrow-green .arrow-active::before {
+    background: linear-gradient(0, #baff4b, #c4ff97);
+}
+.arrow-yellow .arrow-active::after, .arrow-yellow .arrow-active::before {
+    background: linear-gradient(0, #fcff4b, #fffc97);
+}
+.arrow-purple .arrow-active::after, .arrow-purple .arrow-active::before {
+    background: linear-gradient(0, #774bff, #d297ff);
+}
 /*==== BAR =====*/
 .bar {
     display: flex;
