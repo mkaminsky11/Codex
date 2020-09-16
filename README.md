@@ -19,7 +19,7 @@ It provides some nice functions that aren't in the base OverlayPlugin
 
 + TODO: when unlocked, show resize handle
 + TODO: demo images
-+ TODO: notifications?
++ TODO: indicators
 + TODO: multi-dots
 + TODO: icons
 
@@ -99,5 +99,9 @@ It provides some nice functions that aren't in the base OverlayPlugin
 + round or square corners
 + **TODO**: silver border or none
 + **TODO**: material UI or base FFXIV
++ change color
++ change order
++ **TODO**: change bar type
++ **TODO**: change arrow size
 + hide specific gauges
 + adjust size

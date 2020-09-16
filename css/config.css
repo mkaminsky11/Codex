@@ -70,8 +70,8 @@ body {
     display: flex;
     flex-direction: row;
 }
-.row > span {
-    flex: 1
+.row-title {
+    flex: 1;
 }
 .settings-row-2 {
     padding: p5x;
@@ -81,4 +81,9 @@ body {
     border-radius: 2px;
     margin: 5px;
     background-color: #464646;
+}
+.codex-order {
+    width: 20px;
+    margin-left: 5px;
+    margin-right: 5px;
 }

@@ -2,7 +2,16 @@ var container = document.getElementById("container");
 function setJob(job) {
     container.innerHTML = "";
     if(job in actions) {
+        var buffIds = [];
         for(buffId in actions[job].buffs) {
+            buffIds.push({
+                id: buffId,
+                order: (config.order[buffId] ? config.order[buffId] : actions[job].buffs[buffId].order)
+            });
+        }
+        buffIds.sort((a, b) => (a.order > b.order) ? 1 : -1)
+        for(var b = 0; b < buffIds.length; b++) {
+            var buffId = buffIds[b].id;
             var row = document.createElement("div");
             row.setAttribute("class","row");
             row.setAttribute("id", buffId);
@@ -15,6 +24,7 @@ function setJob(job) {
             }
 
             var item = actions[job].buffs[buffId].visual;
+            item.color = config.color[buffId] ? config.color[buffId] : item.color;
             if(item.type === "BAR") {
                 var icon = item.icon ? "<img class='data-icon' src='" + item.icon + "'/>" : "";
                 row.innerHTML = "<div class='bar'>" + 

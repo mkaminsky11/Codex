@@ -5,7 +5,7 @@ var actions = {
     DRK: {
         buffs: {
             "7b4": {
-                name: "Delerium",
+                name: "Delerium", order: 0,
                 time: 10,
                 max: 5,
                 type: "gcds",
@@ -15,7 +15,7 @@ var actions = {
                 visual: { type: "ARROW", color: "red"}
             },
             "2e6": {
-                name: "Blood Weapon",
+                name: "Blood Weapon", order: 1,
                 time: 10,
                 max: 5,
                 type: "gcds",
@@ -32,7 +32,7 @@ var actions = {
     WAR: {
         buffs: {
             "499": {
-                name: "Inner Release",
+                name: "Inner Release", order: 0,
                 time: 10,
                 max: 5,
                 type: "gcds",
@@ -42,7 +42,7 @@ var actions = {
                 visual: {type: "ARROW", color: "orange"}
             },
             "5a": {
-                name: "Storms Eye",
+                name: "Storms Eye", order: 1,
                 max: 60,
                 type: "timer",
                 visual: {type: "BAR", color: "red"}
@@ -52,7 +52,7 @@ var actions = {
     PLD: {
         buffs: {
             "4c": {
-                name: "Fight or Flight",
+                name: "Fight or Flight", order: 0,
                 time: 25,
                 max: 11,
                 type: "gcds",
@@ -63,7 +63,7 @@ var actions = {
                 visual: {type: "BAR", color: "blue"}
             },
             "2d5": {
-                name: "Goring Blade",
+                name: "Goring Blade", order: 1,
                 max: 21,
                 type: "timer",
                 visual: {type: "BAR", color: "orange"}
@@ -73,7 +73,7 @@ var actions = {
     GNB: {
         buffs: {
             "727": {
-                name: "No Mercy",
+                name: "No Mercy", order: 0,
                 time: 20,
                 max: 9,
                 type: "gcds",
@@ -93,7 +93,7 @@ var actions = {
     SCH: {
         buffs: {
             "767": {
-                name: "Biolysis",
+                name: "Biolysis", order: 0,
                 max: 30,
                 type: "timer",
                 visual: {type: "BAR", color: "green"}
@@ -103,7 +103,7 @@ var actions = {
     WHM: {
         buffs: {
             "74f": {
-                name: "Dia",
+                name: "Dia", order: 0,
                 max: 30,
                 type: "timer",
                 visual: {type: "BAR", color: "blue"}
@@ -113,7 +113,7 @@ var actions = {
     AST: {
         buffs: {
             "759": {
-                name: "Combust",
+                name: "Combust", order: 0,
                 max: 30,
                 type: "timer",
                 visual: {type: "BAR", color: "blue"}
@@ -126,7 +126,7 @@ var actions = {
     MNK: {
         buffs: {
             "6e": {
-                name: "Perfect Balance",
+                name: "Perfect Balance", order: 0,
                 time: 10,
                 max: 5,
                 type: "gcds",
@@ -137,7 +137,7 @@ var actions = {
                 visual: {type: "ARROW", color: "yellow"}
             },
             "4a1": {
-                name: "Brotherhood",
+                name: "Brotherhood", order: 1,
                 time: 15,
                 max: 7,
                 type: "gcds",
@@ -149,7 +149,7 @@ var actions = {
                 visual: {type: "BAR", color: "orange"}
             },
             "49d": {
-                name: "Riddle of Fire",
+                name: "Riddle of Fire",  order: 2,
                 time: 20,
                 max: 9,
                 type: "gcds",
@@ -165,7 +165,7 @@ var actions = {
     DRG: { // Geirskogul  DE3  Nastrond  1CE8  Stardiver  4060
         buffs: {
             "748": {
-                name: "Lance Charge",
+                name: "Lance Charge", order: 0,
                 time: 20,
                 max: 9,
                 type: "gcds",
@@ -177,7 +177,7 @@ var actions = {
                 visual: {type: "ARROW", color: "red", size: "m"}
             },
             "312": {
-                name: "Battle Litany",
+                name: "Battle Litany", order: 1,
                 time: 20,
                 max: 9,
                 type: "gcds",
@@ -189,7 +189,7 @@ var actions = {
                 visual: {type: "BAR", color: "blue"}
             },
             "776": {
-                name: "Right Eye",
+                name: "Right Eye",  order: 2,
                 time: 20,
                 max: 9,
                 type: "gcds",
@@ -205,7 +205,7 @@ var actions = {
     NIN: {
         buffs: {
             "27e": {
-                name: "Trick Attack",
+                name: "Trick Attack", order: 0,
                 time: 15,
                 max: 7,
                 type: "gcds",
@@ -222,19 +222,19 @@ var actions = {
     SAM: {
         buffs: {
             "512": {
-                name: "Jinpu",
+                name: "Jinpu", order: 0,
                 max: 40,
                 type: "timer",
                 visual: {type: "BAR", color: "blue"}
             },
             "513": {
-                name: "Shifu",
+                name: "Shifu", order: 1,
                 max: 40,
                 type: "timer",
                 visual: {type: "BAR", color: "red"}
             },
             "4cc": {
-                name: "Higanbana",
+                name: "Higanbana", order: 2,
                 max: 60,
                 type: "timer",
                 visual: {type: "BAR", color: "orange"}
@@ -247,19 +247,19 @@ var actions = {
     BRD: {
         buffs: {
             "4b0": {
-                name: "Caustic Bite",
+                name: "Caustic Bite", order: 0,
                 max: 30,
                 type: "timer",
                 visual: {type: "BAR", color: "red"}
             },
             "4b1": {
-                name: "Stormbite",
+                name: "Stormbite", order: 1,
                 max: 30,
                 type: "timer",
                 visual: {type: "BAR", color: "blue"}
             },
             "7d": {
-                name: "Raging Strikes",
+                name: "Raging Strikes", order: 2,
                 time: 20,
                 max: 9,
                 type: "gcds",
@@ -275,7 +275,7 @@ var actions = {
     MCH: {
         buffs: {
             "4339": {
-                name: "Hypercharge",
+                name: "Hypercharge", order: 0,
                 time: 9,                   // not the actual time, but need some wiggle room
                 max: 5,
                 combo: true,                // this one is different, for some reason
@@ -286,7 +286,7 @@ var actions = {
                 visual: {type: "ARROW", color: "orange"}
             },
             "79a": {
-                name: "Wildfire",
+                name: "Wildfire", order: 1,
                 time: 10,
                 max: 6,
                 type: "gcds",
@@ -302,7 +302,7 @@ var actions = {
     DNC: {
         buffs: {
             "721": {
-                name: "Devilment",
+                name: "Devilment", order: 0,
                 time: 20,
                 max: 9,
                 type: "gcds",
@@ -310,13 +310,13 @@ var actions = {
                     "3E75", "3E76", "3E79", "3E7A", // cascade, fountain, windmill, bladeshower
                     "3E77", "3E78", "3E7B" ,"3E7C", //  r. cascade, fountainfall, r. windmill, bloodshower
                     "3E87", "3E88", "3E89",         // fan dance, fan dance 2, fan dance 3
-                    "3E81", "3E82", "3E80", "3E7F", // red, blue, green, yellow
+                    //"3E81", "3E82", "3E80", "3E7F", // red, blue, green, yellow
                     "3E7D", "3F40", "3E7E", "3F44", // standard step, double standard finish, technical step, quadruple technical finish
                 ],
                 visual: {type: "BAR", color: "red"}
             },
             "71e": {
-                name: "Technical Finish",
+                name: "Technical Finish", order: 1,
                 time: 20,
                 max: 9,
                 type: "gcds",
@@ -324,7 +324,7 @@ var actions = {
                     "3E75", "3E76", "3E79", "3E7A", // cascade, fountain, windmill, bladeshower
                     "3E77", "3E78", "3E7B" ,"3E7C", //  r. cascade, fountainfall, r. windmill, bloodshower
                     "3E87", "3E88", "3E89",         // fan dance, fan dance 2, fan dance 3
-                    "3E81", "3E82", "3E80", "3E7F", // red, blue, green, yellow
+                    //"3E81", "3E82", "3E80", "3E7F", // red, blue, green, yellow
                     "3E7D", "3F40", "3E7E", "3F44", // standard step, double standard finish, technical step, quadruple technical finish
                 ],
                 visual: {type: "BAR", color: "blue"}
@@ -337,14 +337,14 @@ var actions = {
     BLM: {
         buffs: {
             "a3": {
-                name: "Thunder 3",
+                name: "Thunder 3", order: 0,
                 max: 24,
                 type: "timer",
                 visual: {type: "BAR", color: "blue"},
                 hides: "4ba"
             },
             "4ba": {
-                name: "Thunder 4",
+                name: "Thunder 4", order: 1,
                 max: 18,
                 type: "timer",
                 visual: {type: "BAR", color: "purple"},
@@ -356,7 +356,7 @@ var actions = {
     SMN: {
         buffs: {
             "1D03": {
-                name: "Bahamut",
+                name: "Bahamut", order: 0,
                 time: 21,
                 max: 8,
                 combo: true,
@@ -366,7 +366,7 @@ var actions = {
                 hides: "40A5"
             },
             "40A5": {
-                name: "Pheonix",
+                name: "Pheonix", order: 1,
                 time: 21,
                 max: 8,
                 combo: true,
@@ -377,13 +377,13 @@ var actions = {
                 hidden: true
             },
             "4be": {
-                name: "Bio",
+                name: "Bio", order: 2,
                 max: 30,
                 type: "timer",
                 visual: {type: "BAR", color: "green"},
             },
             "4bf": {
-                name: "Miasma",
+                name: "Miasma", order: 3,
                 max: 30,
                 type: "timer",
                 visual: {type: "BAR", color: "blue"},
@@ -393,7 +393,7 @@ var actions = {
     RDM: {
         buffs: {
             "4d7": {
-                name: "Embolden",
+                name: "Embolden", order: 0,
                 time: 20,
                 max: 9,
                 type: "gcds",
@@ -416,7 +416,7 @@ var actions = {
     BLU: {
         buffs: {
             "6b2": {
-                name: "Song of Torment",
+                name: "Song of Torment", order: 0,
                 max: 30,
                 type: "timer",
                 visual: {type: "BAR", color: "red"}
