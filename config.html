@@ -6,24 +6,30 @@
     <body>
         <div id="settings-panel">
             <div id="settings-header">
+                <span id="settings-title">SETTINGS</span>
                 <span id="settings-apply">SAVE</span>
             </div>
             <div id="settings-body">
-                <div class="settings-row">
+                <div class="settings-row row">
                     <span>Edges</span>
                     <select id="codex-edges">
                         <option value="round" selected>Rounded</option>
                         <option value="corners">Corners</option>
                     </select>
                 </div>
-                <div class="settings-row">
+                <div class="settings-row row">
                     <span>Scaling</span>
                     <input id="codex-zoom"/>
+                </div>
+                <div class="settings-row row">
+                    <span>Font Size</span>
+                    <input id="codex-fontsize"/>
                 </div>
             </div>
         </div>
     </body>
 
+    <script src="js/actions.js"></script>
     <script src="js/config-default.js"></script>
     <script src="js/config-settings.js"></script>
 </html>

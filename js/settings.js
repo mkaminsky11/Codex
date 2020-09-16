@@ -17,7 +17,9 @@ function getSettings() {
     }
 
     var style = document.createElement('style');
-    style.innerHTML = "body{zoom:" + config.zoom + ";}";
+    var h = "body{zoom:" + config.zoom + ";}" +
+            ".data-text{font-size:" + config.fontSize + "px;}";
+    style.innerHTML = h;
     document.head.appendChild(style);
 }
 

@@ -99,5 +99,5 @@ It provides some nice functions that aren't in the base OverlayPlugin
 + round or square corners
 + **TODO**: silver border or none
 + **TODO**: material UI or base FFXIV
-+ **TODO**: hide specific gauges
-+ **TODO**: adjust size
++ hide specific gauges
++ adjust size

@@ -10,13 +10,13 @@ function setJob(job) {
             if(actions[job].buffs[buffId].hidden) {
                 row.classList.add("hide");
             }
+            if(config.disabled[buffId]) {
+                row.classList.add("hideOverride");
+            }
 
             var item = actions[job].buffs[buffId].visual;
             if(item.type === "BAR") {
-                var icon = "";
-                if(item.icon) {
-                    icon = "<img class='data-icon' src='" + item.icon + "'/>";
-                }
+                var icon = item.icon ? "<img class='data-icon' src='" + item.icon + "'/>" : "";
                 row.innerHTML = "<div class='bar'>" + 
                                 "<div class='progress-bar progress-bar-" + item.color + " edges-" + config.edges + "'>" +
                                 "<span style='width:0%'></span>" +
@@ -26,9 +26,10 @@ function setJob(job) {
                                 "</div></div></div>";
             }
             else if(item.type === "ARROW") {
+                var size = item.size ? ("arrow-" + item.size) : "";
                 var h = "<div class='arrow-row arrow-" + item.color + "'>";
                 for(var i = 0; i < actions[job].buffs[buffId].max; i++) {
-                    h = h + "<div class='arrow'></div>";
+                    h = h + "<div class='arrow " + size + "'></div>";
                 }
                 h = h + "</div>";
                 row.innerHTML = h;

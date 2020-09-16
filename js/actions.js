@@ -83,7 +83,7 @@ var actions = {
                     "3F12","3F13","3F16",               // gnashing, savage, wicked
                     "3F23"                              // fated
                 ],
-                visual: {type: "BAR", color: "orange"}
+                visual: {type: "ARROW", size: "m", color: "orange"}
             }
         }
     },
@@ -174,7 +174,7 @@ var actions = {
                     "56","1CE5","405D",                             // doom spike, sonic thrust, coerthan torment
                     "5A"                                            // piercing talon
                 ],
-                visual: {type: "BAR", color: "red"}
+                visual: {type: "ARROW", color: "red", size: "m"}
             },
             "312": {
                 name: "Battle Litany",
@@ -210,12 +210,12 @@ var actions = {
                 max: 7,
                 type: "gcds",
                 ids: [
-                    "8C0","8C2","8CF","DEB","8D1",  // spinning edge, gust slash, aeolion edge, armor crush, shadow fang
-                    "8C7",  // throwing dagger
-                    "8CE","4068",   // death blossom, hakke
-                    "8D9","8DA","8DB","8DC","8DD","8DE","8DF","406B","406C"  // fuma, katon, raiton, hyoton, huton, doton, suiton, goka, hyosho
+                    "8C0","8C2","8CF","DEB","8D1",                              // spinning edge, gust slash, aeolion edge, armor crush, shadow fang
+                    "8C7",                                                      // throwing dagger
+                    "8CE","4068",                                               // death blossom, hakke
+                    "8D9","8DA","8DB","8DC","8DD","8DE","8DF","406B","406C"     // fuma, katon, raiton, hyoton, huton, doton, suiton, goka, hyosho
                 ],
-                visual: {type: "BAR", color: "yellow"}
+                visual: {type: "ARROW", size: "m", color: "yellow"}
             },
         }
     },
@@ -268,7 +268,7 @@ var actions = {
                     "1CEE", "1CEF", "DE8",  // cuastic, storm, iron jaws
                     "6A"                    // quick nock
                 ],
-                visual: {type: "BAR", color: "orange"}
+                visual: {type: "ARROW", size: "m", color: "orange"}
             }
         }
     },
@@ -309,7 +309,7 @@ var actions = {
                 ids: [
                     "3E75", "3E76", "3E79", "3E7A", // cascade, fountain, windmill, bladeshower
                     "3E77", "3E78", "3E7B" ,"3E7C", //  r. cascade, fountainfall, r. windmill, bloodshower
-                    "3E87", "3E88", "3E89", // fan dance, fan dance 2, fan dance 3
+                    "3E87", "3E88", "3E89",         // fan dance, fan dance 2, fan dance 3
                     "3E81", "3E82", "3E80", "3E7F", // red, blue, green, yellow
                     "3E7D", "3F40", "3E7E", "3F44", // standard step, double standard finish, technical step, quadruple technical finish
                 ],
@@ -323,7 +323,7 @@ var actions = {
                 ids: [
                     "3E75", "3E76", "3E79", "3E7A", // cascade, fountain, windmill, bladeshower
                     "3E77", "3E78", "3E7B" ,"3E7C", //  r. cascade, fountainfall, r. windmill, bloodshower
-                    "3E87", "3E88", "3E89", // fan dance, fan dance 2, fan dance 3
+                    "3E87", "3E88", "3E89",         // fan dance, fan dance 2, fan dance 3
                     "3E81", "3E82", "3E80", "3E7F", // red, blue, green, yellow
                     "3E7D", "3F40", "3E7E", "3F44", // standard step, double standard finish, technical step, quadruple technical finish
                 ],
@@ -362,7 +362,7 @@ var actions = {
                 combo: true,
                 type: "gcds",
                 ids: ["1D04"],  // wrymwave
-                visual: {type: "BAR", color: "blue"},
+                visual: {type: "ARROW", size: "m", color: "blue"},
                 hides: "40A5"
             },
             "40A5": {
@@ -372,7 +372,7 @@ var actions = {
                 combo: true,
                 type: "gcds",
                 ids: ["4087"],
-                visual: {type: "BAR", color: "orange"},
+                visual: {type: "ARROW", size: "m", color: "orange"},
                 hides: "1D03",
                 hidden: true
             },
@@ -400,13 +400,13 @@ var actions = {
                 noRefresh: true,
                 ids: [
                     "1D64", "1D53", "1D51", "1D56", "1D57", "1D5A", // jolt, verareo, verthunder, verfire, verstone, vercure
-                    "408D", "408C", "408E", // verareo 2, verthunder 2, impact
-                    "1D50","1D58","1D5C","1D59", // riposte, z, redouble, moul
-                    "1D67","1D68","1D69","1D6A", // e. riposte, e. z, e. redouble, e. moul
-                    "1D65", "1D66", "4092", // verflare, verholy, scorch
-                    "4091", "4090" // reprise, e. reprise
+                    "408D", "408C", "408E",                         // verareo 2, verthunder 2, impact
+                    "1D50","1D58","1D5C","1D59",                    // riposte, z, redouble, moul
+                    "1D67","1D68","1D69","1D6A",                    // e. riposte, e. z, e. redouble, e. moul
+                    "1D65", "1D66", "4092",                         // verflare, verholy, scorch
+                    "4091", "4090"                                  // reprise, e. reprise
                 ],
-                visual: {type: "BAR", color: "red"}
+                visual: {type: "ARROW", size: "m", color: "red"}
             }
         }
     },

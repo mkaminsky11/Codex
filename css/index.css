@@ -55,6 +55,9 @@ body {
 .hide {
     display: none !important;
 }
+.hideOverride {
+    display: none !important;
+}
 /*==== ARROW =====*/
 .arrow-row {
     position: relative;
@@ -70,6 +73,12 @@ body {
     transform: rotate(-90deg);
     margin-left: 4px;
 }
+.arrow-row > .arrow-m:first-of-type {
+    margin-left: 10px;
+}
+.arrow-m {
+    width: 13px;
+}
 .arrow::before {
     content: '';
     position: absolute;
@@ -82,6 +91,10 @@ body {
     border: solid 1px black;
     border-right: none;
 }
+.arrow-m::before {
+    left: -7px;
+    height: 13px;
+}
 .arrow::after {
     content: '';
     position: absolute;
@@ -93,6 +106,10 @@ body {
     transform: skew(0deg, -31deg);
     border: solid 1px black;
     border-left: none;
+}
+.arrow-m::after {
+    right: -7px;
+    height: 13px;
 }
 .arrow-red .arrow-active::after, .arrow-red .arrow-active::before {
     background: linear-gradient(0, #ff4b4b, #ff9797);
