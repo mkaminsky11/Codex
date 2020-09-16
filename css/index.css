@@ -129,6 +129,24 @@ body {
 .arrow-purple .arrow-active::after, .arrow-purple .arrow-active::before {
     background: linear-gradient(0, #774bff, #d297ff);
 }
+.arrow-active::before, .arrow-active::after {
+    animation-duration: 0.25s;
+    animation-name: arrowIn;
+}
+
+@keyframes arrowIn {
+    0% {
+        top: -5px;
+        filter: brightness(3);
+    }
+    50% {
+        top: 5px;
+    }
+    100% {
+        top: 0px;
+        filter: brightness(1);
+    }
+}
 /*==== BAR =====*/
 .bar {
     display: flex;
