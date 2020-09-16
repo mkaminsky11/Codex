@@ -2,15 +2,27 @@
 
 Extra job gauges for FFXIV
 
-## Okay, But Why?
-Tired of Storm's Eye being a tiny number on your buff bar? Yeah, me too. Can't tell if you fit that gcd into your No Mercy window? Same.
+## Installation
+1. ACT + FFXIV Plugin
+2. [NGLD's OverlayPlugin](https://github.com/quisquous/cactbot#install-ngld-overlayplugin)
+3. [Cactbot (you don't need to enable the timeline)](https://github.com/quisquous/cactbot#installing-cactbot) **REQUIRED!!**
+4. Add a new Miniparse overlay, and point the url to `https://mkaminsky11.github.io/Codex/index.html`
+
+## Q's
+
+### Why?
+Things like Storm's Eye can be difficult to spot on buff bars, and it can sometimes be difficult to tell if you got a GCD under buffs
+
+## Why is Cactbot Required?
+It provides some nice functions that aren't in the base OverlayPlugin
+
 
 + TODO: when unlocked, show resize handle
 + TODO: demo images
 + TODO: notifications?
-
-## Installation
-Add a new Miniparse overlay, and point the url to `https://mkaminsky11.github.io/Codex/index.html` to get the latest version.
++ TODO: multi-dots
++ TODO: icons
++ TODO: arrow bars
 
 ## Jobs
 
@@ -20,7 +32,7 @@ Add a new Miniparse overlay, and point the url to `https://mkaminsky11.github.io
 
 ### WAR
 + GCDS used in Inner Release
-+ Storm's Eye Timer
++ Storm's Eye tracker
 
 ### PLD
 + GCDS used in Fight or Flight
@@ -44,41 +56,45 @@ Add a new Miniparse overlay, and point the url to `https://mkaminsky11.github.io
 + GCDS used in Perfect Balance
 
 ### DRG
-+ **TODO**: GCDS used in Litany
-+ **TODO**: GCDS used in Lance Charge
++ GCDS used in Litany
++ GCDS used in Lance Charge
++ GCDS used in Eye
 
 ### NIN
-+ **TODO**: GCDS used in Trick
++ GCDS used in Trick
 
 ### SAM
-+ **TODO**: Jinpu tracker
-+ **TODO**: Shifu tracker
-+ **TODO**: Higanbana tracker
++ Jinpu tracker
++ Shifu tracker
++ Higanbana tracker
 
 ### BRD
-+ **TODO**: GCDS used in Raging Strikes
-+ **TODO**: Caustic Bite tracker
-+ **TODO**: Stormbite tracker
++ GCDS used in Raging Strikes
++ Caustic Bite tracker
++ Stormbite tracker
 
 ### MCH
-+ **TODO**: GCDS used in Overheat
-+ **TODO**: GCDS used in Wildfire
++ GCDS used in Overheat
++ GCDS used in Wildfire
 
 ### DNC
-+ **TODO**: GCDS used in Devilment
-+ **TODO**: GCDS used in Technical Finish
++ GCDS used in Devilment
++ GCDS used in Technical Finish
 
 ### BLM
-+ **TODO**: Thunder tracker
++ Thunder tracker
 
 ### SMN
-+ **TODO**: Bio tracker
-+ **TODO**: Miasma tracker
-+ **TODO**: GCDS used in Devotion
++ Bio tracker
++ Miasma tracker
++ Wyrmwave and Scarlet Flame tracker
 
 ### RDM
-+ **TODO**: GCDS used in Embolden
++ GCDS used in Embolden
 
+### BLU
++ Song of Torment tracker
++ **TODO:** Revenge blast indicator
 
 ## Options
 + round or square corners

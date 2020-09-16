@@ -1,6 +1,8 @@
 var me = {
     buffs: {},
-    intervals: {}
+    intervals: {},
+    timers: {},
+    pet: {name: "", id: ""}
 };
 
 var TIMEOUT = 5000;
@@ -9,31 +11,29 @@ var debug = false;
 
 function logData(line){
     switch(line[0]){
+        case "03":
+            bindPet(line[6].toUpperCase(), line[2], line[3]);
         case "21":
-            logAction(line);
+            logAction(line[2], line[4], line[5]);
             break;
         case "22":
-            logAction(line);
+            logAction(line[2], line[4], line[5]);
             break;
         case "26":
-            gainBuff(line);
+            gainBuff(line[5], line[2], parseFloat(line[4]), line[3]);
             break;
         case "30":
-            loseBuff(line);
+            loseBuff(line[5], line[2]);
             break;
     }
 }
 
-function logAction(line){
-    var casterId = line[2];
-
-    if(casterId == me.id) {
-        var actionId = line[4];
-        var actionName = line[5];
+function logAction(sourceId, actionId, actionName){
+    if(sourceId == me.id || sourceId == me.pet.id) {
         if(debug){ console.log("ACTION     " + actionName + "  " + actionId);}
         //
         for(buffId in me.buffs) {
-            if(me.buffs[buffId].active) {
+            if(me.buffs[buffId].active) { // count it under a buff
                 switch(actions[me.job].buffs[buffId].type) {
                     case "gcds":
                         if(actions[me.job].buffs[buffId].ids.indexOf(actionId) !== -1) {
@@ -44,19 +44,24 @@ function logAction(line){
                 }
             }
         }
+        if(actionId in me.buffs) { // triggers a buff for some reason
+            gainBuff(sourceId, actionId, actions[me.job].buffs[actionId].time, actionName); // spoof it
+            if(actionId in me.timers) {
+                clearTimeout(me.timers[actionId]);
+            }
+            me.timers[actionId] = setTimeout(function() {
+                loseBuff(sourceId, actionId);
+            }, 1000 * actions[me.job].buffs[actionId].time);
+        }
     }
 }
 
-function gainBuff(line){
-    var sourceId = line[5];
-
+function gainBuff(sourceId, buffId, buffTime, buffName){
     if(sourceId == me.id) {
-        var buffId = line[2];
-        var buffTime = parseFloat(line[4]);
-        var buffName = line[3];
         if(debug) { console.log("BUFF     " + buffName + " - " + buffId); }
         //
         if(buffId in actions[me.job].buffs) {
+            if(me.buffs[buffId].active && actions[me.job].buffs[buffId].noRefresh){return;} // block refreshing
             switch(actions[me.job].buffs[buffId].type) {
                 case "gcds": // KEEPING TRACK OF GCDS
                     me.buffs[buffId] = {
@@ -69,7 +74,7 @@ function gainBuff(line){
                 case "timer": // KEEPING TRACK OF TIMERS
                     me.buffs[buffId] = {
                         type: "timer",
-                        startTime: (new Date(line[1])).getTime(),
+                        startTime: (new Date()).getTime(),
                         max: actions[me.job].buffs[buffId].max,
                         count: parseFloat(buffTime),
                         active: true
@@ -79,20 +84,21 @@ function gainBuff(line){
                     }
                     me.intervals[buffId] = setInterval(function(){
                         if(buffId in me.buffs && me.buffs[buffId].active) {
-                            var count = 1 + me.buffs[buffId].count - ((new Date()).getTime() - me.buffs[buffId].startTime) / 1000; // have to offset this for some reason
+                            var count = me.buffs[buffId].count - ((new Date()).getTime() - me.buffs[buffId].startTime) / 1000; // have to offset this for some reason
                             setCount(buffId, Math.max(0,count));
                         }
                     }, REFRESH);
                     break;
             }
+            if(actions[me.job].buffs[buffId].hides) {
+                hide(actions[me.job].buffs[buffId].hides);
+                unHide(buffId);
+            }
         }
     }
 }
 
-function loseBuff(line){
-    var buffId = line[2];
-    var sourceId = line[5];
-
+function loseBuff(sourceId, buffId){
     if(sourceId == me.id && buffId in me.buffs &&  me.buffs[buffId].active) {
         if(debug) { console.log("LOSEBUFF   " + buffId); }
         //
@@ -112,12 +118,21 @@ function loseBuff(line){
     
 }
 
+function bindPet(ownerId, petId, petName) {
+    if(ownerId == me.id) {
+        console.log("BIND   " + petName);
+        me.pet = {
+            id: petId.toUpperCase(),
+            name: petName
+        };
+    }
+}
+
 function resize(){
 }
 
-//addOverlayListener('LogLine', (data) => {
-//  console.log(data.line);
-//});
+//addOverlayListener('LogLine', (data) => {console.log(data.line);});
+
 addOverlayListener('onPlayerChangedEvent', (data) => {
     var job = data.detail.job;
     if(job !== me.job) {

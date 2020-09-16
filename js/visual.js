@@ -6,6 +6,9 @@ function setJob(job) {
         row.setAttribute("class","row");
         row.setAttribute("id", buffId);
         row.setAttribute("type", actions[job].buffs[buffId].type);
+        if(actions[job].buffs[buffId].hidden) {
+            row.classList.add("hide");
+        }
 
         var item = actions[job].buffs[buffId].visual;
         if(item.type === "BAR") {
@@ -35,4 +38,11 @@ function setCount(buffId, count) {
             }
         }
     }
+}
+
+function hide(buffId) {
+    document.querySelector(".row[id='" + buffId + "']").classList.add("hide");
+}
+function unHide(buffId) {
+    document.querySelector(".row[id='" + buffId + "']").classList.remove("hide");
 }
