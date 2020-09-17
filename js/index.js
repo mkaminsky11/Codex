@@ -24,6 +24,8 @@ function logData(line){
         case "30":
             loseBuff(line[5], line[2]);
             break;
+        case "31":
+            switchJob(line[2], parseInt(line[3], 16));
     }
 }
 
@@ -113,8 +115,24 @@ function loseBuff(sourceId, buffId){
         setTimeout(function(){
             setCount(buffId, 0);
         }, TIMEOUT);
+    }   
+}
+
+var jobIds = {
+    37: "GNB", 33: "AST", 19: "PLD", 21: "WAR", 32: "DRK", 28: "SCH", 24: "WHM", 23: "BRD", 22: "DRG", 27: "SMN", 34: "SAM", 25: "BLM", 35: "RDM", 31: "MCH", 38: "DNC", 30: "NIN", 20: "MNK", 36: "BLU"
+};
+function switchJob(sourceId, jobId) {
+    if(sourceId == me.id && jobId in jobIds) {
+        var job = jobIds[jobId];
+        if(job !== me.job) {
+            me.buffs = {};
+            for(buffId in actions[job].buffs) {
+                me.buffs[buffId] = {active: false};
+            }
+            console.log("SETJOB " + job);
+            setJob(job);
+        }
     }
-    
 }
 
 function bindPet(ownerId, petId, petName) {
@@ -127,32 +145,18 @@ function bindPet(ownerId, petId, petName) {
     }
 }
 
-function resize(){
-}
-
 //addOverlayListener('LogLine', (data) => {console.log(data.line);});
 
-addOverlayListener('onPlayerChangedEvent', (data) => {
-    var job = data.detail.job;
-    if(job !== me.job) {
-        var name = data.detail.name;
-        var id = (data.detail.id).toString(16).toUpperCase();
-
-        me.name = name;
-        me.id = id;
-        me.job = job;
-        me.buffs = {};
-        for(buffId in actions[job].buffs) {
-            me.buffs[buffId] = {active: false};
-        }
-        console.log("SETJOB " + job);
-        setJob(job);
-    }
-});
 addOverlayListener('LogLine', (data) => {
     logData(data.line);
 });
 startOverlayEvents();
 
-window.onresize = resize;
-resize();
+async function init() {
+    let combat = (await callOverlayHandler({ call: 'getCombatants' })).combatants[0];
+    me.name = combat.name;
+    me.id = (combat.ID).toString(16).toUpperCase();
+    switchJob(me.id, combat.Job);
+
+}
+init();

@@ -5,16 +5,12 @@ Extra job gauges for FFXIV
 ## Installation
 1. ACT + FFXIV Plugin
 2. [NGLD's OverlayPlugin](https://github.com/quisquous/cactbot#install-ngld-overlayplugin)
-3. [Cactbot (you don't need to enable the timeline)](https://github.com/quisquous/cactbot#installing-cactbot) **REQUIRED!!**
-4. Add a new Miniparse overlay, and point the url to `https://mkaminsky11.github.io/Codex/index.html`
+3. Add a new Miniparse overlay, and point the url to `https://mkaminsky11.github.io/Codex/index.html`
 
 ## Q's
 
-### Why?
+#### Why?
 Things like Storm's Eye can be difficult to spot on buff bars, and it can sometimes be difficult to tell if you got a GCD under buffs
-
-## Why is Cactbot Required?
-It provides some nice functions that aren't in the base OverlayPlugin
 
 
 + TODO: when unlocked, show resize handle
@@ -89,7 +85,7 @@ It provides some nice functions that aren't in the base OverlayPlugin
 + Wyrmwave and Scarlet Flame tracker
 
 ### RDM
-+ GCDS used in Embolden
++ GCDS used in Manification
 
 ### BLU
 + Song of Torment tracker

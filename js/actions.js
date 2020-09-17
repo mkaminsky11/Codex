@@ -392,21 +392,21 @@ var actions = {
     },
     RDM: {
         buffs: {
-            "4d7": {
-                name: "Embolden", order: 0,
-                time: 20,
-                max: 9,
+            "7b3": {
+                name: "Manification", order: 0,
+                time: 10,
+                max: 5,
                 type: "gcds",
                 noRefresh: true,
                 ids: [
                     "1D64", "1D53", "1D51", "1D56", "1D57", "1D5A", // jolt, verareo, verthunder, verfire, verstone, vercure
                     "408D", "408C", "408E",                         // verareo 2, verthunder 2, impact
-                    "1D50","1D58","1D5C","1D59",                    // riposte, z, redouble, moul
+                    //"1D50","1D58","1D5C","1D59",                    // riposte, z, redouble, moul
                     "1D67","1D68","1D69","1D6A",                    // e. riposte, e. z, e. redouble, e. moul
                     "1D65", "1D66", "4092",                         // verflare, verholy, scorch
                     "4091", "4090"                                  // reprise, e. reprise
                 ],
-                visual: {type: "ARROW", size: "m", color: "red"}
+                visual: {type: "ARROW", color: "blue"}
             }
         }
     },
