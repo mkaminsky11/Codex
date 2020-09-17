@@ -25,7 +25,7 @@ function logData(line){
             loseBuff(line[5], line[2]);
             break;
         case "31":
-            switchJob(line[2], parseInt(line[3], 16));
+            parseJob(line[2], line[3]);
     }
 }
 
@@ -121,8 +121,14 @@ function loseBuff(sourceId, buffId){
 var jobIds = {
     37: "GNB", 33: "AST", 19: "PLD", 21: "WAR", 32: "DRK", 28: "SCH", 24: "WHM", 23: "BRD", 22: "DRG", 27: "SMN", 34: "SAM", 25: "BLM", 35: "RDM", 31: "MCH", 38: "DNC", 30: "NIN", 20: "MNK", 36: "BLU"
 };
+function parseJob(sourceId, jobString) {
+    if(sourceId == me.id) {
+        var jobId = parseInt(jobString.substr(jobString.length - 2,2),16);
+        switchJob(sourceId, jobId);
+    }
+}
 function switchJob(sourceId, jobId) {
-    if(sourceId == me.id && jobId in jobIds) {
+    if(jobId in jobIds) {
         var job = jobIds[jobId];
         if(job !== me.job) {
             me.buffs = {};
@@ -154,10 +160,14 @@ addOverlayListener('LogLine', (data) => {
 startOverlayEvents();
 
 async function init() {
-    let combat = (await callOverlayHandler({ call: 'getCombatants' })).combatants[0];
-    me.name = combat.name;
-    me.id = (combat.ID).toString(16).toUpperCase();
-    switchJob(me.id, combat.Job);
-
+    let combat = (await callOverlayHandler({ call: 'getCombatants' })).combatants;
+    if(combat.length > 0) {
+            me.name = combat[0].Name;
+            me.id = (combat[0].ID).toString(16).toUpperCase();
+            switchJob(me.id, combat[0].Job);
+    }
+    else {
+        init();
+    }
 }
 init();
