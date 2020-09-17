@@ -126,6 +126,7 @@ function switchJob(sourceId, jobId) {
         var job = jobIds[jobId];
         if(job !== me.job) {
             me.buffs = {};
+            me.job = job;
             for(buffId in actions[job].buffs) {
                 me.buffs[buffId] = {active: false};
             }
