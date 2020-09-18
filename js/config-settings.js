@@ -19,7 +19,6 @@ function colorOptions(color) {
         return "<option value='" + c + "' " + selected + ">" + c + "</option>";
     }).join("");
 }
-
 // GET / SET
 function getSettings() {
     var s = localStorage.getItem("CodexSettings");
@@ -54,6 +53,7 @@ function getSettings() {
         settingsRow.innerHTML = gaugeCheckboxes;
         document.getElementById("settings-body").appendChild(settingsRow);
     }
+    // INIT INPUTS TO MATCH CONFIG
     document.querySelectorAll(".codex-disabled").forEach(function(item) {
         item.addEventListener("change", function(e) {
             config.disabled[e.target.getAttribute("data-id")] = !(e.target.checked);

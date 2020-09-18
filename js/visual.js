@@ -2,7 +2,7 @@ var container = document.getElementById("container");
 function setJob(job) {
     container.innerHTML = "";
     if(job in actions) {
-        var buffIds = [];
+        var buffIds = []; // SORT THE BARS
         for(buffId in actions[job].buffs) {
             buffIds.push({
                 id: buffId,
@@ -22,7 +22,6 @@ function setJob(job) {
             if(config.disabled[buffId]) {
                 row.classList.add("hideOverride");
             }
-
             var item = actions[job].buffs[buffId].visual;
             item.color = config.color[buffId] ? config.color[buffId] : item.color;
             if(item.type === "BAR") {
@@ -54,11 +53,11 @@ function setCount(buffId, count) {
         var type = actions[me.job].buffs[buffId].visual.type;
         if(type === "BAR") {
             var elem = document.querySelector(".row[id='" + buffId + "']");
-            var countString = count.toFixed(0);
+            var countString = count.toFixed(0); // NO DECIMAL PLACES
             elem.querySelector(".data-text").innerHTML = countString;
             var width = 100 * count / actions[me.job].buffs[buffId].max;
             elem.querySelector(".progress-bar > span").setAttribute("style","width:" + width + "%");
-            if(width <= 30) {
+            if(width <= 30) { // FLASH IF BAR IS LOW
                 elem.querySelector(".progress-bar > span").classList.add("progress-bar-flash");
             }
             else {

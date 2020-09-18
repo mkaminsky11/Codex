@@ -12,6 +12,7 @@ function logData(line){
     switch(line[0]){
         case "03":
             bindPet(line[6].toUpperCase(), line[2], line[3]);
+            break;
         case "21":
             logAction(line[2], line[4], line[5]);
             break;
@@ -26,6 +27,7 @@ function logData(line){
             break;
         case "31":
             parseJob(line[2], line[3]);
+            break;
     }
 }
 
@@ -45,7 +47,7 @@ function logAction(sourceId, actionId, actionName){
                 }
             }
         }
-        if(actionId in me.buffs) { // triggers a buff for some reason
+        if(actionId in me.buffs) { // treat the action as a buff, like with hypercharge
             gainBuff(sourceId, actionId, actions[me.job].buffs[actionId].time, actionName); // spoof it
             if(actionId in me.timers) {
                 clearTimeout(me.timers[actionId]);
@@ -62,9 +64,9 @@ function gainBuff(sourceId, buffId, buffTime, buffName){
         if(debug) { console.log("BUFF     " + buffName + " - " + buffId); }
         //
         if(buffId in actions[me.job].buffs) {
-            if(me.buffs[buffId].active && actions[me.job].buffs[buffId].noRefresh){return;} // block refreshing
+            if(me.buffs[buffId].active && actions[me.job].buffs[buffId].noRefresh){return;} // block refreshing, like RDM embolden (which emits and new buff each decay)
             switch(actions[me.job].buffs[buffId].type) {
-                case "gcds": // KEEPING TRACK OF GCDS
+                case "gcds": // GCDS; START COUNTER AT 0
                     me.buffs[buffId] = {
                         type: "gcds",
                         max: actions[me.job].buffs[buffId].max,
@@ -72,7 +74,7 @@ function gainBuff(sourceId, buffId, buffTime, buffName){
                         active: true
                     };
                     break;
-                case "timer": // KEEPING TRACK OF TIMERS
+                case "timer": // TIMER; START TICKING DOWN
                     me.buffs[buffId] = {
                         type: "timer",
                         startTime: (new Date()).getTime(),
@@ -85,13 +87,13 @@ function gainBuff(sourceId, buffId, buffTime, buffName){
                     }
                     me.intervals[buffId] = setInterval(function(){
                         if(buffId in me.buffs && me.buffs[buffId].active) {
-                            var count = me.buffs[buffId].count - ((new Date()).getTime() - me.buffs[buffId].startTime) / 1000; // have to offset this for some reason
+                            var count = me.buffs[buffId].count - ((new Date()).getTime() - me.buffs[buffId].startTime) / 1000;
                             setCount(buffId, Math.max(0,count));
                         }
                     }, REFRESH);
                     break;
             }
-            if(actions[me.job].buffs[buffId].hides) {
+            if(actions[me.job].buffs[buffId].hides) { // buff hides another bar
                 hide(actions[me.job].buffs[buffId].hides);
                 unHide(buffId);
             }
@@ -112,23 +114,22 @@ function loseBuff(sourceId, buffId, buffName){
                 break;
         }
         me.buffs[buffId].active = false;
-        setTimeout(function(){
+        setTimeout(function(){  // reset it after a certain amount of time
             setCount(buffId, 0);
         }, TIMEOUT);
     }   
 }
 
-var jobIds = {37: "GNB", 33: "AST", 19: "PLD", 21: "WAR", 32: "DRK", 28: "SCH", 24: "WHM", 23: "BRD", 22: "DRG", 27: "SMN", 34: "SAM", 25: "BLM", 35: "RDM", 31: "MCH", 38: "DNC", 30: "NIN", 20: "MNK", 36: "BLU"};
 function parseJob(sourceId, jobString) {
     if(sourceId == me.id) {
-        var jobId = parseInt(jobString.substr(jobString.length - 2,2),16);
-        switchJob(sourceId, jobId);
+        var jobId = parseInt(jobString.substr(jobString.length - 2,2),16); // last 2 characters are the job id
+        switchJob(jobId);
     }
 }
-function switchJob(sourceId, jobId) {
-    if(jobId in jobIds) {
-        var job = jobIds[jobId];
-        if(job !== me.job) {
+function switchJob(jobId) {
+    if(jobId in ji) {
+        var job = ji[jobId];
+        if(job !== me.job) { // switched
             me.buffs = {};
             me.job = job;
             for(buffId in actions[job].buffs) {
@@ -161,10 +162,10 @@ async function init() {
     if(combat.length > 0) {
         me.name = combat[0].Name;
         me.id = (combat[0].ID).toString(16).toUpperCase();
-        switchJob(me.id, combat[0].Job);
+        switchJob(combat[0].Job);
     }
     else {
-        setTimeout(function() {init();}, 1000)
+        setTimeout(function() {init();}, 1000) // rety every second
     }
 }
 init();
