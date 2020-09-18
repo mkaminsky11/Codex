@@ -18,6 +18,7 @@ Things like Storm's Eye can be difficult to spot on buff bars, and it can someti
 + TODO: indicators
 + TODO: multi-dots
 + TODO: icons
++ TODO: lvl 60/70 spells
 
 ## Jobs
 
@@ -101,3 +102,4 @@ Things like Storm's Eye can be difficult to spot on buff bars, and it can someti
 + **TODO**: change arrow size
 + hide specific gauges
 + adjust size
++ **TOD**: change refresh time

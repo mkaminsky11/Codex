@@ -22,7 +22,7 @@ function logData(line){
             gainBuff(line[5], line[2], parseFloat(line[4]), line[3]);
             break;
         case "30":
-            loseBuff(line[5], line[2]);
+            loseBuff(line[5], line[2], line[3]);
             break;
         case "31":
             parseJob(line[2], line[3]);
@@ -99,9 +99,9 @@ function gainBuff(sourceId, buffId, buffTime, buffName){
     }
 }
 
-function loseBuff(sourceId, buffId){
+function loseBuff(sourceId, buffId, buffName){
     if(sourceId == me.id && buffId in me.buffs &&  me.buffs[buffId].active) {
-        if(debug) { console.log("LOSEBUFF   " + buffId); }
+        if(debug) { console.log("LOSEBUFF   " + buffId + " " + buffName); }
         //
         switch(me.buffs[buffId].type) {
             case "gcds":
@@ -118,9 +118,7 @@ function loseBuff(sourceId, buffId){
     }   
 }
 
-var jobIds = {
-    37: "GNB", 33: "AST", 19: "PLD", 21: "WAR", 32: "DRK", 28: "SCH", 24: "WHM", 23: "BRD", 22: "DRG", 27: "SMN", 34: "SAM", 25: "BLM", 35: "RDM", 31: "MCH", 38: "DNC", 30: "NIN", 20: "MNK", 36: "BLU"
-};
+var jobIds = {37: "GNB", 33: "AST", 19: "PLD", 21: "WAR", 32: "DRK", 28: "SCH", 24: "WHM", 23: "BRD", 22: "DRG", 27: "SMN", 34: "SAM", 25: "BLM", 35: "RDM", 31: "MCH", 38: "DNC", 30: "NIN", 20: "MNK", 36: "BLU"};
 function parseJob(sourceId, jobString) {
     if(sourceId == me.id) {
         var jobId = parseInt(jobString.substr(jobString.length - 2,2),16);
@@ -153,7 +151,6 @@ function bindPet(ownerId, petId, petName) {
 }
 
 //addOverlayListener('LogLine', (data) => {console.log(data.line);});
-
 addOverlayListener('LogLine', (data) => {
     logData(data.line);
 });
@@ -162,12 +159,12 @@ startOverlayEvents();
 async function init() {
     let combat = (await callOverlayHandler({ call: 'getCombatants' })).combatants;
     if(combat.length > 0) {
-            me.name = combat[0].Name;
-            me.id = (combat[0].ID).toString(16).toUpperCase();
-            switchJob(me.id, combat[0].Job);
+        me.name = combat[0].Name;
+        me.id = (combat[0].ID).toString(16).toUpperCase();
+        switchJob(me.id, combat[0].Job);
     }
     else {
-        init();
+        setTimeout(function() {init();}, 1000)
     }
 }
 init();
