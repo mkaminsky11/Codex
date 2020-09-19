@@ -22,7 +22,8 @@ var actions = {
                 ],
                 visual: {type: "BAR", color: "blue"}
             }
-        }
+        },
+        alias: {}
     },
     WAR: {
         buffs: {
@@ -41,7 +42,8 @@ var actions = {
                 type: "timer",
                 visual: {type: "BAR", color: "red"}
             }
-        }
+        },
+        alias: {}
     },
     PLD: {
         buffs: {
@@ -69,7 +71,8 @@ var actions = {
                 type: "timer",
                 visual: {type: "BAR", color: "orange"}
             }
-        }
+        },
+        alias: {}
     },
     GNB: {
         buffs: {
@@ -83,7 +86,8 @@ var actions = {
                 ],
                 visual: {type: "ARROW", size: "m", color: "orange"}
             }
-        }
+        },
+        alias: {}
     },
     //================//
     // HEALERS
@@ -165,7 +169,8 @@ var actions = {
                 ],
                 visual: {type: "BAR", color: "red"}
             }
-        }
+        },
+        alias: {}
     },
     DRG: {
         buffs: {
@@ -199,6 +204,9 @@ var actions = {
                 ],
                 visual: {type: "BAR", color: "orange"}
             }
+        },
+        alias: {
+            [ib.RightEye2]: ib.RightEye
         }
     },
     NIN: {
@@ -213,7 +221,8 @@ var actions = {
                 ],
                 visual: {type: "ARROW", size: "m", color: "yellow"}
             },
-        }
+        },
+        alias: {}
     },
     SAM: {
         buffs: {
@@ -235,7 +244,8 @@ var actions = {
                 type: "timer",
                 visual: {type: "BAR", color: "orange"}
             }
-        }
+        },
+        alias: {}
     },
     //==================//
     // PHYSICAL RANGED
@@ -291,7 +301,8 @@ var actions = {
                 ],
                 visual: {type: "BAR", color: "red"}
             }
-        }
+        },
+        alias: {}
     },
     DNC: {
         buffs: {
@@ -319,7 +330,8 @@ var actions = {
                 ],
                 visual: {type: "BAR", color: "blue"}
             },
-        }
+        },
+        alias: {}
     },
     //================//
     // MAGICAL DPS
@@ -400,7 +412,8 @@ var actions = {
                 ],
                 visual: {type: "ARROW", color: "blue"}
             }
-        }
+        },
+        alias: {}
     },
     //====================//
     // BLU
@@ -413,6 +426,7 @@ var actions = {
                 type: "timer",
                 visual: {type: "BAR", color: "red"}
             }
-        }
+        },
+        alias: {}
     },
 };

@@ -1,11 +1,12 @@
 # CODEX
 
-Extra job gauges for FFXIV
+Extra job gauges and buff tracker for FFXIV
 
 ## Installation
 1. ACT + FFXIV Plugin
 2. [NGLD's OverlayPlugin](https://github.com/quisquous/cactbot#install-ngld-overlayplugin)
 3. Add a new Miniparse overlay, and point the url to `https://mkaminsky11.github.io/Codex/index.html`
+4. **(Optional)** add a new Miniparse at `https://mkaminsky11.github.io/Codex/buffs.html` for the party buff tracker
 
 ## Q's
 
@@ -31,6 +32,7 @@ Things like Storm's Eye can be difficult to spot on buff bars, and it can someti
 + Storm's Eye tracker
 
 ### PLD
++ GCDS used in Requiescat
 + GCDS used in Fight or Flight
 + Goring Blade tracker
 
@@ -94,7 +96,7 @@ Things like Storm's Eye can be difficult to spot on buff bars, and it can someti
 
 ## Options
 + round or square corners
-+ **TODO**: silver border or none
++ silver border or none
 + **TODO**: material UI or base FFXIV
 + change color
 + change order

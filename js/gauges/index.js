@@ -1,8 +1,10 @@
 var me = {
+    id: "",
     buffs: {},
     intervals: {},
     timers: {},
-    pet: {name: "", id: ""}
+    pet: {name: "", id: ""},
+    zone: "",
 };
 var TIMEOUT = 5000;
 var REFRESH = 100;
@@ -56,6 +58,9 @@ function logAction(sourceId, actionId, actionName){
                 loseBuff(sourceId, actionId);
             }, 1000 * actions[me.job].buffs[actionId].time);
         }
+        if(actionId in actions[me.job].alias) {
+            logAction(souceId, actions[me.job].alias[actionId], actionName);
+        }
     }
 }
 
@@ -98,25 +103,33 @@ function gainBuff(sourceId, buffId, buffTime, buffName){
                 unHide(buffId);
             }
         }
+        if(buffId in actions[me.job].alias) {
+            gainBuff(souceId, actions[me.job].alias[buffId], buffTime, buffName);
+        }
     }
 }
 
 function loseBuff(sourceId, buffId, buffName){
-    if(sourceId == me.id && buffId in me.buffs &&  me.buffs[buffId].active) {
-        if(debug) { console.log("LOSEBUFF   " + buffId + " " + buffName); }
-        //
-        switch(me.buffs[buffId].type) {
-            case "gcds":
-                break;
-            case "timer":
-                clearInterval(me.intervals[buffId]);
+    if(sourceId == me.id) {
+        if(buffId in me.buffs &&  me.buffs[buffId].active) {
+            if(debug) { console.log("LOSEBUFF   " + buffId + " " + buffName); }
+            //
+            switch(me.buffs[buffId].type) {
+                case "gcds":
+                    break;
+                case "timer":
+                    clearInterval(me.intervals[buffId]);
+                    setCount(buffId, 0);
+                    break;
+            }
+            me.buffs[buffId].active = false;
+            setTimeout(function(){  // reset it after a certain amount of time
                 setCount(buffId, 0);
-                break;
+            }, TIMEOUT);
         }
-        me.buffs[buffId].active = false;
-        setTimeout(function(){  // reset it after a certain amount of time
-            setCount(buffId, 0);
-        }, TIMEOUT);
+        if(buffId in actions[me.job].alias) {
+            loseBuff(souceId, actions[me.job].alias[buffId], buffName);
+        }
     }   
 }
 
@@ -126,6 +139,7 @@ function parseJob(sourceId, jobString) {
         switchJob(jobId);
     }
 }
+
 function switchJob(jobId) {
     if(jobId in ji) {
         var job = ji[jobId];
@@ -155,6 +169,19 @@ function bindPet(ownerId, petId, petName) {
 addOverlayListener('LogLine', (data) => {
     logData(data.line);
 });
+addOverlayListener('ChangePrimaryPlayer', (data) => {
+    if(me.id !== "" && (data.charID).toString(16).toUpperCase() !== me.id) {
+        location.reload();
+    }
+});
+addOverlayListener('ChangeZone', (data) => {
+    if(me.zone !== "" && data.zoneID !== me.zone) {
+        location.reload();
+    }
+    else {
+        me.zone = data.zoneID;
+    }
+});
 startOverlayEvents();
 
 async function init() {
@@ -165,7 +192,7 @@ async function init() {
         switchJob(combat[0].Job);
     }
     else {
-        setTimeout(function() {init();}, 1000) // rety every second
+        setTimeout(function() {init();}, 1000) // retry every second
     }
 }
 init();

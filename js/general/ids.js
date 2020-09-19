@@ -18,6 +18,7 @@ const ib = {
     Biolysis: '767',
     SchBio: 'b3',
     SchBio2: 'bd',
+    Chain: '4c5',
     // WHM
     Dia: '74f',
     Aero: '8f',
@@ -26,6 +27,15 @@ const ib = {
     Combust: '346',
     Combust2: '34b',
     Combust3: '759',
+    Balance: '75a',
+    Bole: '75b',
+    Arrow: '75c',
+    Spear: '75d',
+    Ewer: '75e',
+    Spire: '75f',
+    LordOfCrowns: '754',
+    LadyOfCrowns: '755',
+    Divination: '756',
     // MNK
     PerfectBalance: '6e',
     Brotherhood: '4a1',
@@ -34,6 +44,8 @@ const ib = {
     LanceCharge: '748',
     BattleLitany: '312',
     RightEye: '776',
+    RightEye2: '5ad',
+    LeftEye: '5ae',
     // NIN
     TrickAttack: '27e',
     // SAM
@@ -46,6 +58,7 @@ const ib = {
     VenomousBite: '7c',
     Windbite: '81',
     RagingStrikes: '7d',
+    BattleVoice: '8d',
     // MCH
     Wildfire: '79a',
     // DNC
@@ -61,10 +74,14 @@ const ib = {
     SmnBio2: 'bd',
     SmnBio3: '4be',
     Miasma: '4bf',
+    Devotion: '4bd',
     // RDM
     Manification: '7b3',
+    Embolden: '4d7',
     // BLU
-    SongOfTorment: '6b2'
+    SongOfTorment: '6b2',
+    PeculiarLight: '6b9',
+    OffGuard: '6b5',
 };
 //=============//
 // ABILITIES

@@ -22,11 +22,13 @@ function setJob(job) {
             if(config.disabled[buffId]) {
                 row.classList.add("hideOverride");
             }
+            var silver = (config.edges === "silver") ? "<img class='silver-edge' src='img/general/silver_gauge.png'/>" : "";
             var item = actions[job].buffs[buffId].visual;
             item.color = config.color[buffId] ? config.color[buffId] : item.color;
             if(item.type === "BAR") {
                 var icon = item.icon ? "<img class='data-icon' src='" + item.icon + "'/>" : "";
                 row.innerHTML = "<div class='bar'>" + 
+                                silver + 
                                 "<div class='progress-bar progress-bar-" + item.color + " edges-" + config.edges + "'>" +
                                 "<span style='width:0%'></span>" +
                                 "</div>" + 
