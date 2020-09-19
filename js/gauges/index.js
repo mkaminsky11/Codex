@@ -59,7 +59,7 @@ function logAction(sourceId, actionId, actionName){
             }, 1000 * actions[me.job].buffs[actionId].time);
         }
         if(actionId in actions[me.job].alias) {
-            logAction(souceId, actions[me.job].alias[actionId], actionName);
+            logAction(sourceId, actions[me.job].alias[actionId], actionName);
         }
     }
 }
@@ -104,7 +104,7 @@ function gainBuff(sourceId, buffId, buffTime, buffName){
             }
         }
         if(buffId in actions[me.job].alias) {
-            gainBuff(souceId, actions[me.job].alias[buffId], buffTime, buffName);
+            gainBuff(sourceId, actions[me.job].alias[buffId], buffTime, buffName);
         }
     }
 }
@@ -128,7 +128,7 @@ function loseBuff(sourceId, buffId, buffName){
             }, TIMEOUT);
         }
         if(buffId in actions[me.job].alias) {
-            loseBuff(souceId, actions[me.job].alias[buffId], buffName);
+            loseBuff(sourceId, actions[me.job].alias[buffId], buffName);
         }
     }   
 }

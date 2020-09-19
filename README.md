@@ -1,12 +1,12 @@
 # CODEX
 
-Extra job gauges and buff tracker for FFXIV
+Extra gauges and buff tracker for FFXIV
 
 ## Installation
 1. ACT + FFXIV Plugin
 2. [NGLD's OverlayPlugin](https://github.com/quisquous/cactbot#install-ngld-overlayplugin)
-3. Add a new Miniparse overlay, and point the url to `https://mkaminsky11.github.io/Codex/index.html`
-4. **(Optional)** add a new Miniparse at `https://mkaminsky11.github.io/Codex/buffs.html` for the party buff tracker
+3. For gauges, add a new Miniparse overlay, and point the url to `https://mkaminsky11.github.io/Codex/index.html`
+4. For buff tracker, add a new Miniparse overlay, and point the url to `https://mkaminsky11.github.io/Codex/buffs.html`
 
 ## Q's
 
@@ -19,7 +19,6 @@ Things like Storm's Eye can be difficult to spot on buff bars, and it can someti
 + TODO: indicators
 + TODO: multi-dots
 + TODO: icons
-+ TODO: lvl 60/70 spells
 
 ## Jobs
 
