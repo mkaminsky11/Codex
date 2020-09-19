@@ -48,6 +48,7 @@ const ib = {
     LeftEye: '5ae',
     // NIN
     TrickAttack: '27e',
+    Bunshin: '7a2',
     // SAM
     Jinpu: '512',
     Shifu: '513',
@@ -150,6 +151,7 @@ const ia = {
     SonicThrust: '1CE5',
     CoerthanTorment: '405D',
     PiercingTalon: '5A',
+    Nastrond: '1CE8',
     // NIN
     SpinningEdge: '8C0',
     GustSlash: '8C2',

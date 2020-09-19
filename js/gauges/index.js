@@ -165,21 +165,28 @@ function bindPet(ownerId, petId, petName) {
     }
 }
 
+function reload() {
+    for(id in me.intervals) {
+        clearInterval(me.intervals[id]);
+    }
+    location.reload();
+}
+
 //addOverlayListener('LogLine', (data) => {console.log(data.line);});
 addOverlayListener('LogLine', (data) => {
     logData(data.line);
 });
 addOverlayListener('ChangePrimaryPlayer', (data) => {
     if(me.id !== "" && (data.charID).toString(16).toUpperCase() !== me.id) {
-        location.reload();
+        reload();
     }
 });
 addOverlayListener('ChangeZone', (data) => {
     if(me.zone !== "" && data.zoneID !== me.zone) {
-        location.reload();
+        reload();
     }
     else {
-        me.zone = data.zoneID;
+me.zone = data.zoneID;
     }
 });
 startOverlayEvents();

@@ -8,17 +8,19 @@ Extra gauges and buff tracker for FFXIV
 3. For gauges, add a new Miniparse overlay, and point the url to `https://mkaminsky11.github.io/Codex/index.html`
 4. For buff tracker, add a new Miniparse overlay, and point the url to `https://mkaminsky11.github.io/Codex/buffs.html`
 
-## Q's
+### Job Gauges
+Shows information such as how much time you have left on your DoT (Biolysis, Dia, etc.), how many gcds you have gotten under buffs (Inner release, Perfect Balance)
 
-#### Why?
-Things like Storm's Eye can be difficult to spot on buff bars, and it can sometimes be difficult to tell if you got a GCD under buffs
+### Buff Tracker
+Shows which party buffs are currently active and how long until they are off cooldown. For Astrologian, also shows which personal buffs your party members are using so that you can give them cards.
 
++ **TODO**: multi-DoT tracker
++ **TODO**: multi-buffs (if you have multiple of a job in your party)
++ **TODO**: change bar type
++ **TODO**: change arrow size
++ **TOD**: change refresh time
++ **TODO**: material UI or base FFXIV
 
-+ TODO: when unlocked, show resize handle
-+ TODO: demo images
-+ TODO: indicators
-+ TODO: multi-dots
-+ TODO: icons
 
 ## Jobs
 
@@ -96,11 +98,7 @@ Things like Storm's Eye can be difficult to spot on buff bars, and it can someti
 ## Options
 + round or square corners
 + silver border or none
-+ **TODO**: material UI or base FFXIV
 + change color
 + change order
-+ **TODO**: change bar type
-+ **TODO**: change arrow size
 + hide specific gauges
 + adjust size
-+ **TOD**: change refresh time

@@ -10,7 +10,19 @@ function setupBuffs() {
             "<img src='img/buff_icons/" + buffs[buffId].icon + ".png'/>" +
             "<span class='buff-text'>0</span>" + 
             "<div class='buff-overlay'></div>";
+        if(buffs[buffId].ast_only) {
+            buffElem.classList.add("buff-ast-only");
+        }
         buffRow.appendChild(buffElem);
+    }
+}
+
+function setJob(job) {
+    if(job === "AST") {
+        document.getElementById("buffs").classList.remove("not-ast");
+    }
+    else {
+        document.getElementById("buffs").classList.add("not-ast");
     }
 }
 

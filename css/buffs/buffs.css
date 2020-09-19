@@ -3,12 +3,16 @@
     flex-direction: row;
     flex-wrap: wrap;
 }
+.not-ast .buff-ast-only {
+    display: none !important;
+}
 .buff-hidden {
     display: none !important;
 }
 .buff-cd {
     border-color:black !important;
     filter: brightness(0.8);
+    order: 2 !important;
 }
 .buff-cd .buff-text {
 }
@@ -29,6 +33,7 @@
     border-color: white;
     border-width: 1px;
     border-style: solid;
+    order: 1;
 }
 .buff img {
     margin-top: -3px;
