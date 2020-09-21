@@ -203,13 +203,15 @@ const ia = {
     Fountainfall: '3E78',
     ReverseWindmill: '3E7B',
     Bloodshower: '3E7C',
-    FanDance: '3E87',
-    FanDance2: '3E88',
-    FanDance3: '3E89',
     StandardStep: '3E7D',
+    Emboite: '3E7F',
+    Entrechat: '3E80',
+    Jete: '3E81',
+    Pirouette: '3E82',
     DoubleStandardFinish: '3F40',
     TechnicalStep: '3E7E',
     QuadTechnicalFinish: '3F44',
+    SaberDance: '3E85',
     // BLM
     // SMN
     SummonBahamut: '1D03',

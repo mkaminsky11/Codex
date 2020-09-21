@@ -29,7 +29,7 @@ body {
     margin-left: 15px;
     margin-top: 2px;
 }
-#settings-apply {
+.btn {
     padding: 5px;
     font-size: 14px;
     background-color: #0a6f6f;
@@ -40,6 +40,15 @@ body {
     padding-left: 10px;
     padding-right: 10px;
     border-radius: 2px;
+}
+.btn a {
+    text-decoration: none;
+    color: white;
+}
+#settings-help {
+    background-color: #565656;
+}
+#settings-apply {
 }
 #settings-apply:hover {
     background-color: #19a5a5;

@@ -14,13 +14,15 @@ Shows information such as how much time you have left on your DoT (Biolysis, Dia
 ### Buff Tracker
 Shows which party buffs are currently active and how long until they are off cooldown. For Astrologian, also shows which personal buffs your party members are using so that you can give them cards.
 
+![img/docs/demo_img.png]()
+
 + **TODO**: multi-DoT tracker
 + **TODO**: multi-buffs (if you have multiple of a job in your party)
 + **TODO**: change bar type
 + **TODO**: change arrow size
 + **TOD**: change refresh time
 + **TODO**: material UI or base FFXIV
-
++ **TODO**: reset on wipe
 
 ## Jobs
 
@@ -51,11 +53,9 @@ Shows which party buffs are currently active and how long until they are off coo
 
 ### MNK
 + GCDS used in Riddle of Fire
-+ GCDS used in Brotherhood
 + GCDS used in Perfect Balance
 
 ### DRG
-+ GCDS used in Litany
 + GCDS used in Lance Charge
 + GCDS used in Eye
 
@@ -78,7 +78,6 @@ Shows which party buffs are currently active and how long until they are off coo
 
 ### DNC
 + GCDS used in Devilment
-+ GCDS used in Technical Finish
 
 ### BLM
 + Thunder tracker

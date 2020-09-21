@@ -149,16 +149,6 @@ var actions = {
                 ],
                 visual: {type: "ARROW", color: "yellow"}
             },
-            [ib.Brotherhood]: {
-                name: "Brotherhood", 
-                order: 1, time: 15, max: 7,
-                type: "gcds",
-                ids: [
-                    ia.Bootshine, ia.TrueStrike, ia.SnapPunch, ia.DragonKick, ia.TwinSnakes, ia.Demolish,
-                    ia.ArmOfTheDestroyer, ia.FourPointFury, ia.RockBreaker
-                ],
-                visual: {type: "BAR", color: "orange"}
-            },
             [ib.RiddleOfFire]: {
                 name: "Riddle of Fire", 
                 order: 2, time: 20, max: 9,
@@ -183,16 +173,6 @@ var actions = {
                     ia.FangAndClaw, ia.RaidenThrust, ia.DoomSpike, ia.SonicThrust, ia.CoerthanTorment, ia.PiercingTalon
                 ],
                 visual: {type: "ARROW", color: "red", size: "m"}
-            },
-            [ib.BattleLitany]: {
-                name: "Battle Litany", 
-                order: 1, time: 20, max: 9,
-                type: "gcds",
-                ids: [
-                    ia.TrueThrust, ia.Disembowel, ia.ChaosThrust, ia.WheelingThrust, ia.VorpalThrust, ia.FullThrust,
-                    ia.FangAndClaw, ia.RaidenThrust, ia.DoomSpike, ia.SonicThrust, ia.CoerthanTorment, ia.PiercingTalon
-                ],
-                visual: {type: "BAR", color: "blue"}
             },
             [ib.RightEye]: {
                 name: "Right Eye", 
@@ -308,27 +288,15 @@ var actions = {
         buffs: {
             [ib.Devilment]: {
                 name: "Devilment", 
-                order: 0, time: 20, max: 9,
+                order: 0, time: 20, max: 10,
                 type: "gcds",
                 ids: [
                     ia.Cascade, ia.Fountain, ia.Windmill, ia.Bladeshower,
                     ia.ReverseCascade, ia.Fountainfall, ia.ReverseWindmill, ia.Bloodshower,
-                    ia.FanDance, ia.FanDance2, ia.FanDance3,
-                    ia.StandardStep, ia.DoubleStandardFinish, ia.TechnicalStep, ia.QuadTechnicalFinish
+                    ia.StandardStep, ia.DoubleStandardFinish, ia.TechnicalStep, ia.QuadTechnicalFinish,
+                    ia.Emboite, ia.Entrechat, ia.Jete, ia.Pirouette, ia.SaberDance,
                 ],
                 visual: {type: "BAR", color: "red"}
-            },
-            [ib.TechnicalFinish]: {
-                name: "Technical Finish", 
-                order: 1, time: 20, max: 9,
-                type: "gcds",
-                ids: [
-                    ia.Cascade, ia.Fountain, ia.Windmill, ia.Bladeshower,
-                    ia.ReverseCascade, ia.Fountainfall, ia.ReverseWindmill, ia.Bloodshower,
-                    ia.FanDance, ia.FanDance2, ia.FanDance3,
-                    ia.StandardStep, ia.DoubleStandardFinish, ia.TechnicalStep, ia.QuadTechnicalFinish
-                ],
-                visual: {type: "BAR", color: "blue"}
             },
         },
         alias: {}

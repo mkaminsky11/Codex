@@ -26,6 +26,9 @@ function logData(line){
         case "31":
             parseJob(line[2], line[3]);
             break;
+        case "33":
+            if(line[3] === "40000010") { reload(); } // on wipe
+            break;
     }
 }
 function logAction(sourceId, actionId, actionName, targetId){
