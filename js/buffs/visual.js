@@ -1,5 +1,6 @@
 function setupBuffs() {
     var buffRow = document.getElementById("buffs");
+    buffRow.innerHTML = "";
     for(buffId in buffs) {
         var buffElem = document.createElement("div");
         buffElem.classList.add("buff");

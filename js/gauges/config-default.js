@@ -4,5 +4,6 @@ var config = {
     fontSize: 15,
     disabled: {},
     color: {},
-    order: {}
+    order: {},
+    danger: false
 };

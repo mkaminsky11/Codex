@@ -20,9 +20,11 @@ Shows which party buffs are currently active and how long until they are off coo
 + **TODO**: multi-buffs (if you have multiple of a job in your party)
 + **TODO**: change bar type
 + **TODO**: change arrow size
-+ **TOD**: change refresh time
++ **TODO**: change refresh time
 + **TODO**: material UI or base FFXIV
-+ **TODO**: reset on wipe
++ **TODO**: manually enable AST mode for buffs
++ **TODO**: add buff settings
++ **TODO**: stop flashing dot warning after a while
 
 ## Jobs
 

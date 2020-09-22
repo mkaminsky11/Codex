@@ -172,7 +172,13 @@ function reload() {
     for(id in me.intervals) {
         clearInterval(me.intervals[id]);
     }
-    location.reload();
+    for(id in me.timers) {
+        clearTimeout(me.timers[id]);
+    }
+    for(buffId in actions[me.job].buffs) {
+        me.buffs[buffId] = {active: false};
+    }
+    setJob(me.job);
 }
 
 //addOverlayListener('LogLine', (data) => {console.log(data.line);});
@@ -181,7 +187,7 @@ addOverlayListener('LogLine', (data) => {
 });
 addOverlayListener('ChangePrimaryPlayer', (data) => {
     if(me.id !== "" && (data.charID).toString(16).toUpperCase() !== me.id) {
-        reload();
+        location.reload();
     }
 });
 addOverlayListener('ChangeZone', (data) => {

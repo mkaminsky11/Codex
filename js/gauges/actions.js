@@ -126,7 +126,7 @@ var actions = {
                 name: "Combust", 
                 order: 0, max: 30,
                 type: "timer",
-                visual: {type: "BAR", color: "blue"}
+                visual: {type: "BAR", color: "blue", danger: true}
             }
         },
         alias: {

@@ -11,6 +11,9 @@ document.getElementById("codex-zoom").addEventListener("change", function(e){
 document.getElementById("codex-fontsize").addEventListener("change", function(e){
     config.fontSize = e.target.value;
 });
+document.getElementById("codex-danger").addEventListener("change", function(e){
+    config.danger = e.target.checked;
+});
 // MISC
 function colorOptions(color) {
     var colors = ["red","blue","green","orange","yellow","purple"];
@@ -32,6 +35,7 @@ function getSettings() {
     document.getElementById("codex-edges").value = config.edges;
     document.getElementById("codex-zoom").value = config.zoom;
     document.getElementById("codex-fontsize").value = config.fontSize;
+    document.getElementById("codex-danger").checked = config.danger;
     // SETUP JOB ITEMS
     for(job in actions) {
         var settingsRow = document.createElement("div");

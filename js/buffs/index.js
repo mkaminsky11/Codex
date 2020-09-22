@@ -147,9 +147,11 @@ function reload() {
     for(id in me.intervals) {
         clearInterval(me.intervals[id]);
     }
-    location.reload();
+    for(buffId in buffs) {
+        me.buffs[buffId] = {active: false, cd: false};
+    }
+    setupBuffs();
 }
-
 //addOverlayListener('LogLine', (data) => {console.log(data.line);});
 addOverlayListener('LogLine', (data) => {
     logData(data.line);
@@ -164,7 +166,7 @@ addOverlayListener('ChangeZone', (data) => {
 });
 addOverlayListener('ChangePrimaryPlayer', (data) => {
     if(me.id !== "" && (data.charID).toString(16).toUpperCase() !== me.id) {
-        reload();
+        location.reload();
     }
 });
 addOverlayListener('PartyChanged', (data) => {

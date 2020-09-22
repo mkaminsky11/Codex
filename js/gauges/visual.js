@@ -59,11 +59,13 @@ function setCount(buffId, count) {
             elem.querySelector(".data-text").innerHTML = countString;
             var width = 100 * count / actions[me.job].buffs[buffId].max;
             elem.querySelector(".progress-bar > span").setAttribute("style","width:" + width + "%");
-            if(width <= 30) { // FLASH IF BAR IS LOW
+            if(width <= 30 && actions[me.job].buffs[buffId].visual.danger && config.danger) { // FLASH IF BAR IS LOW
                 elem.querySelector(".progress-bar > span").classList.add("progress-bar-flash");
+                elem.querySelector(".data-text").classList.add("data-text-flash");
             }
             else {
                 elem.querySelector(".progress-bar > span").classList.remove("progress-bar-flash");
+                elem.querySelector(".data-text").classList.remove("data-text-flash");
             }
         }
         else if(type === "ARROW") {
