@@ -178,6 +178,7 @@ function reload() {
     for(buffId in actions[me.job].buffs) {
         me.buffs[buffId] = {active: false};
     }
+    clearDanger();
     setJob(me.job);
 }
 

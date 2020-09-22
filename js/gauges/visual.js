@@ -81,6 +81,12 @@ function setCount(buffId, count) {
     }
 }
 
+function clearDanger() {
+    document.querySelectorAll(".data-text").forEach(function(elem) {
+        elem.classList.remove("data-text-flash");
+    });
+}
+
 function hide(buffId) {
     document.querySelector(".row[id='" + buffId + "']").classList.add("hide");
 }

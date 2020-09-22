@@ -40,7 +40,7 @@ var actions = {
                 name: "Storms Eye", order: 1,
                 max: 60,
                 type: "timer",
-                visual: {type: "BAR", color: "red"}
+                visual: {type: "BAR", color: "red", danger: true}
             }
         },
         alias: {}
@@ -69,7 +69,7 @@ var actions = {
                 name: "Goring Blade", order: 1,
                 max: 21,
                 type: "timer",
-                visual: {type: "BAR", color: "orange"}
+                visual: {type: "BAR", color: "orange", danger: true}
             }
         },
         alias: {}
@@ -98,7 +98,7 @@ var actions = {
                 name: "Biolysis", 
                 order: 0, max: 30,
                 type: "timer",
-                visual: {type: "BAR", color: "green"}
+                visual: {type: "BAR", color: "green", danger: true}
             }
         },
         alias: {
@@ -112,7 +112,7 @@ var actions = {
                 name: "Dia", 
                 order: 0, max: 30,
                 type: "timer",
-                visual: {type: "BAR", color: "blue"}
+                visual: {type: "BAR", color: "blue", danger: true}
             }
         },
         alias: {
@@ -210,19 +210,19 @@ var actions = {
                 name: "Jinpu", 
                 order: 0, max: 40,
                 type: "timer",
-                visual: {type: "BAR", color: "blue"}
+                visual: {type: "BAR", color: "blue", danger: true}
             },
             [ib.Shifu]: {
                 name: "Shifu", 
                 order: 1, max: 40,
                 type: "timer",
-                visual: {type: "BAR", color: "red"}
+                visual: {type: "BAR", color: "red", danger: true}
             },
             [ib.Higanbana]: {
                 name: "Higanbana", 
                 order: 2, max: 60,
                 type: "timer",
-                visual: {type: "BAR", color: "orange"}
+                visual: {type: "BAR", color: "orange", danger: true}
             }
         },
         alias: {}
@@ -236,13 +236,13 @@ var actions = {
                 name: "Caustic Bite", 
                 order: 0, max: 30,
                 type: "timer",
-                visual: {type: "BAR", color: "red"}
+                visual: {type: "BAR", color: "red", danger: true}
             },
             [ib.Stormbite]: {
                 name: "Stormbite", 
                 order: 1, max: 30,
                 type: "timer",
-                visual: {type: "BAR", color: "blue"}
+                visual: {type: "BAR", color: "blue", danger: true}
             },
             [ib.RagingStrikes]: {
                 name: "Raging Strikes", 
@@ -310,14 +310,14 @@ var actions = {
                 name: "Thunder 3", 
                 order: 0, max: 24,
                 type: "timer",
-                visual: {type: "BAR", color: "blue"},
+                visual: {type: "BAR", color: "blue", danger: true},
                 hides: [ib.Thunder4]
             },
             [ib.Thunder4]: {
                 name: "Thunder 4", 
                 order: 1, max: 18,
                 type: "timer",
-                visual: {type: "BAR", color: "purple"},
+                visual: {type: "BAR", color: "purple", danger: true},
                 hides: [ib.Thunder3],
                 hidden: true
             }
@@ -352,13 +352,13 @@ var actions = {
                 name: "Bio", 
                 order: 2, max: 30,
                 type: "timer",
-                visual: {type: "BAR", color: "green"},
+                visual: {type: "BAR", color: "green", danger: true},
             },
             [ib.Miasma]: {
                 name: "Miasma", 
                 order: 3, max: 30,
                 type: "timer",
-                visual: {type: "BAR", color: "blue"},
+                visual: {type: "BAR", color: "blue", danger: true},
             }
         },
         alias: {
@@ -392,7 +392,7 @@ var actions = {
                 name: "Song of Torment", 
                 order: 0, max: 30,
                 type: "timer",
-                visual: {type: "BAR", color: "red"}
+                visual: {type: "BAR", color: "red", danger: true}
             }
         },
         alias: {}
