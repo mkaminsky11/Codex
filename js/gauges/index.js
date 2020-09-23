@@ -150,7 +150,7 @@ addOverlayListener('ChangePrimaryPlayer', (data) => {
     if(user.id !== "" && (data.charID).toString(16).toUpperCase() !== user.id) { location.reload(); }
 });
 addOverlayListener('ChangeZone', (data) => {
-    if(!user.setZone(data.zoneId)){
+    if(!user.setZone(data.zoneID)){
         reload();
     }
 });

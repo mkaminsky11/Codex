@@ -39,7 +39,6 @@ function logAction(sourceId, actionId, actionName, targetId){
     }
 }
 function gainBuff(sourceId, targetId, buffId, buffTime, buffName){
-    console.log(buffId);
     if(user.hasBuff(buffId)) {
         var buff = user.getBuff(buffId);
         if(
@@ -142,7 +141,7 @@ addOverlayListener('ChangePrimaryPlayer', (data) => {
     if(user.id !== "" && (data.charID).toString(16).toUpperCase() !== user.id) { location.reload(); }
 });
 addOverlayListener('ChangeZone', (data) => {
-    if(!user.setZone(data.zoneId)){
+    if(!user.setZone(data.zoneID)){
         reload();
     }
 });

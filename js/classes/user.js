@@ -64,7 +64,10 @@ class User {
     }
     // ZONE
     setZone(zone) {
-        if(this.zone !== "" && zone !== this.zone) { return false; }
+        if(this.zone !== "" && zone !== this.zone) { 
+            this.zone = zone;
+            return false;
+        }
         this.zone = zone;
         return true;
     }
