@@ -1,19 +1,13 @@
-var me = {
-    id: "",
-    buffs: {},
-    intervals: {},
-    timers: {},
-    pet: {name: "", id: ""},
-    zone: "",
-};
 var TIMEOUT = 5000;
 var REFRESH = 100;
 var debug = false;
 
+var user = new User();
+
 function logData(line){
     switch(line[0]){
         case "03":
-            bindPet(line[6].toUpperCase(), line[2], line[3]);
+            user.bindPet(line[6].toUpperCase(), line[2], line[3]);
             break;
         case "21":
             logAction(line[2], line[4], line[5]);
@@ -37,149 +31,115 @@ function logData(line){
 }
 
 function logAction(sourceId, actionId, actionName){
-    if(sourceId == me.id || sourceId == me.pet.id) {
+    if(sourceId == user.id || sourceId == user.pet.id) {
         if(debug){ console.log("ACTION     " + actionName + "  " + actionId);}
         //
-        for(buffId in me.buffs) {
-            if(me.buffs[buffId].active) { // count it under a buff
-                switch(actions[me.job].buffs[buffId].type) {
+        user.iterateBuffs(function(buff) {
+            if(buff.active) {
+                switch(buff.type) {
                     case "gcds":
-                        if(actions[me.job].buffs[buffId].ids.indexOf(actionId) !== -1) {
-                            me.buffs[buffId].count++;
-                            setCount(buffId, me.buffs[buffId].count);
+                        if(buff.checkId(actionId)) {
+                            buff.count++;
+                            setCountUI(buff.id, buff.count);
                         }
                         break;
                 }
             }
+        });
+        if(user.hasBuff(actionId)) { // treat action like buff
+            var buff = user.getBuff(actionId);
+            gainBuff(sourceId, actionId, buff.data.time, actionName);
+            user.resetTimer(actionId);
+            user.timers[actionId] = setTimeout(function() {
+                loseBuff(sourceId, actionId, actionName);
+            }, 1000 * buff.data.time);
         }
-        if(actionId in me.buffs) { // treat the action as a buff, like with hypercharge
-            gainBuff(sourceId, actionId, actions[me.job].buffs[actionId].time, actionName); // spoof it
-            if(actionId in me.timers) {
-                clearTimeout(me.timers[actionId]);
-            }
-            me.timers[actionId] = setTimeout(function() {
-                loseBuff(sourceId, actionId);
-            }, 1000 * actions[me.job].buffs[actionId].time);
-        }
-        if(actionId in actions[me.job].alias) {
-            logAction(sourceId, actions[me.job].alias[actionId], actionName);
+        if(user.hasAlias(actionId)) {
+            logAction(sourceId, user.getAlias(actionId), actionName);
         }
     }
 }
 
 function gainBuff(sourceId, buffId, buffTime, buffName){
-    if(sourceId == me.id) {
+    if(sourceId == user.id) {
         if(debug) { console.log("BUFF     " + buffName + " - " + buffId); }
         //
-        if(buffId in actions[me.job].buffs) {
-            if(me.buffs[buffId].active && actions[me.job].buffs[buffId].noRefresh){return;} // block refreshing, like RDM embolden (which emits and new buff each decay)
-            switch(actions[me.job].buffs[buffId].type) {
-                case "gcds": // GCDS; START COUNTER AT 0
-                    me.buffs[buffId] = {
-                        type: "gcds",
-                        max: actions[me.job].buffs[buffId].max,
-                        count: 0,
-                        active: true
-                    };
+        if(user.hasBuff(buffId)) {
+            var buff = user.getBuff(buffId);
+            if(buff.active && buff.data.noRefresh){return;} // block refreshing
+            switch(buff.type) {
+                case "gcds":
+                    buff.count = 0;
+                    buff.active = true;
                     break;
-                case "timer": // TIMER; START TICKING DOWN
-                    me.buffs[buffId] = {
-                        type: "timer",
-                        startTime: (new Date()).getTime(),
-                        max: actions[me.job].buffs[buffId].max,
-                        count: parseFloat(buffTime),
-                        active: true
-                    };
-                    if(buffId in me.intervals) {
-                        clearInterval(me.intervals[buffId]);
-                    }
-                    me.intervals[buffId] = setInterval(function(){
-                        if(buffId in me.buffs && me.buffs[buffId].active) {
-                            var count = me.buffs[buffId].count - ((new Date()).getTime() - me.buffs[buffId].startTime) / 1000;
-                            setCount(buffId, Math.max(0,count));
+                case "timer":
+                    buff.startTime = (new Date()).getTime();
+                    buff.count = parseFloat(buffTime);
+                    buff.active = true;
+                    user.resetInterval(buffId);
+                    user.intervals[buffId] = setInterval(function() {
+                        if(user.hasBuff(buffId)) {
+                            var b_ = user.getBuff(buffId);
+                            if(b_.active) {
+                                var count = b_.count - ((new Date()).getTime() - b_.startTime) / 1000;
+                                setCountUI(buffId, Math.max(0,count));
+                            }
                         }
                     }, REFRESH);
-                    break;
-            }
-            if(actions[me.job].buffs[buffId].hides) { // buff hides another bar
-                hide(actions[me.job].buffs[buffId].hides);
-                unHide(buffId);
             }
         }
-        if(buffId in actions[me.job].alias) {
-            gainBuff(sourceId, actions[me.job].alias[buffId], buffTime, buffName);
+        if(user.hasAlias(buffId)) {
+            gainBuff(sourceId, user.getAlias(buffId), buffTime, buffName);
         }
     }
 }
 
 function loseBuff(sourceId, buffId, buffName){
-    if(sourceId == me.id) {
-        if(buffId in me.buffs &&  me.buffs[buffId].active) {
-            if(debug) { console.log("LOSEBUFF   " + buffId + " " + buffName); }
-            //
-            switch(me.buffs[buffId].type) {
-                case "gcds":
-                    break;
-                case "timer":
-                    clearInterval(me.intervals[buffId]);
-                    setCount(buffId, 0);
-                    break;
+    if(sourceId == user.id) {
+        if(user.hasBuff(buffId)) {
+            var buff = user.getBuff(buffId);
+            if(buff.active) {
+                if(debug) { console.log("LOSEBUFF   " + buffId + " " + buffName); }
+                //
+                switch(buff.type) {
+                    case "gcds":
+                        break;
+                    case "timer":
+                        user.resetInterval(buffId);
+                        setCountUI(buffId, 0);
+                        break;
+                }
+                buff.active = false;
+                setTimeout(function() {
+                    setCountUI(buffId, 0);
+                }, TIMEOUT)
             }
-            me.buffs[buffId].active = false;
-            setTimeout(function(){  // reset it after a certain amount of time
-                setCount(buffId, 0);
-            }, TIMEOUT);
+            if(user.hasAlias(buffId)) {
+                loseBuff(sourceId, user.getAlias(buffId), buffName);
+            }
         }
-        if(buffId in actions[me.job].alias) {
-            loseBuff(sourceId, actions[me.job].alias[buffId], buffName);
-        }
-    }   
+    }
 }
 
 function parseJob(sourceId, jobString) {
-    if(sourceId == me.id) {
+    if(sourceId == user.id) {
         var jobId = parseInt(jobString.substr(jobString.length - 2,2),16); // last 2 characters are the job id
         switchJob(jobId);
     }
 }
 
 function switchJob(jobId) {
-    if(jobId in ji) {
-        var job = ji[jobId];
-        if(job !== me.job) { // switched
-            me.buffs = {};
-            me.job = job;
-            for(buffId in actions[job].buffs) {
-                me.buffs[buffId] = {active: false};
-            }
-            console.log("SETJOB " + job);
-            setJob(job);
-        }
-    }
-}
-
-function bindPet(ownerId, petId, petName) {
-    if(ownerId == me.id) {
-        console.log("BIND   " + petName);
-        me.pet = {
-            id: petId.toUpperCase(),
-            name: petName
-        };
+    if(user.setJob(jobId)) {
+        user.initGBuffs();
+        setJobUI(user.job);
     }
 }
 
 function reload() {
-    for(id in me.intervals) {
-        clearInterval(me.intervals[id]);
-    }
-    for(id in me.timers) {
-        clearTimeout(me.timers[id]);
-    }
-    for(buffId in actions[me.job].buffs) {
-        me.buffs[buffId] = {active: false};
-    }
+    user.reset();
+    user.initGBuffs();
     clearDanger();
-    setJob(me.job);
+    setJobUI(user.job);
 }
 
 //addOverlayListener('LogLine', (data) => {console.log(data.line);});
@@ -187,16 +147,11 @@ addOverlayListener('LogLine', (data) => {
     logData(data.line);
 });
 addOverlayListener('ChangePrimaryPlayer', (data) => {
-    if(me.id !== "" && (data.charID).toString(16).toUpperCase() !== me.id) {
-        location.reload();
-    }
+    if(user.id !== "" && (data.charID).toString(16).toUpperCase() !== user.id) { location.reload(); }
 });
 addOverlayListener('ChangeZone', (data) => {
-    if(me.zone !== "" && data.zoneID !== me.zone) {
+    if(!user.setZone(data.zoneId)){
         reload();
-    }
-    else {
-me.zone = data.zoneID;
     }
 });
 startOverlayEvents();
@@ -204,8 +159,7 @@ startOverlayEvents();
 async function init() {
     let combat = (await callOverlayHandler({ call: 'getCombatants' })).combatants;
     if(combat.length > 0) {
-        me.name = combat[0].Name;
-        me.id = (combat[0].ID).toString(16).toUpperCase();
+        user.init((combat[0].ID).toString(16).toUpperCase());
         switchJob(combat[0].Job);
     }
     else {

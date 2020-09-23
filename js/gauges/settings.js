@@ -1,6 +1,6 @@
 document.querySelector("#settings").addEventListener("click", function(e){
     window.open(
-        'gauge-config.html',
+        'config.html',
         'Settings',
         `width=800,height=600`
       )

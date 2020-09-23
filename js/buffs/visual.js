@@ -1,4 +1,4 @@
-function setupBuffs() {
+function setupBuffsUI() {
     var buffRow = document.getElementById("buffs");
     buffRow.innerHTML = "";
     for(buffId in buffs) {
@@ -18,7 +18,7 @@ function setupBuffs() {
     }
 }
 
-function setJob(job) {
+function setJobUI(job) {
     if(job === "AST") {
         document.getElementById("buffs").classList.remove("not-ast");
     }
@@ -27,7 +27,7 @@ function setJob(job) {
     }
 }
 
-function setTime(buffId, time, maxTime, invert) {
+function setTimeUI(buffId, time, maxTime, invert) {
     var percent = invert ? 100 - (100 * time/maxTime) : (100 * time/maxTime);
     document.getElementById(buffId).querySelector(".buff-text").innerHTML = time.toFixed(0);
     document.getElementById(buffId).querySelector(".buff-overlay").setAttribute("style","height:" + percent + "%");
@@ -41,16 +41,16 @@ function unHide(buffId) {
     document.getElementById(buffId).classList.remove("buff-hidden");
 }
 
-function buffOnCd(buffId) {
+function buffOnCdUI(buffId) {
     document.getElementById(buffId).classList.add("buff-cd");
 }
 
-function buffReady(buffId) {
+function buffReadyUI(buffId) {
     document.getElementById(buffId).classList.remove("buff-cd");
     document.getElementById(buffId).classList.add("buff-ready");
 }
 
-function buffActive(buffId) {
+function buffActiveUI(buffId) {
     document.getElementById(buffId).classList.remove("buff-cd");
     document.getElementById(buffId).classList.remove("buff-ready");
 }

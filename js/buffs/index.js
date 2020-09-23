@@ -9,6 +9,8 @@ var REFRESH = 100;
 var SHOW_CD = 30;
 var debug = false;
 
+var user = new User();
+
 function logData(line){
     switch(line[0]){
         case "21":
@@ -32,48 +34,42 @@ function logData(line){
     }
 }
 function logAction(sourceId, actionId, actionName, targetId){
-    if(actionId in buffs) {
-        gainBuff(sourceId, targetId, actionId, buffs[actionId].duration, actionName); //spoof it
+    if(user.hasBuff(actionId)) {
+        gainBuff(sourceId, targetId, actionId, user.getBuff(actionId).data.duration, actionName);
     }
 }
 function gainBuff(sourceId, targetId, buffId, buffTime, buffName){
-    if(buffId in buffs) {
+    console.log(buffId);
+    if(user.hasBuff(buffId)) {
+        var buff = user.getBuff(buffId);
         if(
-            (buffs[buffId].target && inParty(sourceId)) || // like trick
-            (buffs[buffId].self && targetId === me.id)  || // like cards
-            (buffs[buffId].party && inParty(sourceId))     // used by someone else
-        ) { // either targetted buff, or on me
+            (buff.target && user.inParty(sourceId)) ||
+            (buff.self   && targetId === user.id)   ||
+            (buff.party  && user.inParty(sourceId))
+        ) {
             if(debug) { console.log("BUFF     " + buffName + " - " + buffId); }
             //
-            if(buffs[buffId].noRefresh && me.buffs[buffId].active) { return; } // DON'T REFRESH, LIKE RDM EMBOLDEN
-            // setup buff
-            me.buffs[buffId] = {
-                active: true,
-                cd: false,
-                startTime: (new Date()).getTime(),
-                duration: buffs[buffId].duration
-            }
-            // make it visible
+            if(buff.data.noRefresh && buff.active) { return; }
+            buff.active = true;
+            buff.cd = false;
+            buff.startTime = (new Date()).getTime();
+            buff.duration = buff.data.duration;
             unHide(buffId);
-            // no longer on cd
-            // no longer ready, now active
-            buffActive(buffId);
-            // set the time
-            setTime(buffId, buffs[buffId].duration, buffs[buffId].duration);
-            // clear any intervals
-            if(buffId in me.intervals) {
-                clearInterval(me.intervals[buffId]);
-            }
-            // make a new interval
-            me.intervals[buffId] = setInterval(function() {
-                if(buffId in me.buffs && me.buffs[buffId].active) {
-                    var timeLeft = me.buffs[buffId].duration - ((new Date()).getTime() - me.buffs[buffId].startTime) / 1000;
-                    setTime(buffId, Math.max(0,timeLeft), me.buffs[buffId].duration, true);
-                    if(timeLeft <= 0) {
-                        cdBuff(sourceId, buffId, buffName);
+            buffActiveUI(buffId);
+            setTimeUI(buffId, buff.data.duration, buff.data.duration);
+            user.resetInterval(buffId);
+            user.intervals[buffId] = setInterval(function() {
+                if(user.hasBuff(buffId)) {
+                    var b_ = user.getBuff(buffId);
+                    if(b_.active) {
+                        var timeLeft = b_.duration - ((new Date()).getTime() - b_.startTime) / 1000;
+                        setTimeUI(buffId, Math.max(0,timeLeft), b_.duration, true);
+                        if(timeLeft <= 0) {
+                            cdBuff(sourceId, buffId, buffName);
+                        }
                     }
                 }
-            }, REFRESH);
+            }, REFRESH)
         }
     }
 }
@@ -81,62 +77,52 @@ function gainBuff(sourceId, targetId, buffId, buffTime, buffName){
 function loseBuff(sourceId, targetId, buffId, buffName){
 }
 
-function parseJob(sourceId, jobString) {
-    if(sourceId == me.id) {
-        var jobId = parseInt(jobString.substr(jobString.length - 2,2),16); // last 2 characters are the job id
-        switchJob(jobId);
-    }
-}
-
-function switchJob(jobId) {
-    if(jobId in ji) {
-        var job = ji[jobId];
-        if(job !== me.job) { // switched
-            me.job = job;
-            setJob(job);
-        }
-    }
-}
-
 function cdBuff(sourceId, buffId, buffName) {
     if(debug) { console.log("LOSEBUFF   " + buffId + " " + buffName); }
     //
-    if(buffId in me.intervals) {
-        clearInterval(me.intervals[buffId]);
-    }
+    user.resetInterval(buffId);
     hide(buffId);
-    if(buffs[buffId].noCd) {    // no CD, like cards
-        return;
-    }
-    me.buffs[buffId].active = false;
-    me.buffs[buffId].cd = true;
-    me.buffs[buffId].duration = buffs[buffId].cd;
-    // keep the starttime the same, since it's being counted from when it's first pressed
-
-    // put it on cd
-    buffOnCd(buffId);
-    // make a cd countdown
-    me.intervals[buffId] = setInterval(function() {
-        if(buffId in me.buffs && me.buffs[buffId].cd) {
-            var timeLeft = me.buffs[buffId].duration - ((new Date()).getTime() - me.buffs[buffId].startTime) / 1000;
-            setTime(buffId, Math.max(0,timeLeft), me.buffs[buffId].duration, false);
-            if(timeLeft <= SHOW_CD) {
-                unHide(buffId);
-            }
-            if(timeLeft <= 0) {
-                readyBuff(sourceId, buffId, buffName);
+    var buff = user.getBuff(buffId);
+    if(buff.data.noCd) { return; }
+    buff.active = false;
+    buff.cd = true;
+    buff.duration = buff.data.cd;
+    buffOnCdUI(buffId);
+    user.intervals[buffId] = setInterval(function() {
+        if(user.hasBuff(buffId)) {
+            var b_ = user.getBuff(buffId);
+            if(b_.cd) {
+                var timeLeft = b_.duration - ((new Date()).getTime() - b_.startTime) / 1000;
+                setTimeUI(buffId, Math.max(0,timeLeft), b_.duration, false);
+                if(timeLeft <= SHOW_CD) {
+                    unHide(buffId);
+                }
+                if(timeLeft <= 0) {
+                    readyBuff(sourceId, buffId, buffName);
+                }
             }
         }
     }, REFRESH);
 }
 
 function readyBuff(sourceId, buffId, buffName) {
-    // clear the CD countdown
-    if(buffId in me.intervals) {
-        clearInterval(me.intervals[buffId]);
+    user.resetInterval(buffId);
+    user.getBuff(buffId).cd = false;
+    buffReadyUI(buffId);
+}
+
+function parseJob(sourceId, jobString) {
+    if(sourceId == user.id) {
+        var jobId = parseInt(jobString.substr(jobString.length - 2,2),16); // last 2 characters are the job id
+        switchJob(jobId);
     }
-    me.buffs[buffId].cd = false;
-    buffReady(buffId);
+}
+
+function switchJob(jobId) {
+    if(user.setJob(jobId)) {
+        user.initPBuffs();
+        setJobUI(user.job);
+    }
 }
 
 function inParty(id) {
@@ -144,49 +130,33 @@ function inParty(id) {
 }
 
 function reload() {
-    for(id in me.intervals) {
-        clearInterval(me.intervals[id]);
-    }
-    for(buffId in buffs) {
-        me.buffs[buffId] = {active: false, cd: false};
-    }
-    setupBuffs();
+    user.reset();
+    user.initPBuffs();
+    setupBuffsUI();
 }
 //addOverlayListener('LogLine', (data) => {console.log(data.line);});
 addOverlayListener('LogLine', (data) => {
     logData(data.line);
 });
-addOverlayListener('ChangeZone', (data) => {
-    if(me.zone !== "" && data.zoneID !== me.zone) {
-        reload();
-    }
-    else {
-        me.zone = data.zoneID;
-    }
-});
 addOverlayListener('ChangePrimaryPlayer', (data) => {
-    if(me.id !== "" && (data.charID).toString(16).toUpperCase() !== me.id) {
-        location.reload();
+    if(user.id !== "" && (data.charID).toString(16).toUpperCase() !== user.id) { location.reload(); }
+});
+addOverlayListener('ChangeZone', (data) => {
+    if(!user.setZone(data.zoneId)){
+        reload();
     }
 });
 addOverlayListener('PartyChanged', (data) => {
-    me.party = {};
-    for(var i = 0; i < data.party.length; i++) {
-        me.party[data.party[i].id] = true;
-    }
+    user.changeParty(data.party);
 });
 startOverlayEvents();
 
 async function init() {
     let combat = (await callOverlayHandler({ call: 'getCombatants' })).combatants;
     if(combat.length > 0) {
-        me.name = combat[0].Name;
-        me.id = (combat[0].ID).toString(16).toUpperCase();
+        user.init((combat[0].ID).toString(16).toUpperCase());
         switchJob(combat[0].Job);
-        for(buffId in buffs) {
-            me.buffs[buffId] = {active: false, cd: false};
-        }
-        setupBuffs();
+        setupBuffsUI();
     }
     else {
         setTimeout(function() {init();}, 1000) // retry every second

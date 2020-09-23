@@ -267,7 +267,7 @@ var actions = {
                 combo: true,
                 type: "gcds",
                 ids: [
-                    [ia.HeatBlast, ia.AutoCrossbow]
+                    ia.HeatBlast, ia.AutoCrossbow
                 ],
                 visual: {type: "ARROW", color: "orange"}
             },
