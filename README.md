@@ -8,6 +8,9 @@ Extra gauges and buff tracker for FFXIV
 3. For gauges, add a new Miniparse overlay, and point the url to `https://mkaminsky11.github.io/Codex/index.html`
 4. For buff tracker, add a new Miniparse overlay, and point the url to `https://mkaminsky11.github.io/Codex/buffs.html`
 
+### (For Streamers)
+1. In OBS, add new brower sources pointing to `https://mkaminsky11.github.io/Codex/index.html?OVERLAY_WS=ws://127.0.0.1:10501/ws` or `https://mkaminsky11.github.io/Codex/buffs.html?OVERLAY_WS=ws://127.0.0.1:10501/ws`
+
 ### Job Gauges
 Shows information such as how much time you have left on your DoT (Biolysis, Dia, etc.), how many gcds you have gotten under buffs (Inner release, Perfect Balance)
 

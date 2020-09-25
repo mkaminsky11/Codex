@@ -1,7 +1,17 @@
+#timer {
+    font-family: Consolas;
+    color: white;
+    background-color: #1b1b1b;
+    padding: 5px;
+    font-size: 15px;
+    margin: 5px;
+    border: solid 2px #080808;
+}
 #buffs {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    margin-top: 10px;
 }
 .not-ast .buff-ast-only {
     display: none !important;

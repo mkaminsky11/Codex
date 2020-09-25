@@ -148,6 +148,9 @@ addOverlayListener('ChangeZone', (data) => {
 addOverlayListener('PartyChanged', (data) => {
     user.changeParty(data.party);
 });
+addOverlayListener('CombatData', (data) => {
+    document.getElementById("timer").innerHTML = data.Encounter.duration;
+});
 startOverlayEvents();
 
 async function init() {
