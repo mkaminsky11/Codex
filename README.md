@@ -47,71 +47,76 @@ Shows which party buffs are currently active and how long until they are off coo
 
 ## Jobs
 
-### ![](img/job_icons/DRK.png =20x20) DRK
+### <img src="img/job_icons/DRK.png" height="20px" width="20px"> DRK
 + **Gauges**: GCDS used in Delirium, GCDS used in Blood Weapon
 + **Buffs**: Delerium (only visible to AST by default)
 
-### ![](img/job_icons/WAR.png =20x20) WAR
+### <img src="img/job_icons/WAR.png" height="20px" width="20px"> WAR
 + **Gauges**: GCDS used in Inner Release, Storm's Eye tracker
 + **Buffs**: Inner Release (only visible to AST by default)
 
-### ![](img/job_icons/PLD.png =20x20) PLD
+### <img src="img/job_icons/PLD.png" height="20px" width="20px"> PLD
 + **Gauges**: GCDS used in Requiescat, GCDS used in Fight or Flight, Goring Blade tracker
 
-### ![](img/job_icons/GNB.png =20x20) GNB
+### <img src="img/job_icons/GNB.png" height="20px" width="20px"> GNB
 + **Gauges**: GCDS used in No Mercy
 
-### ![](img/job_icons/SCH.png =20x20) SCH
+### <img src="img/job_icons/SCH.png" height="20px" width="20px"> SCH
 + **Gauges**: Biolysis tracker
 + **Buffs**: Chain Stratagem
 
-### ![](img/job_icons/WHM.png =20x20) WHM
+### <img src="img/job_icons/WHM.png" height="20px" width="20px"> WHM
 + **Gauges**: Dia tracker
 
-### ![](img/job_icons/AST.png =20x20) AST
+### <img src="img/job_icons/AST.png" height="20px" width="20px"> AST
 + **Gauges**: Combust Tracker
 + **Buffs**: Cards, Divination
 
-### ![](img/job_icons/MNK.png =20x20) MNK
+### <img src="img/job_icons/MNK.png" height="20px" width="20px"> MNK
 + **Gauges**: GCDS used in Riddle of Fire, GCDS used in Perfect Balance
 + **Buffs**: Brotherhood, Riddle of Fire (only visible to AST by default)
 
-### ![](img/job_icons/DRG.png =20x20) DRG
+### <img src="img/job_icons/DRG.png" height="20px" width="20px"> DRG
 + **Gauges**: GCDS used in Lance Charge, GCDS used in Dragon Sight
 + **Buffs**: Dragon Sight, Litany, Lance Charge (only visible to AST by default)
 
-### ![](img/job_icons/NIN.png =20x20) NIN
+### <img src="img/job_icons/NIN.png" height="20px" width="20px"> NIN
 + **Gauges**: GCDS used in Trick
 + **Buffs**: Trick Attack, Bunshin (only visible to AST by default)
 
-### ![](img/job_icons/SAM.png =20x20) SAM
+### <img src="img/job_icons/SAM.png" height="20px" width="20px"> SAM
 + **Gauges**: Jinpu tracker, Shifu tracker, Higanbana tracker
 + **Buffs**: Double Midare
 
-### ![](img/job_icons/BRD.png =20x20) BRD
+### <img src="img/job_icons/BRD.png" height="20px" width="20px"> BRD
 + **Gauges**: GCDS used in Raging Strikes, Caustic Bite tracker, Stormbite tracker
 + **Buffs**: Battle Voice, Raging Strikes (only visible to AST by default)
 
-### ![](img/job_icons/MCH.png =20x20) MCH
+### <img src="img/job_icons/MCH.png" height="20px" width="20px"> MCH
 + **Gauges**: GCDS used in Hypercharge, GCDS used in Wildfire
 + **Buffs**: Wildfire (only visible to AST by default)
 
-### ![](img/job_icons/DNC.png =20x20) DNC
+### <img src="img/job_icons/DNC.png" height="20px" width="20px"> DNC
 + **Gauges**: GCDS used in Devilment
 + **Buffs**: Technical Step, Devilment
 
-### ![](img/job_icons/BLM.png =20x20) BLM
+### <img src="img/job_icons/BLM.png" height="20px" width="20px"> BLM
 + **Gauges**: Thunder tracker
 
-### ![](img/job_icons/SMN.png =20x20) SMN
+### <img src="img/job_icons/SMN.png" height="20px" width="20px"> SMN
 + **Gauges**: Bio tracker, Miasma tracker, Wyrmwave and Scarlet Flame tracker
 + **Buffs**: Devotion, Summon Bahamut (only visible to AST by default), Firebird Trance (only visible to AST by default)
 
-### ![](img/job_icons/RDM.png =20x20) RDM
+### <img src="img/job_icons/RDM.png" height="20px" width="20px"> RDM
 + **Gauges**: GCDS used in Manification
 + **Buffs**: Embolden, Manafication (only visible to AST by default)
 
-### ![](img/job_icons/BLU.png =20x20) BLU
+### <img src="img/job_icons/BLU.png" height="20px" width="20px"> BLU
 + **Gauges**: Song of Torment tracker
 + **Buffs**: Off-guard, Peculiar Light
 + **TODO:** Revenge blast indicator
+
+## Issues and Acknowledgement
+Thank you to [skotlex](https://github.com/skotlex/ffxiv-material-ui) for the awesome icons. Check out his awesome FFXIV UI.
+
+Please report any issues [here](https://github.com/mkaminsky11/Codex/issues) or message me @ ocealot#4484
