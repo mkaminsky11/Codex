@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" href="css/gauges/config.css"/>
+        <link rel="stylesheet" href="css/config/config.css"/>
     </head>
     <body>
         <div id="settings-panel">
@@ -11,25 +11,36 @@
                 <span id="settings-apply" class="btn">SAVE</span>
             </div>
             <div id="settings-body">
-                <div class="settings-row row">
-                    <span class="row-title">Edges</span>
-                    <select id="codex-edges">
-                        <option value="round" selected>Rounded</option>
-                        <option value="corners">Corners</option>
-                        <option value="silver">Silver</option>
-                    </select>
+                <div class="settings-collapse"><span class="settings-collapse-button" id="job-gauges-collapse">+</span><span>JOB GAUGES</span></div>
+                <div id="gauge-settings" class="settings-category">
+                    <div class="settings-row row">
+                        <span class="row-title">Edges</span>
+                        <select id="codex-edges">
+                            <option value="round" selected>Rounded</option>
+                            <option value="corners">Corners</option>
+                            <option value="silver">Silver</option>
+                        </select>
+                    </div>
+                    <div class="settings-row row">
+                        <span class="row-title">Scaling</span>
+                        <input id="codex-zoom"/>
+                    </div>
+                    <div class="settings-row row">
+                        <span class="row-title">Font Size</span>
+                        <input id="codex-fontsize"/>
+                    </div>
+                    <div class="settings-row row">
+                        <span class="row-title">Flash when DoTs low</span>
+                        <input id="codex-danger" type="checkbox"/>
+                    </div>
                 </div>
-                <div class="settings-row row">
-                    <span class="row-title">Scaling</span>
-                    <input id="codex-zoom"/>
-                </div>
-                <div class="settings-row row">
-                    <span class="row-title">Font Size</span>
-                    <input id="codex-fontsize"/>
-                </div>
-                <div class="settings-row row">
-                    <span class="row-title">Flash when DoTs low</span>
-                    <input id="codex-danger" type="checkbox"/>
+
+                <div class="settings-collapse"><span class="settings-collapse-button" id="buffs-collapse">+</span><span>PARTY BUFFS</span></div>
+                <div id="buffs-settings" class="settings-category">
+                    <div class="settings-row row">
+                        <span class="row-title">Show Party's Personal Buffs</span>
+                        <input id="codex-force-ast" type="checkbox"/>
+                    </div>
                 </div>
             </div>
         </div>

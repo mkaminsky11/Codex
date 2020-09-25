@@ -136,6 +136,13 @@ var buffs = {
         ast_only: true,
     },
     // SAM
+    [ia.DoubleMidare]: {
+        name: "Double Midare",
+        duration: 5, cd: 60,
+        color: "blue", icon: "doublemidare",
+        self: false, target: false, party: true,
+        ast_only: true,
+    },
     // BRD
     [ib.BattleVoice]: {
         name: "Battle Voice",
@@ -151,6 +158,12 @@ var buffs = {
         ast_only: true,
     },
     // MCH
+    [ib.Wildfire]: {
+        name: "Wildfire",
+        duration: 10, cd: 120,
+        color: "red", icon: "wildfire",
+        self: false, target: true, party: false,
+    },
     // DNC
     [ib.TechnicalFinish]: {
         name: "Technical Finish",

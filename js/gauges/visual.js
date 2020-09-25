@@ -28,7 +28,7 @@ function setJobUI(job) {
         if(visual.type === "BAR") {
             row.innerHTML = "<div class='bar'>" + 
                             silver + 
-                            "<div class='progress-bar progress-bar-" + visual.color + " edges-" + config.edges + "'>" +
+                            `<div class='progress-bar progress-bar-${visual.color} edges-${config.edges}'>` +
                             "<span style='width:0%'></span>" +
                             "</div>" + 
                             "<div class='data-row'>" + 
@@ -37,9 +37,9 @@ function setJobUI(job) {
         }
         else if(visual.type === "ARROW") {
             var size = visual.size ? ("arrow-" + visual.size) : "";
-            var h = "<div class='arrow-row arrow-" + visual.color + "'>";
+            var h = `<div class='arrow-row arrow-${visual.color}'>`;
             for(var i = 0; i < buff.max; i++) {
-                h = h + "<div class='arrow " + size + "'></div>";
+                h = h + `<div class='arrow ${size}'></div>`;
             }
             h = h + "</div>";
             row.innerHTML = h;

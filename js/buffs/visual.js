@@ -8,7 +8,7 @@ function setupBuffsUI() {
         buffElem.setAttribute("id", buffId);
         buffElem.setAttribute("style", "border-color:" + buffs[buffId].color);
         buffElem.innerHTML = 
-            "<img src='img/buff_icons/" + buffs[buffId].icon + ".png'/>" +
+            `<img src='img/buff_icons/${buffs[buffId].icon}.png'/>` +
             "<span class='buff-text'>0</span>" + 
             "<div class='buff-overlay'></div>";
         if(buffs[buffId].ast_only) {
@@ -19,7 +19,7 @@ function setupBuffsUI() {
 }
 
 function setJobUI(job) {
-    if(job === "AST") {
+    if(job === "AST" || config.force_ast) {
         document.getElementById("buffs").classList.remove("not-ast");
     }
     else {

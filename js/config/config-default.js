@@ -5,5 +5,6 @@ var config = {
     disabled: {},
     color: {},
     order: {},
-    danger: false
+    danger: false,
+    force_ast: false
 };

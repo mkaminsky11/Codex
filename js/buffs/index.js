@@ -121,6 +121,7 @@ function switchJob(jobId) {
     if(user.setJob(jobId)) {
         user.initPBuffs();
         setJobUI(user.job);
+        setupBuffsUI();
     }
 }
 
@@ -147,9 +148,6 @@ addOverlayListener('ChangeZone', (data) => {
 });
 addOverlayListener('PartyChanged', (data) => {
     user.changeParty(data.party);
-});
-addOverlayListener('CombatData', (data) => {
-    document.getElementById("timer").innerHTML = data.Encounter.duration;
 });
 startOverlayEvents();
 

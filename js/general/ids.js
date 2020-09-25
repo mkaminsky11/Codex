@@ -171,6 +171,7 @@ const ia = {
     Goka: '406B',
     Hyosho: '406C',
     // SAM
+    DoubleMidare: '4066',
     // BRD
     BurstShot: '406F',
     HeavyShot: '61',
