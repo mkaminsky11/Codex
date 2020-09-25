@@ -118,3 +118,24 @@ body {
     margin-left: 5px;
     margin-right: 5px;
 }
+.tag {
+    font-size: 11px;
+    font-family: Consolas;
+    border: solid thin white;
+    padding-left: 5px;
+    padding-right: 5px;
+    border-radius: 3px;
+    margin-left: 5px;
+}
+.tag-red {
+    color: #ff7a7a;
+    border-color: #ff7a7a;
+}
+.tag-yellow {
+    color: #ffe94b;
+    border-color: #ffe94b;
+}
+.tag-green {
+    color: #25ff17;
+    border-color: #25ff17;
+}

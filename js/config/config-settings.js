@@ -55,8 +55,7 @@ function getSettings() {
     for(job in actions) {
         var settingsRow = document.createElement("div");
         settingsRow.classList.add("settings-row");
-        var gaugeCheckboxes = "";
-        gaugeCheckboxes += `<span><img class='job-icon' src='img/job_icons/${job}.png'>${job}</span>`;
+        var gaugeCheckboxes = `<span><img class='job-icon' src='img/job_icons/${job}.png'>${job}</span>`;
         for(buffId in actions[job].buffs) {
             var checked = config.disabled[buffId] ? "" : "checked";
             var color = config.color[buffId] ? config.color[buffId] : actions[job].buffs[buffId].visual.color;
@@ -72,8 +71,6 @@ function getSettings() {
         settingsRow.innerHTML = gaugeCheckboxes;
         document.getElementById("gauge-settings").appendChild(settingsRow);
     }
-
-    // CHANGE CONFIG TO MATCH FIELDS
     document.querySelectorAll(".codex-disabled").forEach(function(item) {
         item.addEventListener("change", function(e) {
             config.disabled[e.target.getAttribute("data-id")] = !(e.target.checked);
@@ -87,6 +84,28 @@ function getSettings() {
     document.querySelectorAll(".codex-order").forEach(function(item) {
         item.addEventListener("change", function(e) {
             config.order[e.target.getAttribute("data-id")] = e.target.value;
+        });
+    });
+
+    // SETUP BUFF ITEMS
+    var buffSettingsRow = document.createElement("div");
+    buffSettingsRow.classList.add("settings-row");
+    var buffCheckboxes = `<span>PARTY BUFFS</span>`;
+    for(buffId in buffs) {
+        var checked = config.buffs_disabled[buffId] ? "" : "checked";
+        var selfTag = buffs[buffId].self ? "<span class='tag tag-green'>ON SELF</span>": "";
+        var targetTag = buffs[buffId].target ? "<span class='tag tag-red'>ON TARGET</span>": "";
+        var partyTag = buffs[buffId].party ? "<span class='tag tag-yellow'>ON PARTY MEMBER</span>": "";
+        buffCheckboxes += 
+            `<div class='settings-row-2 row'><span class='row-title'>${buffs[buffId].name}${selfTag}${targetTag}${partyTag}</span>` +
+            `<input class='codex-buffs-disabled' data-id='${buffId}' type='checkbox' ${checked}/>` +
+            "</div>";
+    }
+    buffSettingsRow.innerHTML = buffCheckboxes;
+    document.getElementById("buffs-settings").appendChild(buffSettingsRow);
+    document.querySelectorAll(".codex-buffs-disabled").forEach(function(item) {
+        item.addEventListener("change", function(e) {
+            config.buffs_disabled[e.target.getAttribute("data-id")] = !(e.target.checked);
         });
     });
 }

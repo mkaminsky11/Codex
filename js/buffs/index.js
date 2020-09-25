@@ -149,6 +149,13 @@ addOverlayListener('ChangeZone', (data) => {
 addOverlayListener('PartyChanged', (data) => {
     user.changeParty(data.party);
 });
+document.addEventListener('onOverlayStateUpdate', (e) => {
+    let docClassList = document.documentElement.classList;
+    if (e.detail.isLocked)
+        docClassList.add('locked');
+    else
+        docClassList.remove('locked');
+});
 startOverlayEvents();
 
 async function init() {

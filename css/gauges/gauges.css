@@ -3,6 +3,35 @@
     font-family: 'OPTIEdgarBold';
     src: url('fonts/OPTIEdgarBold-Extended.otf') format("opentype");
 }
+/* LOCK */
+#lock {
+    position: absolute;
+    width: 100%;
+    z-index: 5;
+    height: 100%;
+    display: flex;
+    margin: 0;
+    padding: 0;
+    background-color: #ffc7c733;
+    align-items: center;
+    justify-content: center;
+}
+#lock-text {
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+}
+#lock-handle {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 20px;
+    height: 20px;
+    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBT…6ZjMyiVGTAgeV0rB1wqMusL7iIjrVb0mPtypMMGC7k1geoEhcn0OEM6wAAAABJRU5ErkJggg==);
+}
+.locked #lock {
+    display: none !important;
+}
 /*==== SETUP =====*/
 body {
     margin: 0;

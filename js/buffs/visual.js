@@ -7,6 +7,9 @@ function setupBuffsUI() {
         buffElem.classList.add("buff-hidden");
         buffElem.setAttribute("id", buffId);
         buffElem.setAttribute("style", "border-color:" + buffs[buffId].color);
+        if(config.buffs_disabled[buffId]) {
+            buffElem.classList.add("hideOverride");
+        }
         buffElem.innerHTML = 
             `<img src='img/buff_icons/${buffs[buffId].icon}.png'/>` +
             "<span class='buff-text'>0</span>" + 

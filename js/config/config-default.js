@@ -1,4 +1,5 @@
 var config = {
+    // GAUGES
     edges: "round",
     zoom: 1,
     fontSize: 15,
@@ -6,5 +7,7 @@ var config = {
     color: {},
     order: {},
     danger: false,
-    force_ast: false
+    // BUFFS
+    force_ast: false,
+    buffs_disabled: {},
 };
