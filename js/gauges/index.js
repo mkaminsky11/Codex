@@ -87,6 +87,10 @@ function gainBuff(sourceId, buffId, buffTime, buffName){
                         }
                     }, REFRESH);
             }
+            if(buff.data.hides) { // buff hides another bar
+                hide(buff.data.hides);
+                unHide(buffId);
+            }
         }
         if(user.hasAlias(buffId)) {
             gainBuff(sourceId, user.getAlias(buffId), buffTime, buffName);

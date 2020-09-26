@@ -17,7 +17,8 @@ Shows information such as how much time you have left on your DoT (Biolysis, Dia
 ## Buff Tracker
 Shows which party buffs are currently active and how long until they are off cooldown. For Astrologian, also shows which personal buffs your party members are using so that you can give them cards.
 
-![](img/docs/demo_img.png)
+![](img/docs/AST.gif)
+![](img/docs/DRK.gif)
 
 ## FAQs
 ### Do I need Cactbot for this to work?

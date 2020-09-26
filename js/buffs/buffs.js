@@ -163,6 +163,7 @@ var buffs = {
         duration: 10, cd: 120,
         color: "red", icon: "wildfire",
         self: false, target: true, party: false,
+        ast_only: true,
     },
     // DNC
     [ib.TechnicalFinish]: {

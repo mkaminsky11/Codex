@@ -246,7 +246,7 @@ var actions = {
             },
             [ib.RagingStrikes]: {
                 name: "Raging Strikes", 
-                order: 2, time: 20, max: 9,
+                order: 2, time: 20, max: 11, // +2 for barrage
                 type: "gcds",
                 ids: [
                     ia.BurstShot, ia.RefulgentArrow, ia.CausticBite, ia.Stormbite, ia.IronJaws, ia.QuickNock
