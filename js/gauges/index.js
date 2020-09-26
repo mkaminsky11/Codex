@@ -1,5 +1,5 @@
-var TIMEOUT = 5000;
-var REFRESH = 100;
+var TIMEOUT = config.timeout;
+var REFRESH = config.refresh;
 var debug = false;
 
 var user = new User();

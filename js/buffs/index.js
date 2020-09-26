@@ -1,11 +1,4 @@
-var me = {
-    id: "",
-    buffs: {},
-    intervals: {},
-    party: {},
-    zone: "",
-};
-var REFRESH = 100;
+var REFRESH = config.refresh;
 var SHOW_CD = 30;
 var debug = false;
 

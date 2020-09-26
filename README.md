@@ -39,8 +39,6 @@ Shows which party buffs are currently active and how long until they are off coo
 + **TODO**: multi-buffs (if you have multiple of a job in your party)
 + **TODO**: change bar type
 + **TODO**: change arrow size
-+ **TODO**: change refresh time (how often dots update)
-+ **TODO**: change timeout time (how long after gcd timer it disappears)
 + **TODO**: material UI or base FFXIV
 + **TODO**: add buff settings (change size, etc.)
 + **TODO**: stop flashing dot warning after a while (if enabled)
@@ -118,6 +116,6 @@ Shows which party buffs are currently active and how long until they are off coo
 + **TODO:** Revenge blast indicator
 
 ## Issues and Acknowledgement
-Thank you to [skotlex](https://github.com/skotlex/ffxiv-material-ui) for the awesome icons. Check out his awesome FFXIV UI.
+Thank you to [skotlex](https://github.com/skotlex/ffxiv-material-ui) for the awesome icons.
 
 Please report any issues [here](https://github.com/mkaminsky11/Codex/issues) or message me @ ocealot#4484

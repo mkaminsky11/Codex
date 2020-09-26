@@ -18,6 +18,16 @@ document.getElementById("codex-zoom").addEventListener("change", function(e){
 document.getElementById("codex-fontsize").addEventListener("change", function(e){
     config.fontSize = e.target.value;
 });
+document.getElementById("codex-timeout").addEventListener("change", function(e){
+    if(!isNaN(parseInt(e.target.value))){
+        config.timeout = parseInt(e.target.value);
+    }
+});
+document.getElementById("codex-refresh").addEventListener("change", function(e){
+    if(!isNaN(parseInt(e.target.value))){
+        config.refresh = parseInt(e.target.value);
+    }
+});
 document.getElementById("codex-danger").addEventListener("change", function(e){
     config.danger = e.target.checked;
 });
@@ -48,6 +58,8 @@ function getSettings() {
     document.getElementById("codex-edges").value = config.edges;
     document.getElementById("codex-zoom").value = config.zoom;
     document.getElementById("codex-fontsize").value = config.fontSize;
+    document.getElementById("codex-timeout").value = config.timeout;
+    document.getElementById("codex-refresh").value = config.refresh;
     document.getElementById("codex-danger").checked = config.danger;
     document.getElementById("codex-force-ast").checked = config.force_ast;
 

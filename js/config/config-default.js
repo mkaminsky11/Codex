@@ -1,4 +1,7 @@
 var config = {
+    // GENERAL
+    timeout: 5000,
+    refresh: 100,
     // GAUGES
     edges: "round",
     zoom: 1,
