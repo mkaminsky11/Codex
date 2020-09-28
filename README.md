@@ -2,6 +2,8 @@
 
 Extra gauges and buff trackers for FFXIV
 
+<img align="right" src="img/docs/alex.gif" height="300px">
+
 ## Installation
 1. ACT + FFXIV Plugin
 2. [NGLD's OverlayPlugin](https://github.com/quisquous/cactbot#install-ngld-overlayplugin)

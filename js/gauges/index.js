@@ -13,7 +13,7 @@ function logData(line){
             logAction(line[2], line[4], line[5]);
             break;
         case "22":
-            logAction(line[2], line[4], line[5]);
+            logAction(line[2], line[4], line[5], true);
             break;
         case "26":
             gainBuff(line[5], line[2], parseFloat(line[4]), line[3]);
@@ -30,8 +30,14 @@ function logData(line){
     }
 }
 
-function logAction(sourceId, actionId, actionName){
+function logAction(sourceId, actionId, actionName, isAoe=false){
     if(sourceId == user.id || sourceId == user.pet.id) {
+        // ignore multihit for aoe
+        if(isAoe) {
+            var time = (new Date()).getTime();
+            if(actionId in user.lastCast && (time - user.lastCast[actionId] < 100)) { return; }
+            user.lastCast[actionId] = time;
+        }
         if(debug){ console.log("ACTION     " + actionName + "  " + actionId);}
         //
         user.iterateBuffs(function(buff) {

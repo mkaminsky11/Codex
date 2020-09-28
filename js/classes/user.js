@@ -4,6 +4,7 @@ class User {
         this.job = "";
         this.zone = "";
         this.party = {};
+        this.lastCast = {};
     }
     // INIT
     init(id) {

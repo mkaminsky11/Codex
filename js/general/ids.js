@@ -95,8 +95,8 @@ const ia = {
     SiphonStrike: 'E21',
     Souleater: 'E27',
     Unmend: 'E30',
-    Unleash: '1CE0',
-    StalwartSoul: '1CDF',
+    Unleash: 'E25',
+    StalwartSoul: '4054',
     // WAR
     FellCleave: 'DDD',
     Decimate: 'DDE',
