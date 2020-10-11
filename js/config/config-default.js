@@ -11,6 +11,8 @@ var config = {
     order: {},
     danger: false,
     // BUFFS
-    force_ast: false,
+    all_personals: false,
+    own_personals: true,
     buffs_disabled: {},
+
 };

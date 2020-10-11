@@ -1,32 +1,22 @@
 function setupBuffsUI() {
     var buffRow = document.getElementById("buffs");
     buffRow.innerHTML = "";
-    for(buffId in buffs) {
+    for(buffId in user.buffs) {
+        var buff = user.buffs[buffId];
         var buffElem = document.createElement("div");
         buffElem.classList.add("buff");
         buffElem.classList.add("buff-hidden");
-        buffElem.setAttribute("id", buffId);
-        buffElem.setAttribute("style", "border-color:" + buffs[buffId].color);
-        if(config.buffs_disabled[buffId]) {
-            buffElem.classList.add("hideOverride");
+        if(buff.data.party) {
+            buffElem.classList.add("buff-personal");
         }
+        buffElem.setAttribute("id", buffId);
+        buffElem.setAttribute("style", "border-color:" + buff.data.color);
         buffElem.innerHTML = 
-            `<img src='img/buff_icons/${buffs[buffId].icon}.png'/>` +
+            `<img src='img/buff_icons/${buff.data.icon}.png'/>` +
+            "<span class='pulse'></span>" +
             "<span class='buff-text'>0</span>" + 
             "<div class='buff-overlay'></div>";
-        if(buffs[buffId].ast_only) {
-            buffElem.classList.add("buff-ast-only");
-        }
         buffRow.appendChild(buffElem);
-    }
-}
-
-function setJobUI(job) {
-    if(job === "AST" || config.force_ast) {
-        document.getElementById("buffs").classList.remove("not-ast");
-    }
-    else {
-        document.getElementById("buffs").classList.add("not-ast");
     }
 }
 

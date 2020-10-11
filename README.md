@@ -37,6 +37,8 @@ Shows which party buffs are currently active and how long until they are off coo
 > Check "Always show party member's personal buffs" in the settings menu
 
 ## TODO Log
++ **TODO**: change buff size
+
 + **TODO**: multi-DoT tracker
 + **TODO**: multi-buffs (if you have multiple of a job in your party)
 + **TODO**: change bar type

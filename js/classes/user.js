@@ -49,9 +49,20 @@ class User {
         }
     }
     // PARTY BUFFS
-    initPBuffs() {
-        for(const buffId in buffs) {
-            this.buffs[buffId] = new PBuff(buffId, buffs[buffId]);
+    initPBuffs(configAllPersonals, configOwnPersonals, configDisabledBuffs) {
+        var allPersonals = (this.job === "AST") || configAllPersonals;
+        for(const jobId in buffs) {
+            for(const buffId in buffs[jobId]) {
+                var buff = buffs[jobId][buffId];
+                if(configDisabledBuffs[buffId]) { continue; }
+                if( buff.self ||
+                    buff.target || 
+                    allPersonals || 
+                    (jobId == this.job && configOwnPersonals)
+                ) {
+                    this.buffs[buffId] = new PBuff(buffId, jobId, buff);
+                }
+            }
         }
     }
     // PETS

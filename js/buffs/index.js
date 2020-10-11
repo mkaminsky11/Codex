@@ -112,8 +112,7 @@ function parseJob(sourceId, jobString) {
 
 function switchJob(jobId) {
     if(user.setJob(jobId)) {
-        user.initPBuffs();
-        setJobUI(user.job);
+        user.initPBuffs(config.all_personals, config.own_personals, config.buffs_disabled);
         setupBuffsUI();
     }
 }
@@ -124,7 +123,7 @@ function inParty(id) {
 
 function reload() {
     user.reset();
-    user.initPBuffs();
+    user.initPBuffs(config.all_personals, config.own_personals, config.buffs_disabled);
     setupBuffsUI();
 }
 //addOverlayListener('LogLine', (data) => {console.log(data.line);});
@@ -156,7 +155,7 @@ async function init() {
     if(combat.length > 0) {
         user.init((combat[0].ID).toString(16).toUpperCase());
         switchJob(combat[0].Job);
-        setupBuffsUI();
+        setupBuffsUI(user.job);
     }
     else {
         setTimeout(function() {init();}, 1000) // retry every second

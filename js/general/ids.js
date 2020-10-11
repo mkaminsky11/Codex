@@ -89,6 +89,7 @@ const ib = {
 //=============//
 const ia = {
     // DRK
+    LivingShadow: '4058',
     BloodSpiller: '1CE0',
     Quietus: '1CDF',
     HardSlash: 'E28',

@@ -56,6 +56,8 @@ body {
     border-width: 1px;
     border-style: solid;
     order: 1;
+    align-items: center;
+    justify-content: center;
 }
 .buff img {
     margin-top: -3px;
@@ -72,7 +74,35 @@ body {
     -webkit-text-stroke-color: #191919;
     -webkit-text-stroke-width: 1px;
     width: 100%;
+    height: 100%;
     text-align: center;
+}
+.buff-ready .pulse {
+    animation: pulse 0.5s;
+}
+.pulse {
+    position: absolute;
+    z-index: 1;
+    content: '';
+}
+@keyframes pulse {
+    0% {
+        width: 0%;
+        height: 0%;
+        left: 50%;
+        bottom: 50%;
+        background-color: white;
+    }
+    50% {
+        background-color: white;
+    }
+    100% {
+        height: 100%;
+        width: 100%;
+        left: 0%;
+        bottom: 0%;
+        background-color: rgba(255, 255, 255, 0.0);
+    }
 }
 .buff-overlay {
     position: absolute;
@@ -95,11 +125,15 @@ body {
 .buff-ready .buff-text {
     display: none;
 }
+/* PERSONAL */
+.buff-personal {
+    order: 3 !important;
+}
 /* HIDDEN */
 .not-ast .buff-ast-only {
     display: none !important;
 }
-.buff-hidden {
+.locked .buff-hidden {
     display: none !important;
 }
 .hide {
