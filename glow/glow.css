@@ -46,7 +46,9 @@
         background-position: 94px 0px;
     }
 }
-
+.glow.glow-noGlow {
+    display: none !important;
+}
 .glow.glow-green .tex {
     background-image: url(img/tex/green.png)
 }

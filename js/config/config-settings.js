@@ -50,6 +50,15 @@ function colorOptions(color) {
     }).join("");
 }
 
+function glowsOptions(glow) {
+    var glowSelected = glow ? glow : "noGlow";
+    var glows = ["noGlow", "green", "blue", "yellow", "orange", "purple", "red", "dark", "dark2", "rock", "blue2", "fire", "sonic", "swirl", "water", "jewel", "prism", "fireblue", "fireblue2", "rainbow"];
+    return glows.map(function(g) {
+        var selected = (g === glowSelected) ? "selected" : "";
+        return `<option value='${g}' ${selected}>${g}</option>`;
+    }).join("");
+}
+
 // GET / SET
 function getSettings() {
     // INIT CONFIG
@@ -78,12 +87,20 @@ function getSettings() {
         var gaugeCheckboxes = `<span><img class='job-icon' src='img/job_icons/${job}.png'>${job}</span>`;
         for(buffId in actions[job].buffs) {
             var checked = config.disabled[buffId] ? "" : "checked";
+
             var color = config.color[buffId] ? config.color[buffId] : actions[job].buffs[buffId].visual.color;
             var color_select = `<select class='codex-color' data-id='${buffId}'>${colorOptions(color)}</select>`;
+
             var order = config.order[buffId] ? config.order[buffId] : actions[job].buffs[buffId].order;
+
+            var glows = config.glows[buffId] ? config.glows[buffId] : actions[job].buffs[buffId].visual.glow;
+            var glows_select_1 = `<select class='codex-glows' data-id='${buffId}'>${glowsOptions(glows)}</select>`;
+            var glows_select = (actions[job].buffs[buffId].visual.type === "BAR") ? glows_select_1 : "";
+
             gaugeCheckboxes += 
                 `<div class='settings-row-2 row'><span class='row-title'>${actions[job].buffs[buffId].name}</span>` + 
-                `<span>Order</span><input class='codex-order' data-id='${buffId}' value='${order}'/>` +
+                glows_select + 
+                `<input class='codex-order' data-id='${buffId}' value='${order}'/>` +
                 color_select + 
                 `<input class='codex-disabled' data-id='${buffId}' type='checkbox' ${checked}/>` + 
                 "</div>";
@@ -104,6 +121,11 @@ function getSettings() {
     document.querySelectorAll(".codex-order").forEach(function(item) {
         item.addEventListener("change", function(e) {
             config.order[e.target.getAttribute("data-id")] = e.target.value;
+        });
+    });
+    document.querySelectorAll(".codex-glows").forEach(function(item) {
+        item.addEventListener("change", function(e) {
+            config.glows[e.target.getAttribute("data-id")] = e.target.value;
         });
     });
 

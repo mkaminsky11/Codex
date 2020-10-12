@@ -40,7 +40,7 @@ var actions = {
                 name: "Storms Eye", order: 1,
                 max: 60,
                 type: "timer",
-                visual: {type: "BAR", color: "red", danger: true, glow: "rock"}
+                visual: {type: "BAR", color: "red", danger: true}
             }
         },
         alias: {}
@@ -63,7 +63,7 @@ var actions = {
                 ids: [
                     ia.FastBlade, ia.RiotBlade, ia.RoyalAuthority, ia.Atonement, ia.GoringBlade, ia.TotalEclipse, ia.Prominence
                 ],
-                visual: {type: "BAR", color: "red"}
+                visual: {type: "BAR", color: "red", glow: "red"}
             },
             [ib.GoringBlade]: {
                 name: "Goring Blade", order: 1,
@@ -126,7 +126,7 @@ var actions = {
                 name: "Combust", 
                 order: 0, max: 30,
                 type: "timer",
-                visual: {type: "BAR", color: "blue", glow: "prism", danger: true}
+                visual: {type: "BAR", color: "blue", danger: true}
             }
         },
         alias: {
@@ -157,7 +157,7 @@ var actions = {
                     ia.Bootshine, ia.TrueStrike, ia.SnapPunch, ia.DragonKick, ia.TwinSnakes, ia.Demolish,
                     ia.ArmOfTheDestroyer, ia.FourPointFury, ia.RockBreaker
                 ],
-                visual: {type: "BAR", color: "red"}
+                visual: {type: "BAR", color: "red", glow: "red"}
             }
         },
         alias: {}
@@ -182,7 +182,7 @@ var actions = {
                     ia.TrueThrust, ia.Disembowel, ia.ChaosThrust, ia.WheelingThrust, ia.VorpalThrust, ia.FullThrust,
                     ia.FangAndClaw, ia.RaidenThrust, ia.DoomSpike, ia.SonicThrust, ia.CoerthanTorment, ia.PiercingTalon
                 ],
-                visual: {type: "BAR", color: "orange"}
+                visual: {type: "BAR", color: "orange", glow: "orange"}
             }
         },
         alias: {
@@ -279,7 +279,7 @@ var actions = {
                     ia.HeatedSplitShot, ia.HeatedSlugShot, ia.HeatedCleanShot, ia.AirAnchor, ia.Drill, ia.BioBlaster, ia.HeatBlast, ia.AutoCrossbow,
                     ia.HotShot, ia.CleanShot
                 ],
-                visual: {type: "BAR", color: "red"}
+                visual: {type: "BAR", color: "red", glow: "red"}
             }
         },
         alias: {}
@@ -296,7 +296,7 @@ var actions = {
                     ia.StandardStep, ia.DoubleStandardFinish, ia.TechnicalStep, ia.QuadTechnicalFinish,
                     ia.Emboite, ia.Entrechat, ia.Jete, ia.Pirouette, ia.SaberDance,
                 ],
-                visual: {type: "BAR", color: "red"}
+                visual: {type: "BAR", color: "red", glow: "red"}
             },
         },
         alias: {}
