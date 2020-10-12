@@ -26,7 +26,10 @@ function setJobUI(job) {
             row.classList.add("hideOverride");
         }
         if(visual.type === "BAR") {
-            row.innerHTML = "<div class='bar'>" + 
+            var glowColor = visual.glow ? visual.glow : visual.color;
+            var glow = config.glow ? `<div class='glow glow-${glowColor}'><div><span class='tex'></span></div></div>` : "";
+            row.innerHTML = `<div class='bar'>` + 
+                            glow +
                             silver + 
                             `<div class='progress-bar progress-bar-${visual.color} edges-${config.edges}'>` +
                             "<span style='width:0%'></span>" +
@@ -81,11 +84,19 @@ function setCountUI(buffId, count) {
     }
 }
 
+function addGlow(buffId) {
+    document.querySelector(".row[id='" + buffId + "'] .glow").classList.add("glow-active");
+}
+function removeGlow(buffId) {
+    document.querySelector(".row[id='" + buffId + "'] .glow").classList.remove("glow-active");
+}
+
 function clearDanger() {
     document.querySelectorAll(".data-text").forEach(function(elem) {
         elem.classList.remove("data-text-flash");
     });
 }
+
 function hide(buffId) {
     document.querySelector(".row[id='" + buffId + "']").classList.add("hide");
 }

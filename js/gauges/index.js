@@ -93,6 +93,9 @@ function gainBuff(sourceId, buffId, buffTime, buffName){
                         }
                     }, REFRESH);
             }
+            if(config.glow) {
+                addGlow(buffId);
+            }
             if(buff.data.hides) { // buff hides another bar
                 hide(buff.data.hides);
                 unHide(buffId);
@@ -123,6 +126,9 @@ function loseBuff(sourceId, buffId, buffName){
                 setTimeout(function() {
                     setCountUI(buffId, 0);
                 }, TIMEOUT)
+                if(config.glow) {
+                    removeGlow(buffId);
+                }
             }
             if(user.hasAlias(buffId)) {
                 loseBuff(sourceId, user.getAlias(buffId), buffName);

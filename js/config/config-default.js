@@ -10,6 +10,7 @@ var config = {
     color: {},
     order: {},
     danger: false,
+    glow: false,
     // BUFFS
     all_personals: false,
     own_personals: true,

@@ -51,16 +51,19 @@ body {
     display: flex;
     flex-direction: column;
     padding-left: 10px;
+    overflow: visible;
 }
 .row {
     display: flex;
     flex-direction: row;
+    overflow: visible;
 }
 .row-item {
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 4px;
+    overflow: visible;
 }
 .data-row {
     margin-top: -2px;
@@ -196,6 +199,7 @@ body {
     flex-direction: column;
     padding: 5px;
     position: relative;
+    overflow: visible;
 }
 .progress-bar {
     width: 148px;

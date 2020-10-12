@@ -39,6 +39,7 @@ Shows which party buffs are currently active and how long until they are off coo
 ## TODO Log
 + **TODO**: change buff size
 
++ **TODO**: more glow options / change per gauge
 + **TODO**: multi-DoT tracker
 + **TODO**: multi-buffs (if you have multiple of a job in your party)
 + **TODO**: change bar type

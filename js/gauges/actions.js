@@ -20,7 +20,7 @@ var actions = {
                 ids: [
                     ia.HardSlash, ia.SiphonStrike, ia.Souleater, ia.Unmend, ia.Unleash, ia.StalwartSoul, ia.BloodSpiller, ia.Quietus
                 ],
-                visual: {type: "BAR", color: "blue"}
+                visual: {type: "BAR", color: "blue", glow: "dark"}
             }
         },
         alias: {}
@@ -40,7 +40,7 @@ var actions = {
                 name: "Storms Eye", order: 1,
                 max: 60,
                 type: "timer",
-                visual: {type: "BAR", color: "red", danger: true}
+                visual: {type: "BAR", color: "red", danger: true, glow: "rock"}
             }
         },
         alias: {}
@@ -126,7 +126,7 @@ var actions = {
                 name: "Combust", 
                 order: 0, max: 30,
                 type: "timer",
-                visual: {type: "BAR", color: "blue", danger: true}
+                visual: {type: "BAR", color: "blue", glow: "prism", danger: true}
             }
         },
         alias: {
