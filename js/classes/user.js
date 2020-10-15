@@ -83,6 +83,12 @@ class User {
         this.zone = zone;
         return true;
     }
+    exploreZone() {
+        if(this.zone == 920) {
+            return true;
+        }
+        return false;
+    }
     // PARTY
     changeParty(party) {
         this.party = {};

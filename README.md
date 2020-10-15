@@ -39,7 +39,7 @@ Shows which party buffs are currently active and how long until they are off coo
 ## TODO Log
 + **TODO**: change buff size
 
-+ **TODO**: more glow options / change per gauge
++ **TODO**: glows on arrows
 + **TODO**: multi-DoT tracker
 + **TODO**: multi-buffs (if you have multiple of a job in your party)
 + **TODO**: change bar type
@@ -53,11 +53,11 @@ Shows which party buffs are currently active and how long until they are off coo
 
 ### <img src="img/job_icons/DRK.png" height="20px" width="20px"> DRK
 + **Gauges**: GCDS used in Delirium, GCDS used in Blood Weapon
-+ **Buffs**: Delerium (only visible to AST by default)
++ **Buffs**: Delerium, Living Shadow
 
 ### <img src="img/job_icons/WAR.png" height="20px" width="20px"> WAR
 + **Gauges**: GCDS used in Inner Release, Storm's Eye tracker
-+ **Buffs**: Inner Release (only visible to AST by default)
++ **Buffs**: Inner Release
 
 ### <img src="img/job_icons/PLD.png" height="20px" width="20px"> PLD
 + **Gauges**: GCDS used in Requiescat, GCDS used in Fight or Flight, Goring Blade tracker
@@ -78,15 +78,15 @@ Shows which party buffs are currently active and how long until they are off coo
 
 ### <img src="img/job_icons/MNK.png" height="20px" width="20px"> MNK
 + **Gauges**: GCDS used in Riddle of Fire, GCDS used in Perfect Balance
-+ **Buffs**: Brotherhood, Riddle of Fire (only visible to AST by default)
++ **Buffs**: Brotherhood, Riddle of Fire
 
 ### <img src="img/job_icons/DRG.png" height="20px" width="20px"> DRG
 + **Gauges**: GCDS used in Lance Charge, GCDS used in Dragon Sight
-+ **Buffs**: Dragon Sight, Litany, Lance Charge (only visible to AST by default)
++ **Buffs**: Dragon Sight, Litany, Lance Charge
 
 ### <img src="img/job_icons/NIN.png" height="20px" width="20px"> NIN
 + **Gauges**: GCDS used in Trick
-+ **Buffs**: Trick Attack, Bunshin (only visible to AST by default)
++ **Buffs**: Trick Attack, Bunshin
 
 ### <img src="img/job_icons/SAM.png" height="20px" width="20px"> SAM
 + **Gauges**: Jinpu tracker, Shifu tracker, Higanbana tracker
@@ -94,11 +94,11 @@ Shows which party buffs are currently active and how long until they are off coo
 
 ### <img src="img/job_icons/BRD.png" height="20px" width="20px"> BRD
 + **Gauges**: GCDS used in Raging Strikes, Caustic Bite tracker, Stormbite tracker
-+ **Buffs**: Battle Voice, Raging Strikes (only visible to AST by default)
++ **Buffs**: Battle Voice, Raging Strikes
 
 ### <img src="img/job_icons/MCH.png" height="20px" width="20px"> MCH
 + **Gauges**: GCDS used in Hypercharge, GCDS used in Wildfire
-+ **Buffs**: Wildfire (only visible to AST by default)
++ **Buffs**: Wildfire
 
 ### <img src="img/job_icons/DNC.png" height="20px" width="20px"> DNC
 + **Gauges**: GCDS used in Devilment
@@ -109,11 +109,11 @@ Shows which party buffs are currently active and how long until they are off coo
 
 ### <img src="img/job_icons/SMN.png" height="20px" width="20px"> SMN
 + **Gauges**: Bio tracker, Miasma tracker, Wyrmwave and Scarlet Flame tracker
-+ **Buffs**: Devotion, Summon Bahamut (only visible to AST by default), Firebird Trance (only visible to AST by default)
++ **Buffs**: Devotion, Summon Bahamut, Firebird Trance
 
 ### <img src="img/job_icons/RDM.png" height="20px" width="20px"> RDM
 + **Gauges**: GCDS used in Manification
-+ **Buffs**: Embolden, Manafication (only visible to AST by default)
++ **Buffs**: Embolden, Manafication
 
 ### <img src="img/job_icons/BLU.png" height="20px" width="20px"> BLU
 + **Gauges**: Song of Torment tracker
