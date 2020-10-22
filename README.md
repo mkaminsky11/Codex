@@ -9,6 +9,7 @@ Extra gauges and buff trackers for FFXIV
 2. [NGLD's OverlayPlugin](https://github.com/quisquous/cactbot#install-ngld-overlayplugin)
 3. For gauges, add a new Miniparse overlay, and point the url to `https://mkaminsky11.github.io/Codex/index.html`
 4. For buff tracker, add a new Miniparse overlay, and point the url to `https://mkaminsky11.github.io/Codex/buffs.html`
+5. After positioning the overlays, check "Lock  Overlay" and "Enable Clickthrough" in ACT
 
 ### (For Streamers)
 1. In OBS, add new brower sources pointing to `https://mkaminsky11.github.io/Codex/index.html?OVERLAY_WS=ws://127.0.0.1:10501/ws` or `https://mkaminsky11.github.io/Codex/buffs.html?OVERLAY_WS=ws://127.0.0.1:10501/ws`
@@ -26,15 +27,11 @@ Shows which party buffs are currently active and how long until they are off coo
 ### Do I need Cactbot for this to work?
 > No
 ### How to I change the overlay settings?
-> Click on the diamond in the top-left of the job gauge overlay. After making your changes, click "SAVE"
+> Hover your cursor over the gauges and click on the cog icon. Make sure "Enable Clickthrough" is not checked in ACT.
 ### Why aren't my party buffs showing up?
 > Make sure to add a new overlay pointing to `https://mkaminsky11.github.io/Codex/buffs.html`. Otherwise, open an [Issue](https://github.com/mkaminsky11/Codex/issues/new)
-### How do I enable notifications if my DoTs (damage-over-time) get low?
-> Open the settings menu, check "Flash when DoTs low" then click "SAVE". The timer will now flash red when there is less than 30% remaining
 ### Why does it say "UNLOCKED (LOCK BEFORE USING)"
 > Check "Lock Overlay" inside of ACT ([see this image](https://github.com/quisquous/cactbot/raw/main/screenshots/overlay_plugin_new_raidboss_locked.png))
-### How do I see my party members' personal buffs?
-> Check "Always show party member's personal buffs" in the settings menu
 
 ## TODO Log
 + **TODO**: change buff size

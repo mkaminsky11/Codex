@@ -1,3 +1,4 @@
+/* SETUP */
 body {
     margin: 0;
     width: 100%;
@@ -29,6 +30,20 @@ body {
     margin-left: 15px;
     margin-top: 2px;
 }
+#settings-help {
+    background-color: #565656;
+}
+#settings-apply:hover {
+    background-color: #19a5a5;
+}
+#settings-body {
+    width: 100%;
+    flex: 1;
+    display: flex;
+    overflow: auto;
+    flex-direction: column;
+}
+/* GENERIC */
 .btn {
     padding: 5px;
     font-size: 14px;
@@ -45,19 +60,6 @@ body {
     text-decoration: none;
     color: white;
 }
-#settings-help {
-    background-color: #565656;
-}
-#settings-apply:hover {
-    background-color: #19a5a5;
-}
-#settings-body {
-    width: 100%;
-    flex: 1;
-    display: flex;
-    overflow: auto;
-    flex-direction: column;
-}
 .settings-category {
     display: flex;
     flex-direction: column;
@@ -65,7 +67,36 @@ body {
 .hide {
     display: none !important;
 }
-/* ===================== */
+.row {
+    display: flex;
+    flex-direction: row;
+}
+.row-title {
+    flex: 1;
+}
+.text {
+    margin-left: 7px;
+    margin-right: 3px;
+    font-size: 13px;
+    color: #d8d8d8;
+}
+input, select {
+    font-size: 11px;
+    margin: 0;
+    padding: 0px;
+    height: 16px;
+    border-radius: 2px;
+    border: none;
+    padding-left: 2px;
+    padding-right: 2px;
+    background-color: #ffffff;
+    border: solid thin #212121;
+}
+/* ROW */
+.job-icon {
+    height: 20px;
+    margin-bottom: -3px;
+}
 .settings-row {
     color: white;
     padding: 5px;
@@ -78,29 +109,34 @@ body {
     background-color: #353535;
     border: solid thin black;
 }
-.job-icon {
-    height: 20px;
-    margin-bottom: -3px;
-}
 .settings-row > span {
     font-weight: bold;
 }
-.row {
-    display: flex;
-    flex-direction: row;
-}
-.row-title {
-    flex: 1;
-}
+/* ROW 2 */
 .settings-row-2 {
+    border-radius: 2px;
+    margin: 5px;
+    border: solid thin #272727;
+}
+.settings-row-2-header {
     padding: 5px;
     padding-right: 10px;
     padding-left: 10px;
-    border-radius: 2px;
-    margin: 5px;
     background-color: #464646;
-    border: solid thin #272727;
 }
+.settings-row-2-body {
+    padding: 5px;
+    padding-right: 10px;
+    padding-left: 10px;
+    background-color: #353535;
+    border-top: solid thin #191919;
+}
+.codex-order {
+    width: 20px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+/* COLLAPSE */
 .settings-collapse {
     padding: 5px;
     background-color: #060606;
@@ -113,11 +149,7 @@ body {
     margin-right: 20px;
     font-size: 19px;
 }
-.codex-order {
-    width: 20px;
-    margin-left: 5px;
-    margin-right: 5px;
-}
+/* TAG */
 .tag {
     font-size: 11px;
     font-family: Consolas;

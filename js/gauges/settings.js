@@ -16,6 +16,12 @@ function getSettings() {
         }
     }
 
+    // ADD CLASSES
+    if(config.justify_right) {
+        document.documentElement.classList.add("justify-right");
+    }
+
+    // ADD STYLE
     var style = document.createElement('style');
     var h = "body{zoom:" + config.zoom + ";}" +
             ".data-text{font-size:" + config.fontSize + "px;}";

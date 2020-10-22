@@ -14,7 +14,7 @@
                 <div class="settings-collapse"><span class="settings-collapse-button" id="job-gauges-collapse">+</span><span>JOB GAUGES</span></div>
                 <div id="gauge-settings" class="settings-category">
                     <div class="settings-row rows">
-                        <div class="settings-row-2 row">
+                        <div class="settings-row-2 settings-row-2-header row">
                             <span class="row-title">Edges</span>
                             <select id="codex-edges">
                                 <option value="round" selected>Rounded</option>
@@ -22,30 +22,34 @@
                                 <option value="silver">Silver</option>
                             </select>
                         </div>
-                        <div class="settings-row-2 row">
+                        <div class="settings-row-2 settings-row-2-header row">
                             <span class="row-title">Scaling</span>
                             <input id="codex-zoom"/>
                         </div>
-                        <div class="settings-row-2 row">
+                        <div class="settings-row-2 settings-row-2-header row">
                             <span class="row-title">Font Size</span>
                             <input id="codex-fontsize"/>
+                        </div>
+                        <div class="settings-row-2 settings-row-2-header row">
+                            <span class="row-title">Justify Right</span>
+                            <input id="codex-justify-right" type="checkbox"/>
                         </div>
                     </div>
 
                     <div class="settings-row rows">
-                        <div class="settings-row-2 row">
+                        <div class="settings-row-2 settings-row-2-header row">
                             <span class="row-title">Time visible after buff ends (milliseconds)</span>
                             <input id="codex-timeout"/>
                         </div>
-                        <div class="settings-row-2 row">
+                        <div class="settings-row-2 settings-row-2-header row">
                             <span class="row-title">Timer refresh (milliseconds)</span>
                             <input id="codex-refresh"/>
                         </div>
-                        <div class="settings-row-2 row">
+                        <div class="settings-row-2 settings-row-2-header row">
                             <span class="row-title">Flash when DoTs low</span>
                             <input id="codex-danger" type="checkbox"/>
                         </div>
-                        <div class="settings-row-2 row">
+                        <div class="settings-row-2 settings-row-2-header row">
                             <span class="row-title">Glow around active bars</span>
                             <input id="codex-glow" type="checkbox"/>
                         </div>

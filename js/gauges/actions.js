@@ -40,7 +40,7 @@ var actions = {
                 name: "Storms Eye", order: 1,
                 max: 60,
                 type: "timer",
-                visual: {type: "BAR", color: "red", danger: true}
+                visual: {type: "BAR", icon: "stormseye", color: "red", danger: true}
             }
         },
         alias: {}
@@ -69,7 +69,7 @@ var actions = {
                 name: "Goring Blade", order: 1,
                 max: 21,
                 type: "timer",
-                visual: {type: "BAR", color: "orange", danger: true}
+                visual: {type: "BAR", icon: "goringblade", color: "orange", danger: true}
             }
         },
         alias: {}
@@ -98,7 +98,7 @@ var actions = {
                 name: "Biolysis", 
                 order: 0, max: 30,
                 type: "timer",
-                visual: {type: "BAR", color: "green", danger: true}
+                visual: {type: "BAR", icon: "biolysis", color: "green", danger: true}
             }
         },
         alias: {
@@ -112,7 +112,7 @@ var actions = {
                 name: "Dia", 
                 order: 0, max: 30,
                 type: "timer",
-                visual: {type: "BAR", color: "blue", danger: true}
+                visual: {type: "BAR", icon: "dia", color: "blue", danger: true}
             }
         },
         alias: {
@@ -126,7 +126,7 @@ var actions = {
                 name: "Combust", 
                 order: 0, max: 30,
                 type: "timer",
-                visual: {type: "BAR", color: "blue", danger: true}
+                visual: {type: "BAR", icon: "combust", color: "blue", danger: true}
             }
         },
         alias: {
@@ -210,19 +210,19 @@ var actions = {
                 name: "Jinpu", 
                 order: 0, max: 40,
                 type: "timer",
-                visual: {type: "BAR", color: "blue", danger: true}
+                visual: {type: "BAR", icon: "jinpu", color: "blue", danger: true}
             },
             [ib.Shifu]: {
                 name: "Shifu", 
                 order: 1, max: 40,
                 type: "timer",
-                visual: {type: "BAR", color: "red", danger: true}
+                visual: {type: "BAR", icon: "shifu", color: "red", danger: true}
             },
             [ib.Higanbana]: {
                 name: "Higanbana", 
                 order: 2, max: 60,
                 type: "timer",
-                visual: {type: "BAR", color: "orange", danger: true}
+                visual: {type: "BAR", icon: "higanbana", color: "orange", danger: true}
             }
         },
         alias: {}
@@ -236,13 +236,13 @@ var actions = {
                 name: "Caustic Bite", 
                 order: 0, max: 30,
                 type: "timer",
-                visual: {type: "BAR", color: "red", danger: true}
+                visual: {type: "BAR", icon: "causticbite", color: "red", danger: true}
             },
             [ib.Stormbite]: {
                 name: "Stormbite", 
                 order: 1, max: 30,
                 type: "timer",
-                visual: {type: "BAR", color: "blue", danger: true}
+                visual: {type: "BAR", icon: "stormbite", color: "blue", danger: true}
             },
             [ib.RagingStrikes]: {
                 name: "Raging Strikes", 
@@ -310,14 +310,14 @@ var actions = {
                 name: "Thunder 3", 
                 order: 0, max: 24,
                 type: "timer",
-                visual: {type: "BAR", color: "blue", danger: true},
+                visual: {type: "BAR", icon: "thunder3", color: "blue", danger: true},
                 hides: [ib.Thunder4]
             },
             [ib.Thunder4]: {
                 name: "Thunder 4", 
                 order: 1, max: 18,
                 type: "timer",
-                visual: {type: "BAR", color: "purple", danger: true},
+                visual: {type: "BAR", icon: "thunder4", color: "purple", danger: true},
                 hides: [ib.Thunder3],
                 hidden: true
             }
@@ -352,13 +352,13 @@ var actions = {
                 name: "Bio", 
                 order: 2, max: 30,
                 type: "timer",
-                visual: {type: "BAR", color: "green", danger: true},
+                visual: {type: "BAR", icon: "bio", color: "green", danger: true},
             },
             [ib.Miasma]: {
                 name: "Miasma", 
                 order: 3, max: 30,
                 type: "timer",
-                visual: {type: "BAR", color: "blue", danger: true},
+                visual: {type: "BAR", icon: "miasma", color: "blue", danger: true},
             }
         },
         alias: {
@@ -392,7 +392,7 @@ var actions = {
                 name: "Song of Torment", 
                 order: 0, max: 30,
                 type: "timer",
-                visual: {type: "BAR", color: "red", danger: true}
+                visual: {type: "BAR", icon: "songoftorment", color: "red", danger: true}
             }
         },
         alias: {}

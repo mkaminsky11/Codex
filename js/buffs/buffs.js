@@ -77,7 +77,7 @@ var buffs = {
             self: true, target: false, party: false,
         },
         [ib.LadyOfCrowns]: {
-            name: "LadyOfCrowns",
+            name: "Lady Of Crowns",
             duration: 15, noCd: true,
             color: "purple", icon: "ladyofcrowns",
             self: true, target: false, party: false,

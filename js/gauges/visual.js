@@ -16,6 +16,7 @@ function setJobUI(job) {
         var visual = buff.data.visual;
         visual.color = config.color[buff.id] ? config.color[buff.id] : visual.color;
         visual.glow = config.glows[buff.id] ? config.glows[buff.id] : visual.glow;
+        visual.type = config.gaugeType[buff.id] ? config.gaugeType[buff.id] : visual.type;
         
         row.setAttribute("class","row");
         row.setAttribute("id", buff.id);
@@ -47,6 +48,11 @@ function setJobUI(job) {
             h = h + "</div>";
             row.innerHTML = h;
         }
+        else if(visual.type === "SQUARE") {
+            row.innerHTML = `<div class='square dash-hidden recast-hidden'><img src='img/general/dash.gif' class='dash'>` + 
+                            `<img src="img/general/recast/frame.png" class="frame">` + `<img src="img/general/recast/recast_01.png" class="recast">` +
+                            `<img src='img/buff_icons/${visual.icon}.png' class='icon'><span class='recast-time'></span></div>`;
+        }
         container.appendChild(row);
     }
 }
@@ -55,6 +61,8 @@ function setCountUI(buffId, count) {
     if(user.hasBuff(buffId)) {
         var buff = user.getBuff(buffId);
         var visual = buff.data.visual;
+        visual.type = config.gaugeType[buff.id] ? config.gaugeType[buff.id] : visual.type;
+        
         if(visual.type === "BAR") {
             var elem = document.querySelector(".row[id='" + buffId + "']");
             var countString = count.toFixed(0); // NO DECIMAL PLACES
@@ -80,6 +88,28 @@ function setCountUI(buffId, count) {
                     item.classList.remove("arrow-active");
                 }
             });
+        }
+        else if(visual.type === "SQUARE") {
+            var elem = document.querySelector(".row[id='" + buffId + "'] .square");
+            var countString = count.toFixed(0);
+            var percent = 100 * count / buff.max;
+            // set recast text
+            elem.querySelector(".recast-time").innerHTML = countString;
+            // set the recast image
+            var mapped = 1 + 80 * (1 - count / buff.max)
+            var mappedNumber = Math.round(mapped).toFixed(0).padStart(2,"0");
+            elem.querySelector(".recast").setAttribute("src","img/general/recast/recast_" + mappedNumber + ".png");
+            // if 0, add dash, remove stuff
+            console.log(count);
+            if(count == 0) {
+                elem.classList.add("recast-hidden");
+                elem.classList.remove("dash-hidden");
+            }
+            else {
+                elem.classList.remove("recast-hidden");
+                elem.classList.add("dash-hidden");
+            }
+
         }
     }
 }
