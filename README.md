@@ -23,6 +23,9 @@ Shows which party buffs are currently active and how long until they are off coo
 ![](img/docs/AST.gif)
 ![](img/docs/DRK.gif)
 
+## Known Issues
++ The overlay has problems in exploration zones (Eureka and Bozja), and will often not register actions correctly. I'm looking into it :/
+
 ## FAQs
 ### Do I need Cactbot for this to work?
 > No
@@ -34,17 +37,18 @@ Shows which party buffs are currently active and how long until they are off coo
 > Check "Lock Overlay" inside of ACT ([see this image](https://github.com/quisquous/cactbot/raw/main/screenshots/overlay_plugin_new_raidboss_locked.png))
 
 ## TODO Log
-+ **TODO**: change buff size
-
-+ **TODO**: glows on arrows
-+ **TODO**: multi-DoT tracker
-+ **TODO**: multi-buffs (if you have multiple of a job in your party)
-+ **TODO**: change bar type
-+ **TODO**: change arrow size
-+ **TODO**: material UI or base FFXIV
-+ **TODO**: add buff settings (change size, etc.)
-+ **TODO**: stop flashing dot warning after a while (if enabled)
-+ **TODO**: reset button
+```
+- [WIP] change buff size
+- glows on arrows
+- multi-DoT tracker
+- multi-buffs (if you have multiple of a job in your party)
+- [WIP] change bar type
+- change arrow size
+- material UI or base FFXIV
+- add buff settings (change size, etc.)
+- stop flashing dot warning after a while (if enabled)
+- reset button
+```
 
 ## Jobs
 
@@ -119,5 +123,7 @@ Shows which party buffs are currently active and how long until they are off coo
 
 ## Issues and Acknowledgement
 Thank you to [skotlex](https://github.com/skotlex/ffxiv-material-ui) for the awesome icons.
+
+Thank you to [goaaats](https://github.com/goaaats/ffxiv-explorer-fork) and all the contributors of FFXIV-Explorer for the `.atex` conversion code
 
 Please report any issues [here](https://github.com/mkaminsky11/Codex/issues) or message me @ ocealot#4484
