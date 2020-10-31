@@ -20,6 +20,9 @@ function getSettings() {
     if(config.justify_right) {
         document.documentElement.classList.add("justify-right");
     }
+    if(config.horizontal_gauges) {
+        document.documentElement.classList.add("horizontal-gauges");
+    }
 
     // ADD STYLE
     var style = document.createElement('style');

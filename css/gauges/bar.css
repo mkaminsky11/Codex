@@ -1,0 +1,69 @@
+/*==== BAR =====*/
+.bar {
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+    position: relative;
+    overflow: visible;
+    margin-right: 5px;
+}
+.progress-bar {
+    width: 148px;
+    background-color: #40454c;
+    height: 8px;
+    border: solid 1px black;
+    border-radius: 6px;
+    filter: drop-shadow(0px 0px 2px #212121);
+    position: relative;
+    overflow: hidden;
+    filter: brightness(1);
+}
+.progress-bar-flash {
+    animation: flash 2s infinite;
+}
+@keyframes flash {
+    0%   {filter: brightness(1)}
+    50%  {filter: brightness(2)}
+    100% {filter: brightness(1)}
+}
+.silver-edge {
+    position: absolute;
+    z-index: 2;
+    left: -10px;
+    width: 181px;
+    top: 2px;
+}
+.edges-corners, .edges-silver {
+    border-radius: 0px;
+}
+.progress-bar > span {
+    width: 0%;
+    height: 100%;
+    position: absolute;
+    transition: width 0.2s;
+    border-radius: 6px 0px 0px 6px;
+}
+.edges-corners, .edges-silver > span {
+    border-radius: 0px 0px 0px 0px;
+}
+[type='timer'] .progress-bar > span{
+    transition: none;
+}
+.progress-bar-red > span {
+    background: linear-gradient(0.25turn, #ff1c1c, #ff6262);
+}
+.progress-bar-blue > span {
+    background: linear-gradient(0.25turn, #4b51ff, #9d97ff);
+}
+.progress-bar-orange > span {
+    background: linear-gradient(0.25turn, #ffa64b, #ffd197);
+}
+.progress-bar-green > span {
+    background: linear-gradient(0.25turn, #baff4b, #c4ff97);
+}
+.progress-bar-yellow > span {
+    background: linear-gradient(0.25turn, #fcff4b, #fffc97);
+}
+.progress-bar-purple > span {
+    background: linear-gradient(0.25turn, #774bff, #d297ff);
+}

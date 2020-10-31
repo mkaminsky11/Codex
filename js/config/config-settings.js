@@ -21,6 +21,9 @@ document.getElementById("codex-fontsize").addEventListener("change", function(e)
 document.getElementById("codex-justify-right").addEventListener("change", function(e){
     config.justify_right = e.target.checked;
 });
+document.getElementById("codex-horizontal-gauges").addEventListener("change", function(e){
+    config.horizontal_gauges = e.target.checked;
+});
 document.getElementById("codex-timeout").addEventListener("change", function(e){
     if(!isNaN(parseInt(e.target.value))){
         config.timeout = parseInt(e.target.value);
@@ -90,6 +93,7 @@ function getSettings() {
     document.getElementById("codex-zoom").value = config.zoom;
     document.getElementById("codex-fontsize").value = config.fontSize;
     document.getElementById("codex-justify-right").checked = config.justify_right;
+    document.getElementById("codex-horizontal-gauges").checked = config.horizontal_gauges;
     document.getElementById("codex-timeout").value = config.timeout;
     document.getElementById("codex-refresh").value = config.refresh;
     document.getElementById("codex-danger").checked = config.danger;

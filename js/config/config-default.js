@@ -7,6 +7,8 @@ var config = {
     zoom: 1,
     fontSize: 15,
     justify_right: false,
+    horizontal_gauges: false,
+
     disabled: {},
     gaugeType: {},
     color: {},

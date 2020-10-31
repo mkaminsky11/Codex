@@ -38,6 +38,14 @@ Shows which party buffs are currently active and how long until they are off coo
 
 ## TODO Log
 ```
+- horizontal gauges [DONE]
+- settings in all overlays
+- add demolish, chaos thrust
+- dots in own bars
+- make everything more modular
+- add icons
+- [dot] tag in settings
+
 - [WIP] change buff size
 - glows on arrows
 - multi-DoT tracker
