@@ -11,11 +11,11 @@ function setupBuffsUI(user, config) {
         }
         buffElem.setAttribute("id", buffId);
         buffElem.setAttribute("style", "border-color:" + buff.data.color);
-        buffElem.innerHTML = 
-            `<img src='img/buff_icons/${user.getIconName(buff)}.png'/>` +
-            "<span class='pulse'></span>" +
-            "<span class='buff-text'>0</span>" + 
-            "<div class='buff-overlay'></div>";
+        buffElem.innerHTML = `
+            <img src='img/buff_icons/${user.getIconName(buff)}.png'/>
+            <span class='pulse'></span>
+            <span class='buff-text'>0</span>
+            <div class='buff-overlay'></div>`;
         buffRow.appendChild(buffElem);
     }
 }

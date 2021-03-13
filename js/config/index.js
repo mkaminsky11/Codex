@@ -110,6 +110,9 @@ document.getElementById('codex-danger').addEventListener('change', function(e){
 document.getElementById('codex-glow').addEventListener('change', function(e){
     config.glow = e.target.checked;
 });
+document.getElementById('codex-buffs-small').addEventListener('change', function(e){
+    config.buffs_small = e.target.checked;
+});
 document.getElementById('codex-all-personals').addEventListener('change', function(e){
     config.all_personals = e.target.checked;
 });
@@ -127,6 +130,7 @@ document.getElementById('codex-timeout').value = config.timeout;
 document.getElementById('codex-refresh').value = config.refresh;
 document.getElementById('codex-danger').checked = config.danger;
 document.getElementById('codex-glow').checked = config.glow;
+document.getElementById('codex-buffs-small').checked = config.buffs_small;
 document.getElementById('codex-all-personals').checked = config.all_personals;
 document.getElementById('codex-own-personals').checked = config.own_personals;
 

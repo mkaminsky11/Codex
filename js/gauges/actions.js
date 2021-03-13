@@ -172,6 +172,7 @@ var gaugeConfig = {
                 order: 0,
                 time: 15, max: 6,
                 type: 'gcds',
+                noRefresh: true,
                 ids: [
                     actionIds.Bootshine,
                     actionIds.TrueStrike,

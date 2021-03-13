@@ -23,6 +23,7 @@ var config = {
     all_personals: false,
     own_personals: true,
     buffs_disabled: {},
+    buffs_small: false
 };
 
 function setupReload(){

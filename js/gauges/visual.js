@@ -102,19 +102,19 @@ function createArrow(num, color){
     var targetWidth = 150;
     var targetHeight = 30;
     var strokeWidth = 1;
-    var padLeft = 5;
+    var padLeft = 2;
     // targetWidth = (width + offset) * num + slant
     var height = targetHeight - 2 * strokeWidth;
     var width = (targetWidth - slant - 2 * strokeWidth) / num - offset;
 
     var grad = `
-    <defs>
-        <linearGradient id="gradient-${color}">
-            <stop offset="5%" stop-color="${arrowGradients[color][0]}" />
-            <stop offset="95%" stop-color="${arrowGradients[color][1]}" />
-        </linearGradient>
-    </defs>
-    `;
+        <defs>
+            <linearGradient id="gradient-${color}">
+                <stop offset="5%" stop-color="${arrowGradients[color][0]}" />
+                <stop offset="95%" stop-color="${arrowGradients[color][1]}" />
+            </linearGradient>
+        </defs>
+        `;
 
     for(var i = 0; i < num; i++){
         var startX = i * (width + offset) + strokeWidth + padLeft;

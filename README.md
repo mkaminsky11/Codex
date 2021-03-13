@@ -44,8 +44,7 @@ Shows which party buffs are currently active and how long until they are off coo
 - dots in own bars
 - ~~make everything more modular~~ [DONE]
 - ~~add icons~~ [DONE]
-- [dot] tag in settings
-- [WIP] change buff size
+- ~~change buff size~~ [DONE]
 - glows on arrows
 - multi-DoT tracker
 - multi-buffs (if you have multiple of a job in your party)

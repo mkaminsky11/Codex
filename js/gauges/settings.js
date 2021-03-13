@@ -25,9 +25,13 @@ function getSettings() {
     }
     // ADD STYLE
     var style = document.createElement('style');
-    var h = "body{zoom:" + config.zoom + ";}" +
-            ".data-text{font-size:" + config.fontSize + "px;}";
-    style.innerHTML = h;
+    style.innerHTML = `
+        body {
+            zoom: ${config.zoom};
+        }
+        .data-text {
+            font-size: ${config.fontSize}px;
+        }`;
     document.head.appendChild(style);
 
     return config;
