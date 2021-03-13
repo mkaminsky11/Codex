@@ -11,3 +11,4 @@ class PBuff {
         this.data = data;
     }
 }
+export {PBuff}

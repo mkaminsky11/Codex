@@ -1,9 +1,9 @@
 //===========//
 // BUFFS
 //===========//
-const ib = {
+const buffIds = {
     // DRK
-    Delerium: '7b4',
+    Delirium: '7b4',
     BloodWeapon: '2e6',
     // WAR
     InnerRelease: '499',
@@ -77,7 +77,7 @@ const ib = {
     Miasma: '4bf',
     Devotion: '4bd',
     // RDM
-    Manification: '7b3',
+    Manafication: '7b3',
     Embolden: '4d7',
     // BLU
     SongOfTorment: '6b2',
@@ -87,7 +87,7 @@ const ib = {
 //=============//
 // ABILITIES
 //=============//
-const ia = {
+const actionIds = {
     // DRK
     LivingShadow: '4058',
     BloodSpiller: '1CE0',
@@ -242,23 +242,25 @@ const ia = {
 //=================//
 // JOBS
 //=================//
-var ji = {
-    37: "GNB",
-    33: "AST",
-    19: "PLD",
-    21: "WAR",
-    32: "DRK",
-    28: "SCH", 
-    24: "WHM",
-    23: "BRD",
-    22: "DRG", 
-    27: "SMN",
-    34: "SAM",
-    25: "BLM", 
-    35: "RDM",
-    31: "MCH",
-    38: "DNC",
-    30: "NIN",
-    20: "MNK",
-    36: "BLU"
+var jobIds = {
+    37: 'GNB',
+    33: 'AST',
+    19: 'PLD',
+    21: 'WAR',
+    32: 'DRK',
+    28: 'SCH', 
+    24: 'WHM',
+    23: 'BRD',
+    22: 'DRG', 
+    27: 'SMN',
+    34: 'SAM',
+    25: 'BLM', 
+    35: 'RDM',
+    31: 'MCH',
+    38: 'DNC',
+    30: 'NIN',
+    20: 'MNK',
+    36: 'BLU'
 };
+
+export {jobIds, actionIds, buffIds}

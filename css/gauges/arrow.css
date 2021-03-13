@@ -3,86 +3,43 @@
     position: relative;
     display: flex;
     flex-direction: row;
-    margin-left: 10px;
-    margin-right: 10px;
+    padding: 5px;
+    padding-top: 0px;
+    margin-right: 5px;
 }
-.arrow {
-    height: 30px;
-    width: 25px;
-    position: relative;
-    transform: rotate(-90deg);
-    margin-left: 4px;
+/* ====== COLORS =======*/
+.arrow-red .arrow-active {
+    fill: url(#gradient-red);
 }
-.arrow-row > .arrow-m:first-of-type {
-    margin-left: 10px;
+.arrow-blue .arrow-active {
+    fill: url(#gradient-blue);
 }
-.arrow-m {
-    width: 13px;
+.arrow-orange .arrow-active {
+    fill: url(#gradient-orange);
 }
-.arrow::before {
-    content: '';
-    position: absolute;
-    top: 0px;
-    left: -1px;
-    height: 24px;
-    width: 13px;
-    background: #40454c;
-    transform: skew(0deg, 31deg);
-    border: solid 1px black;
-    border-right: none;
+.arrow-green .arrow-active {
+    fill: url(#gradient-green);
 }
-.arrow-m::before {
-    left: -6px;
-    height: 13px;
+.arrow-yellow .arrow-active {
+    fill: url(#gradient-yellow);
 }
-.arrow::after {
-    content: '';
-    position: absolute;
-    top: 0px;
-    right: -1px;
-    height: 24px;
-    width: 13px;
-    background: #40454c;
-    transform: skew(0deg, -31deg);
-    border: solid 1px black;
-    border-left: none;
+.arrow-purple .arrow-active {
+    fill: url(#gradient-purple);
 }
-.arrow-m::after {
-    right: -8px;
-    height: 13px;
-}
-.arrow-red .arrow-active::after, .arrow-red .arrow-active::before {
-    background: linear-gradient(0, #ff1c1c, #ff6262);
-}
-.arrow-blue .arrow-active::after, .arrow-blue .arrow-active::before {
-    background: linear-gradient(0, #4b51ff, #9d97ff);
-}
-.arrow-orange .arrow-active::after, .arrow-orange .arrow-active::before {
-    background: linear-gradient(0, #ffa64b, #ffd197);
-}
-.arrow-green .arrow-active::after, .arrow-green .arrow-active::before {
-    background: linear-gradient(0, #baff4b, #c4ff97);
-}
-.arrow-yellow .arrow-active::after, .arrow-yellow .arrow-active::before {
-    background: linear-gradient(0, #fcff4b, #fffc97);
-}
-.arrow-purple .arrow-active::after, .arrow-purple .arrow-active::before {
-    background: linear-gradient(0, #774bff, #d297ff);
-}
-.arrow-active::before, .arrow-active::after {
+.arrow-active {
     animation-duration: 0.25s;
     animation-name: arrowIn;
 }
 @keyframes arrowIn {
     0% {
-        top: -5px;
+        transform: translate(-5px, 0);
         filter: brightness(3);
     }
     50% {
-        top: 5px;
+        transform: translate(5px, 0);
     }
     100% {
-        top: 0px;
+        transform: translate(0, 0);
         filter: brightness(1);
     }
 }

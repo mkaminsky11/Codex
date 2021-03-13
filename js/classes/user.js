@@ -1,34 +1,38 @@
+import {GBuff} from './gaugeBuff.js'
+import {PBuff} from './partyBuff.js'
+import {jobIds} from '../general/ids.js'
+
 class User {
     constructor() {
-        this.id = "";
-        this.job = "";
-        this.zone = "";
+        this.id = '';
+        this.job = '';
+        this.zone = '';
         this.party = {};
         this.lastCast = {};
     }
-    // INIT
     init(id) {
         this.id = id;
     }
-    // JOB
     setJob(jobId) {
-        if(!(jobId in ji)) { return false; }
-        if(this.job !== ji[jobId]) {
-            this.job = ji[jobId];
+        if(!(jobId in jobIds)) { return false; }
+        if(this.job !== jobIds[jobId]) {
+            this.job = jobIds[jobId];
             this.reset();
-            console.log("SETJOB " + this.job);
+            console.log(`SETJOB ${this.job}`);
             return true;
         }
         return false;
     }
-    // BUFFS
-    hasBuff(buffId) {
+    usesBuff(buffId) {
         return (buffId in this.buffs);
     }
     getBuff(buffId) {
         return this.buffs[buffId];
     }
-    iterateBuffs(callback) {
+    getIconName(buff){
+        return buff.data.name.toLowerCase().replace(/[ ]/g, '');
+    }
+    allBuffs(callback) {
         for(const i in this.buffs) {
             callback(this.buffs[i]);
         }
@@ -40,7 +44,7 @@ class User {
         return this.alias[buffId];
     }
     // GAUGES
-    initGBuffs() {
+    initGBuffs(actions) {
         for(const buffId in actions[this.job].buffs) {
             this.buffs[buffId] = new GBuff(buffId, actions[this.job].buffs[buffId]);
         }
@@ -49,8 +53,8 @@ class User {
         }
     }
     // PARTY BUFFS
-    initPBuffs(configAllPersonals, configOwnPersonals, configDisabledBuffs) {
-        var allPersonals = (this.job === "AST") || configAllPersonals;
+    initPBuffs(buffs, configAllPersonals, configOwnPersonals, configDisabledBuffs) {
+        var allPersonals = (this.job === 'AST') || configAllPersonals;
         for(const jobId in buffs) {
             for(const buffId in buffs[jobId]) {
                 var buff = buffs[jobId][buffId];
@@ -68,7 +72,7 @@ class User {
     // PETS
     bindPet(ownerId, petId, petName) {
         if(ownerId !== this.id) { return false; }
-        console.log("BIND   " + petName);
+        console.log(`BIND ${petName}`);
         this.pet = {
             id: petId.toUpperCase(),
             name: petName
@@ -76,7 +80,7 @@ class User {
     }
     // ZONE
     setZone(zone) {
-        if(this.zone !== "" && zone !== this.zone) { 
+        if(this.zone !== '' && zone !== this.zone) { 
             this.zone = zone;
             return false;
         }
@@ -107,7 +111,7 @@ class User {
         this.timers = {};
         this.buffs = {};
         this.alias = {};
-        this.pet = {name: "", id: ""};
+        this.pet = {name: '', id: ''};
     }
     reset() {
         this.resetIntervals();
@@ -127,3 +131,5 @@ class User {
         for(const id in this.timers) { this.resetTimer(id); }
     }
 }
+
+export {User}

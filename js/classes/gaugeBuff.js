@@ -9,8 +9,9 @@ class GBuff {
         this.data = data;
     }
 
-    checkId(id) {
-        if(this.type !== "gcds") { return false; }
+    usesId(id) {
+        if(this.type !== 'gcds') { return false; }
         return (this.data.ids.indexOf(id) !== -1);
     }
 }
+export {GBuff}

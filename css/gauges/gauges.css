@@ -19,6 +19,9 @@
     overflow: visible;
 }
 .justify-right .row {
+    justify-content: flex-end;
+}
+.reverse-row .row {
     flex-direction: row-reverse;
 }
 .row-item {
@@ -27,6 +30,9 @@
     justify-content: center;
     padding: 4px;
     overflow: visible;
+}
+img.small-icon {
+    height: 30px;
 }
 .data-row {
     margin-top: -2px;

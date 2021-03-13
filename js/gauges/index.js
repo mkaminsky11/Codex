@@ -1,38 +1,16 @@
+import {User} from '../classes/user.js'
+import {gaugeConfig} from './actions.js'
+import {setJobUI, setGaugeValue, addGlow, removeGlow, clearDanger, hide, unHide} from './visual.js'
+import {getSettings} from './settings.js'
+import {setup} from '../general/init.js'
+
+var user = new User();
+var config = getSettings();
 var TIMEOUT = config.timeout;
 var REFRESH = config.refresh;
 var debug = false;
 
-var user = new User();
-
-function logData(line){
-    switch(line[0]){
-        case "03":
-            user.bindPet(line[6].toUpperCase(), line[2], line[3]);
-            break;
-        case "21":
-            logAction(line[2], line[4], line[5]);
-            break;
-        case "22":
-            logAction(line[2], line[4], line[5], true);
-            break;
-        case "26":
-            gainBuff(line[5], line[2], parseFloat(line[4]), line[3]);
-            break;
-        case "30":
-            if(!user.exploreZone()) {
-                loseBuff(line[5], line[2], line[3]);
-            }
-            break;
-        case "31":
-            parseJob(line[2], line[3]);
-            break;
-        case "33":
-            if(line[3] === "40000010") { reload(); } // on wipe
-            break;
-    }
-}
-
-function logAction(sourceId, actionId, actionName, isAoe=false){
+function logAction(sourceId, actionId, actionName, targetId, isAoe){
     if(sourceId == user.id || sourceId == user.pet.id) {
         // ignore multihit for aoe
         if(isAoe) {
@@ -40,69 +18,63 @@ function logAction(sourceId, actionId, actionName, isAoe=false){
             if(actionId in user.lastCast && (time - user.lastCast[actionId] < 100)) { return; }
             user.lastCast[actionId] = time;
         }
-        if(debug){ console.log("ACTION     " + actionName + "  " + actionId);}
-        //
-        user.iterateBuffs(function(buff) {
-            if(buff.active) {
-                switch(buff.type) {
-                    case "gcds":
-                        if(buff.checkId(actionId)) {
-                            buff.count++;
-                            setCountUI(buff.id, buff.count);
-                        }
-                        break;
-                }
+        if(debug){ console.log(`ACTION ${actionId} ${actionName}`); }
+
+        user.allBuffs(function(buff) { // count action usage towards gauge (ie, fell cleaves under IR)
+            if(buff.active && buff.type === 'gcds' && buff.usesId(actionId)) {
+                buff.count++;
+                setGaugeValue(buff.id, buff.count, user, config);
             }
         });
-        if(user.hasBuff(actionId)) { // treat action like buff
+        if(user.usesBuff(actionId)) { // treat action like buff
             var buff = user.getBuff(actionId);
-            gainBuff(sourceId, actionId, buff.data.time, actionName);
+            gainBuff(sourceId, targetId, actionId, buff.data.time, actionName);
             user.resetTimer(actionId);
             user.timers[actionId] = setTimeout(function() {
-                loseBuff(sourceId, actionId, actionName);
+                loseBuff(sourceId, targetId, actionId, actionName);
             }, 1000 * buff.data.time);
         }
         if(user.hasAlias(actionId)) {
-            logAction(sourceId, user.getAlias(actionId), actionName);
+            logAction(sourceId, user.getAlias(actionId), actionName, targetId, isAoe);
         }
     }
 }
 
-function gainBuff(sourceId, buffId, buffTime, buffName){
+function gainBuff(sourceId, targetId, buffId, buffTime, buffName){
     if(sourceId == user.id) {
-        if(debug) { console.log("BUFF     " + buffName + " - " + buffId); }
+        if(debug) { console.log(`BUFF ${buffId} ${buffName}`); }
         //
-        if(user.hasBuff(buffId)) {
+        if(user.usesBuff(buffId)) {
             var buff = user.getBuff(buffId);
-            if(buff.active && buff.data.noRefresh){return;} // block refreshing
+            if(buff.active && buff.data.noRefresh) { return; } // block refreshing
             switch(buff.type) {
-                case "gcds":
+                case 'gcds':
                     buff.count = 0;
                     buff.active = true;
                     break;
-                case "timer":
+                case 'timer':
                     buff.startTime = (new Date()).getTime();
                     buff.count = parseFloat(buffTime);
                     buff.active = true;
                     user.resetInterval(buffId);
-                    user.intervals[buffId] = setInterval(function() {
-                        if(user.hasBuff(buffId)) {
+                    user.intervals[buffId] = setInterval(function() { // automatically expire after set amount of time
+                        if(user.usesBuff(buffId)) {
                             var b_ = user.getBuff(buffId);
                             if(b_.active) {
                                 var count = b_.count - ((new Date()).getTime() - b_.startTime) / 1000;
-                                setCountUI(buffId, Math.max(0,count));
+                                setGaugeValue(buffId, Math.max(0,count), user, config);
                             }
                         }
                     }, REFRESH);
                     break;
             }
 
-            if(user.exploreZone()) {
+            /*if(user.exploreZone()) { // TODO: exploration zones are wonky
                 user.resetTimer(buffId);
                 user.timers[buffId] = setTimeout(function() {
-                    loseBuff(sourceId, buffId, buffName);
+                    loseBuff(sourceId, targetId, buffId, buffName);
                 }, 1000 * parseFloat(buffTime));
-            }
+            }*/
 
             if(config.glow) {
                 addGlow(buffId);
@@ -113,92 +85,83 @@ function gainBuff(sourceId, buffId, buffTime, buffName){
             }
         }
         if(user.hasAlias(buffId)) {
-            gainBuff(sourceId, user.getAlias(buffId), buffTime, buffName);
+            gainBuff(sourceId, targetId, user.getAlias(buffId), buffTime, buffName);
         }
     }
 }
 
-function loseBuff(sourceId, buffId, buffName){
+function loseBuff(sourceId, targetId, buffId, buffName){
     if(sourceId == user.id) {
-        if(user.hasBuff(buffId)) {
+        if(user.usesBuff(buffId)) {
             var buff = user.getBuff(buffId);
             if(buff.active) {
-                if(debug) { console.log("LOSEBUFF   " + buffId + " " + buffName); }
+                if(debug) { console.log(`LOSEBUFF ${buffId} ${buffName}`); }
                 //
                 switch(buff.type) {
-                    case "gcds":
+                    case 'gcds':
                         break;
-                    case "timer":
+                    case 'timer':
                         user.resetInterval(buffId);
-                        setCountUI(buffId, 0);
+                        setGaugeValue(buffId, 0, user, config);
                         break;
                 }
                 buff.active = false;
                 setTimeout(function() {
-                    setCountUI(buffId, 0);
+                    setGaugeValue(buffId, 0, user, config);
                 }, TIMEOUT)
                 if(config.glow) {
                     removeGlow(buffId);
                 }
             }
             if(user.hasAlias(buffId)) {
-                loseBuff(sourceId, user.getAlias(buffId), buffName);
+                loseBuff(sourceId, targetId, user.getAlias(buffId), buffName);
             }
         }
     }
 }
 
-function parseJob(sourceId, jobString) {
+function switchJob(jobId) {
+    if(user.setJob(jobId)) {
+        user.initGBuffs(gaugeConfig);
+        setJobUI(user, config);
+    }
+}
+function reload() {
+    user.reset();
+    user.initGBuffs(gaugeConfig);
+    clearDanger();
+    setJobUI(user, config);
+}
+
+
+function parseJob(sourceId, jobId) {
     if(sourceId == user.id) {
-        var jobId = parseInt(jobString.substr(jobString.length - 2,2),16); // last 2 characters are the job id
         switchJob(jobId);
     }
 }
-
-function switchJob(jobId) {
-    if(user.setJob(jobId)) {
-        user.initGBuffs();
-        setJobUI(user.job);
-    }
+function bindPet(ownerId, petId, petName){
+    user.bindPet(ownerId, petId, petName);
 }
-
-function reload() {
-    user.reset();
-    user.initGBuffs();
-    clearDanger();
-    setJobUI(user.job);
+function wipe(){
+    location.reload();
 }
-
-//addOverlayListener('LogLine', (data) => {console.log(data.line);});
-addOverlayListener('LogLine', (data) => {
-    logData(data.line);
-});
-addOverlayListener('ChangePrimaryPlayer', (data) => {
-    if(user.id !== "" && (data.charID).toString(16).toUpperCase() !== user.id) { location.reload(); }
-});
-addOverlayListener('ChangeZone', (data) => {
-    console.log(data);
-    if(!user.setZone(data.zoneID)){
-        reload();
+setup(
+    logAction,
+    gainBuff,
+    loseBuff,
+    parseJob,
+    bindPet,
+    wipe,
+    // =========
+    (playerId) => {
+        if(user.id !== '' && playerId !== user.id) { location.reload(); }
+    },
+    (zoneId) => {
+        if(!user.setZone(zoneId)) { reload(); }
+    },
+    (party) => {},
+    (playerId, playerJob) => {
+        user.init(playerId);
+        switchJob(playerJob);
     }
-});
-document.addEventListener('onOverlayStateUpdate', (e) => {
-    let docClassList = document.documentElement.classList;
-    if (e.detail.isLocked)
-        docClassList.add('locked');
-    else
-        docClassList.remove('locked');
-});
-startOverlayEvents();
-
-async function init() {
-    let combat = (await callOverlayHandler({ call: 'getCombatants' })).combatants;
-    if(combat.length > 0) {
-        user.init((combat[0].ID).toString(16).toUpperCase());
-        switchJob(combat[0].Job);
-    }
-    else {
-        setTimeout(function() {init();}, 1000) // retry every second
-    }
-}
-init();
+)

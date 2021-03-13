@@ -1,7 +1,7 @@
-function setupBuffsUI() {
+function setupBuffsUI(user, config) {
     var buffRow = document.getElementById("buffs");
     buffRow.innerHTML = "";
-    for(buffId in user.buffs) {
+    for(const buffId in user.buffs) {
         var buff = user.buffs[buffId];
         var buffElem = document.createElement("div");
         buffElem.classList.add("buff");
@@ -12,7 +12,7 @@ function setupBuffsUI() {
         buffElem.setAttribute("id", buffId);
         buffElem.setAttribute("style", "border-color:" + buff.data.color);
         buffElem.innerHTML = 
-            `<img src='img/buff_icons/${buff.data.icon}.png'/>` +
+            `<img src='img/buff_icons/${user.getIconName(buff)}.png'/>` +
             "<span class='pulse'></span>" +
             "<span class='buff-text'>0</span>" + 
             "<div class='buff-overlay'></div>";
@@ -20,7 +20,7 @@ function setupBuffsUI() {
     }
 }
 
-function setTimeUI(buffId, time, maxTime, invert) {
+function setTimeUI(buffId, time, maxTime, invert, user, config) {
     var percent = invert ? 100 - (100 * time/maxTime) : (100 * time/maxTime);
     document.getElementById(buffId).querySelector(".buff-text").innerHTML = time.toFixed(0);
     document.getElementById(buffId).querySelector(".buff-overlay").setAttribute("style","height:" + percent + "%");
@@ -47,3 +47,5 @@ function buffActiveUI(buffId) {
     document.getElementById(buffId).classList.remove("buff-cd");
     document.getElementById(buffId).classList.remove("buff-ready");
 }
+
+export {setupBuffsUI, setTimeUI, hide, unHide, buffOnCdUI, buffReadyUI, buffActiveUI}
