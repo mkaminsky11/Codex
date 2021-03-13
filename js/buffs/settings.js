@@ -1,24 +1,14 @@
-// GET
+import {getCurrentSettings, setupReload} from '../config/config-default.js'
+
 function getSettings() {
-    var s = localStorage.getItem("CodexSettings");
-    if(s != null) {
-        s = JSON.parse(s);
-        for(key in s) { // copy over configs
-            config[key] = s[key];
-        }
+    var config = getCurrentSettings();
+    setupReload();
+
+    if(config.buffs_small) {
+        document.documentElement.classList.add("buff-small");
     }
 
-    var style = document.createElement('style');
-    var h = "";
-    style.innerHTML = h;
-    document.head.appendChild(style);
+    return config;
 }
 
-// RELOAD WHEN SETTINGS ARE CHANGED
-window.addEventListener("storage", function(e) {
-    console.log(e);
-    if(e.key != "CodexSettings") { return; }
-    location.reload();
-});
-
-getSettings();
+export {getSettings}

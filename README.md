@@ -38,20 +38,18 @@ Shows which party buffs are currently active and how long until they are off coo
 
 ## TODO Log
 ```
-- horizontal gauges [DONE]
+- ~~horizontal gauges~~ [DONE]
 - settings in all overlays
 - add demolish, chaos thrust
 - dots in own bars
-- make everything more modular
-- add icons
-- [dot] tag in settings
-
-- [WIP] change buff size
+- ~~make everything more modular~~ [DONE]
+- ~~add icons~~ [DONE]
+- ~~change buff size~~ [DONE]
 - glows on arrows
 - multi-DoT tracker
 - multi-buffs (if you have multiple of a job in your party)
-- [WIP] change bar type
-- change arrow size
+- ~~change bar type~~ [DONE]
+- ~~change arrow size~~
 - material UI or base FFXIV
 - add buff settings (change size, etc.)
 - stop flashing dot warning after a while (if enabled)

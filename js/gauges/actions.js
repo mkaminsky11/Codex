@@ -1,400 +1,526 @@
-var actions = {
-    //==================//
-    // TANKS
-    //==================//
+import {actionIds, buffIds} from '../general/ids.js'
+var gaugeConfig = {
     DRK: {
         buffs: {
-            [ib.Delerium]: {
-                name: "Delirium", 
-                order: 0, time: 10, max: 5,
-                type: "gcds",
+            [buffIds.Delirium]: {
+                name: 'Delirium',
+                order: 0,
+                time: 10, max: 5,
+                type: 'gcds',
                 ids: [
-                    ia.BloodSpiller, ia.Quietus
+                    actionIds.BloodSpiller,
+                    actionIds.Quietus
                 ],
-                visual: { type: "ARROW", color: "red"}
+                visual: { type: 'ARROW', color: 'red'}
             },
-            [ib.BloodWeapon]: {
-                name: "Blood Weapon", 
-                order: 1, time: 10, max: 5,
-                type: "gcds",
+            [buffIds.BloodWeapon]: {
+                name: 'Blood Weapon', 
+                order: 1,
+                time: 10, max: 5,
+                type: 'gcds',
                 ids: [
-                    ia.HardSlash, ia.SiphonStrike, ia.Souleater, ia.Unmend, ia.Unleash, ia.StalwartSoul, ia.BloodSpiller, ia.Quietus
+                    actionIds.HardSlash,
+                    actionIds.SiphonStrike,
+                    actionIds.Souleater,
+                    actionIds.Unmend,
+                    actionIds.Unleash,
+                    actionIds.StalwartSoul,
+                    actionIds.BloodSpiller,
+                    actionIds.Quietus
                 ],
-                visual: {type: "BAR", color: "blue", glow: "dark"}
+                visual: {type: 'BAR', color: 'blue', glow: 'dark'}
             }
         },
         alias: {}
     },
     WAR: {
         buffs: {
-            [ib.InnerRelease]: {
-                name: "Inner Release", 
-                order: 0, time: 10, max: 5,
-                type: "gcds",
+            [buffIds.InnerRelease]: {
+                name: 'Inner Release', 
+                order: 0,
+                time: 10, max: 5,
+                type: 'gcds',
                 ids: [
-                    ia.FellCleave, ia.Decimate
+                    actionIds.FellCleave,
+                    actionIds.Decimate
                 ],
-                visual: {type: "ARROW", color: "orange"}
+                visual: {type: 'ARROW', color: 'orange'}
             },
-            [ib.StormsEye]: {
-                name: "Storms Eye", order: 1,
+            [buffIds.StormsEye]: {
+                name: 'Storms Eye',
+                order: 1,
                 max: 60,
-                type: "timer",
-                visual: {type: "BAR", icon: "stormseye", color: "red", danger: true}
+                type: 'timer',
+                visual: {type: 'BAR', color: 'red', danger: true}
             }
         },
         alias: {}
     },
     PLD: {
         buffs: {
-            [ib.Requiescat]: {
-                name: "Requiescat", 
-                order: 0, time: 12, max: 5,
-                type: "gcds",
+            [buffIds.Requiescat]: {
+                name: 'Requiescat', 
+                order: 0,
+                time: 12, max: 5,
+                type: 'gcds',
                 ids: [
-                    ia.HolySpirit, ia.HolyCircle, ia.Confiteor
+                    actionIds.HolySpirit,
+                    actionIds.HolyCircle,
+                    actionIds.Confiteor
                 ],
-                visual: {type: "ARROW", color: "blue"}
+                visual: {type: 'ARROW', color: 'blue'}
             },
-            [ib.FightOrFlight]: {
-                name: "Fight or Flight", 
-                order: 2, time: 25, max: 11,
-                type: "gcds",
+            [buffIds.FightOrFlight]: {
+                name: 'Fight or Flight', 
+                order: 2,
+                time: 25, max: 11,
+                type: 'gcds',
                 ids: [
-                    ia.FastBlade, ia.RiotBlade, ia.RoyalAuthority, ia.Atonement, ia.GoringBlade, ia.TotalEclipse, ia.Prominence
+                    actionIds.FastBlade,
+                    actionIds.RiotBlade,
+                    actionIds.RoyalAuthority,
+                    actionIds.Atonement,
+                    actionIds.GoringBlade,
+                    actionIds.TotalEclipse,
+                    actionIds.Prominence
                 ],
-                visual: {type: "BAR", color: "red", glow: "red"}
+                visual: {type: 'BAR', color: 'red', glow: 'red'}
             },
-            [ib.GoringBlade]: {
-                name: "Goring Blade", order: 1,
+            [buffIds.GoringBlade]: {
+                name: 'Goring Blade',
+                order: 1,
                 max: 21,
-                type: "timer",
-                visual: {type: "BAR", icon: "goringblade", color: "orange", danger: true}
+                type: 'timer',
+                visual: {type: 'BAR', color: 'orange', danger: true}
             }
         },
         alias: {}
     },
     GNB: {
         buffs: {
-            [ib.NoMercy]: {
-                name: "No Mercy", 
+            [buffIds.NoMercy]: {
+                name: 'No Mercy', 
                 order: 0, time: 20, max: 9,
-                type: "gcds",
+                type: 'gcds',
                 ids: [
-                    ia.DemonSlice, ia.DemonSlaughter, ia.KeenEdge, ia.BrutalShell, ia.SolidBarrel, ia.BurstStrike, ia.SonicBreak,
-                    ia.GnashingFang, ia.SavageClaw, ia.WickedTalon, ia.FatedCicle
+                    actionIds.DemonSlice,
+                    actionIds.DemonSlaughter,
+                    actionIds.KeenEdge,
+                    actionIds.BrutalShell,
+                    actionIds.SolidBarrel,
+                    actionIds.BurstStrike,
+                    actionIds.SonicBreak,
+                    actionIds.GnashingFang,
+                    actionIds.SavageClaw,
+                    actionIds.WickedTalon,
+                    actionIds.FatedCicle
                 ],
-                visual: {type: "ARROW", size: "m", color: "orange"}
+                visual: {type: 'ARROW', color: 'orange'}
             }
         },
         alias: {}
     },
-    //================//
-    // HEALERS
-    //================//
     SCH: {
         buffs: {
-            [ib.Biolysis]: {
-                name: "Biolysis", 
-                order: 0, max: 30,
-                type: "timer",
-                visual: {type: "BAR", icon: "biolysis", color: "green", danger: true}
+            [buffIds.Biolysis]: {
+                name: 'Biolysis', 
+                order: 0,
+                max: 30,
+                type: 'timer',
+                visual: {type: 'BAR', color: 'green', danger: true}
             }
         },
         alias: {
-            [ib.SchBio]: [ib.Biolysis],
-            [ib.SchBio2]: [ib.Biolysis]
+            [buffIds.SchBio]: buffIds.Biolysis,
+            [buffIds.SchBio2]: buffIds.Biolysis
         }
     },
     WHM: {
         buffs: {
-            [ib.Dia]: {
-                name: "Dia", 
-                order: 0, max: 30,
-                type: "timer",
-                visual: {type: "BAR", icon: "dia", color: "blue", danger: true}
+            [buffIds.Dia]: {
+                name: 'Dia', 
+                order: 0,
+                max: 30,
+                type: 'timer',
+                visual: {type: 'BAR', color: 'blue', danger: true}
             }
         },
         alias: {
-            [ib.Aero]: [ib.Dia],
-            [ib.Aero2]: [ib.Dia]
+            [buffIds.Aero]: buffIds.Dia,
+            [buffIds.Aero2]: buffIds.Dia
         }
     },
     AST: {
         buffs: {
-            [ib.Combust3]: {
-                name: "Combust", 
-                order: 0, max: 30,
-                type: "timer",
-                visual: {type: "BAR", icon: "combust", color: "blue", danger: true}
+            [buffIds.Combust3]: {
+                name: 'Combust', 
+                order: 0,
+                max: 30,
+                type: 'timer',
+                visual: {type: 'BAR', color: 'blue', danger: true}
             }
         },
         alias: {
-            [ib.Combust]: [ib.Combust3],
-            [ib.Combust2]: [ib.Combust3]
+            [buffIds.Combust]: buffIds.Combust3,
+            [buffIds.Combust2]: buffIds.Combust3
         }
     },
-    //===============//
-    // MELEE DPS
-    //===============//
     MNK: {
         buffs: {
-            [ib.PerfectBalance]: {
-                name: "Perfect Balance", 
-                order: 0, time: 10, max: 5,
-                type: "gcds",
+            [buffIds.PerfectBalance]: {
+                name: 'Perfect Balance', 
+                order: 0,
+                time: 15, max: 6,
+                type: 'gcds',
+                noRefresh: true,
                 ids: [
-                    ia.Bootshine, ia.TrueStrike, ia.SnapPunch, ia.DragonKick, ia.TwinSnakes, ia.Demolish,
-                    ia.ArmOfTheDestroyer, ia.FourPointFury, ia.RockBreaker
+                    actionIds.Bootshine,
+                    actionIds.TrueStrike,
+                    actionIds.SnapPunch,
+                    actionIds.DragonKick,
+                    actionIds.TwinSnakes,
+                    actionIds.Demolish,
+                    actionIds.ArmOfTheDestroyer,
+                    actionIds.FourPointFury,
+                    actionIds.RockBreaker
                 ],
-                visual: {type: "ARROW", color: "yellow"}
+                visual: {type: 'ARROW', color: 'yellow'}
             },
-            [ib.RiddleOfFire]: {
-                name: "Riddle of Fire", 
-                order: 2, time: 20, max: 9,
-                type: "gcds",
+            [buffIds.RiddleOfFire]: {
+                name: 'Riddle of Fire', 
+                order: 1, time: 20, max: 9,
+                type: 'gcds',
                 ids: [
-                    ia.Bootshine, ia.TrueStrike, ia.SnapPunch, ia.DragonKick, ia.TwinSnakes, ia.Demolish,
-                    ia.ArmOfTheDestroyer, ia.FourPointFury, ia.RockBreaker
+                    actionIds.Bootshine,
+                    actionIds.TrueStrike,
+                    actionIds.SnapPunch,
+                    actionIds.DragonKick,
+                    actionIds.TwinSnakes,
+                    actionIds.Demolish,
+                    actionIds.ArmOfTheDestroyer,
+                    actionIds.FourPointFury,
+                    actionIds.RockBreaker
                 ],
-                visual: {type: "BAR", color: "red", glow: "red"}
+                visual: {type: 'BAR', color: 'red', glow: 'red'}
             }
         },
         alias: {}
     },
     DRG: {
         buffs: {
-            [ib.LanceCharge]: {
-                name: "Lance Charge", 
-                order: 0, time: 20, max: 9,
-                type: "gcds",
+            [buffIds.LanceCharge]: {
+                name: 'Lance Charge', 
+                order: 0,
+                time: 20, max: 9,
+                type: 'gcds',
                 ids: [
-                    ia.TrueThrust, ia.Disembowel, ia.ChaosThrust, ia.WheelingThrust, ia.VorpalThrust, ia.FullThrust,
-                    ia.FangAndClaw, ia.RaidenThrust, ia.DoomSpike, ia.SonicThrust, ia.CoerthanTorment, ia.PiercingTalon
+                    actionIds.TrueThrust,
+                    actionIds.Disembowel,
+                    actionIds.ChaosThrust,
+                    actionIds.WheelingThrust,
+                    actionIds.VorpalThrust,
+                    actionIds.FullThrust,
+                    actionIds.FangAndClaw,
+                    actionIds.RaidenThrust,
+                    actionIds.DoomSpike,
+                    actionIds.SonicThrust,
+                    actionIds.CoerthanTorment,
+                    actionIds.PiercingTalon
                 ],
-                visual: {type: "ARROW", color: "red", size: "m"}
+                visual: {type: 'ARROW', color: 'red'}
             },
-            [ib.RightEye]: {
-                name: "Right Eye", 
-                order: 2, time: 20, max: 9,
-                type: "gcds",
+            [buffIds.RightEye]: {
+                name: 'Right Eye', 
+                order: 2,
+                time: 20, max: 9,
+                type: 'gcds',
                 ids: [
-                    ia.TrueThrust, ia.Disembowel, ia.ChaosThrust, ia.WheelingThrust, ia.VorpalThrust, ia.FullThrust,
-                    ia.FangAndClaw, ia.RaidenThrust, ia.DoomSpike, ia.SonicThrust, ia.CoerthanTorment, ia.PiercingTalon
+                    actionIds.TrueThrust,
+                    actionIds.Disembowel,
+                    actionIds.ChaosThrust,
+                    actionIds.WheelingThrust,
+                    actionIds.VorpalThrust,
+                    actionIds.FullThrust,
+                    actionIds.FangAndClaw,
+                    actionIds.RaidenThrust,
+                    actionIds.DoomSpike,
+                    actionIds.SonicThrust,
+                    actionIds.CoerthanTorment,
+                    actionIds.PiercingTalon
                 ],
-                visual: {type: "BAR", color: "orange", glow: "orange"}
+                visual: {type: 'BAR', color: 'orange', glow: 'orange'}
             }
         },
         alias: {
-            [ib.RightEye2]: ib.RightEye
+            [buffIds.RightEye2]: buffIds.RightEye
         }
     },
     NIN: {
         buffs: {
-            [ib.TrickAttack]: {
-                name: "Trick Attack", 
-                order: 0, time: 15, max: 7,
-                type: "gcds",
+            [buffIds.TrickAttack]: {
+                name: 'Trick Attack', 
+                order: 0,
+                time: 15, max: 7,
+                type: 'gcds',
                 ids: [
-                    ia.SpinningEdge, ia.GustSlash, ia.AeolionEdge, ia.ArmorCrush, ia.ShadowFang, ia.ThrowingDagger, ia.DeathBlossom, ia.Hakke,
-                    ia.Fuma, ia.Katon, ia.Raiton, ia.Hyothon, ia.Huton, ia.Doton, ia.Suiton, ia.Goka, ia.Hyosho
+                    actionIds.SpinningEdge,
+                    actionIds.GustSlash,
+                    actionIds.AeolionEdge,
+                    actionIds.ArmorCrush,
+                    actionIds.ShadowFang,
+                    actionIds.ThrowingDagger,
+                    actionIds.DeathBlossom,
+                    actionIds.Hakke,
+                    actionIds.Fuma,
+                    actionIds.Katon,
+                    actionIds.Raiton,
+                    actionIds.Hyothon,
+                    actionIds.Huton,
+                    actionIds.Doton,
+                    actionIds.Suiton,
+                    actionIds.Goka,
+                    actionIds.Hyosho
                 ],
-                visual: {type: "ARROW", size: "m", color: "yellow"}
+                visual: {type: 'ARROW', color: 'yellow'}
             },
         },
         alias: {}
     },
     SAM: {
         buffs: {
-            [ib.Jinpu]: {
-                name: "Jinpu", 
+            [buffIds.Jinpu]: {
+                name: 'Jinpu', 
                 order: 0, max: 40,
-                type: "timer",
-                visual: {type: "BAR", icon: "jinpu", color: "blue", danger: true}
+                type: 'timer',
+                visual: {type: 'BAR', color: 'blue', danger: true}
             },
-            [ib.Shifu]: {
-                name: "Shifu", 
+            [buffIds.Shifu]: {
+                name: 'Shifu', 
                 order: 1, max: 40,
-                type: "timer",
-                visual: {type: "BAR", icon: "shifu", color: "red", danger: true}
+                type: 'timer',
+                visual: {type: 'BAR', color: 'red', danger: true}
             },
-            [ib.Higanbana]: {
-                name: "Higanbana", 
+            [buffIds.Higanbana]: {
+                name: 'Higanbana', 
                 order: 2, max: 60,
-                type: "timer",
-                visual: {type: "BAR", icon: "higanbana", color: "orange", danger: true}
+                type: 'timer',
+                visual: {type: 'BAR', color: 'orange', danger: true}
             }
         },
         alias: {}
     },
-    //==================//
-    // PHYSICAL RANGED
-    //==================//
     BRD: {
         buffs: {
-            [ib.CausticBite]: {
-                name: "Caustic Bite", 
-                order: 0, max: 30,
-                type: "timer",
-                visual: {type: "BAR", icon: "causticbite", color: "red", danger: true}
+            [buffIds.CausticBite]: {
+                name: 'Caustic Bite', 
+                order: 0,
+                max: 30,
+                type: 'timer',
+                visual: {type: 'BAR', color: 'red', danger: true}
             },
-            [ib.Stormbite]: {
-                name: "Stormbite", 
-                order: 1, max: 30,
-                type: "timer",
-                visual: {type: "BAR", icon: "stormbite", color: "blue", danger: true}
+            [buffIds.Stormbite]: {
+                name: 'Stormbite', 
+                order: 1,
+                max: 30,
+                type: 'timer',
+                visual: {type: 'BAR', color: 'blue', danger: true}
             },
-            [ib.RagingStrikes]: {
-                name: "Raging Strikes", 
-                order: 2, time: 20, max: 9, // +2 for barrage?
-                type: "gcds",
+            [buffIds.RagingStrikes]: {
+                name: 'Raging Strikes', 
+                order: 2,
+                time: 20, max: 9, // +2 for barrage?
+                type: 'gcds',
                 ids: [
-                    ia.BurstShot, ia.RefulgentArrow, ia.CausticBite, ia.Stormbite, ia.IronJaws, ia.QuickNock
+                    actionIds.BurstShot,
+                    actionIds.RefulgentArrow,
+                    actionIds.CausticBite,
+                    actionIds.Stormbite,
+                    actionIds.IronJaws,
+                    actionIds.QuickNock
                 ],
-                visual: {type: "ARROW", size: "m", color: "orange"}
+                visual: {type: 'ARROW', color: 'orange'}
             }
         },
         alias: {
-            [ib.VenomousBite]: ib.CausticBite,
-            [ib.Windbite]: ib.Stormbite
+            [buffIds.VenomousBite]: buffIds.CausticBite,
+            [buffIds.Windbite]: buffIds.Stormbite
         }
     },
     MCH: {
         buffs: {
-            [ia.Hypercharge]: {
-                name: "Hypercharge", 
-                order: 0, time: 9, max: 5,
+            [actionIds.Hypercharge]: {
+                name: 'Hypercharge', 
+                order: 0,
+                time: 9, max: 5,
                 combo: true,
-                type: "gcds",
+                type: 'gcds',
                 ids: [
-                    ia.HeatBlast, ia.AutoCrossbow
+                    actionIds.HeatBlast,
+                    actionIds.AutoCrossbow
                 ],
-                visual: {type: "ARROW", color: "orange"}
+                visual: {type: 'ARROW', color: 'orange'}
             },
-            [ib.Wildfire]: {
-                name: "Wildfire", 
-                order: 1, time: 10, max: 6,
-                type: "gcds",
+            [buffIds.Wildfire]: {
+                name: 'Wildfire', 
+                order: 1,
+                time: 10, max: 6,
+                type: 'gcds',
                 ids: [
-                    ia.HeatedSplitShot, ia.HeatedSlugShot, ia.HeatedCleanShot, ia.AirAnchor, ia.Drill, ia.BioBlaster, ia.HeatBlast, ia.AutoCrossbow,
-                    ia.HotShot, ia.CleanShot
+                    actionIds.HeatedSplitShot,
+                    actionIds.HeatedSlugShot,
+                    actionIds.HeatedCleanShot,
+                    actionIds.AirAnchor,
+                    actionIds.Drill,
+                    actionIds.BioBlaster,
+                    actionIds.HeatBlast,
+                    actionIds.AutoCrossbow,
+                    actionIds.HotShot,
+                    actionIds.CleanShot
                 ],
-                visual: {type: "BAR", color: "red", glow: "red"}
+                visual: {type: 'BAR', color: 'red', glow: 'red'}
             }
         },
         alias: {}
     },
     DNC: {
         buffs: {
-            [ib.Devilment]: {
-                name: "Devilment", 
-                order: 0, time: 20, max: 10,
-                type: "gcds",
+            [buffIds.Devilment]: {
+                name: 'Devilment', 
+                order: 0,
+                time: 20, max: 10,
+                type: 'gcds',
                 ids: [
-                    ia.Cascade, ia.Fountain, ia.Windmill, ia.Bladeshower,
-                    ia.ReverseCascade, ia.Fountainfall, ia.ReverseWindmill, ia.Bloodshower,
-                    ia.StandardStep, ia.DoubleStandardFinish, ia.TechnicalStep, ia.QuadTechnicalFinish,
-                    ia.Emboite, ia.Entrechat, ia.Jete, ia.Pirouette, ia.SaberDance,
+                    actionIds.Cascade,
+                    actionIds.Fountain,
+                    actionIds.Windmill,
+                    actionIds.Bladeshower,
+                    actionIds.ReverseCascade,
+                    actionIds.Fountainfall,
+                    actionIds.ReverseWindmill,
+                    actionIds.Bloodshower,
+                    actionIds.StandardStep,
+                    actionIds.DoubleStandardFinish,
+                    actionIds.TechnicalStep,
+                    actionIds.QuadTechnicalFinish,
+                    actionIds.Emboite,
+                    actionIds.Entrechat,
+                    actionIds.Jete,
+                    actionIds.Pirouette,
+                    actionIds.SaberDance,
                 ],
-                visual: {type: "BAR", color: "red", glow: "red"}
+                visual: {type: 'BAR', color: 'red', glow: 'red'}
             },
         },
         alias: {}
     },
-    //================//
-    // MAGICAL DPS
-    //================//
     BLM: {
         buffs: {
-            [ib.Thunder3]: {
-                name: "Thunder 3", 
-                order: 0, max: 24,
-                type: "timer",
-                visual: {type: "BAR", icon: "thunder3", color: "blue", danger: true},
-                hides: [ib.Thunder4]
+            [buffIds.Thunder3]: {
+                name: 'Thunder 3', 
+                order: 0,
+                max: 24,
+                type: 'timer',
+                visual: {type: 'BAR', color: 'blue', danger: true},
+                hides: [buffIds.Thunder4]
             },
-            [ib.Thunder4]: {
-                name: "Thunder 4", 
-                order: 1, max: 18,
-                type: "timer",
-                visual: {type: "BAR", icon: "thunder4", color: "purple", danger: true},
-                hides: [ib.Thunder3],
+            [buffIds.Thunder4]: {
+                name: 'Thunder 4', 
+                order: 1,
+                max: 18,
+                type: 'timer',
+                visual: {type: 'BAR', color: 'purple', danger: true},
+                hides: [buffIds.Thunder3],
                 hidden: true
             }
         },
         alias: {
-            [ib.Thunder]: ib.Thunder3,
-            [ib.Thunder2]: ib.Thunder4
+            [buffIds.Thunder]: buffIds.Thunder3,
+            [buffIds.Thunder2]: buffIds.Thunder4
         }
     },
     SMN: {
         buffs: {
-            [ia.SummonBahamut]: {
-                name: "Bahamut", 
+            [actionIds.SummonBahamut]: {
+                name: 'Bahamut', 
                 order: 0, time: 21, max: 8,
                 combo: true,
-                type: "gcds",
-                ids: [ia.Wyrmwave],  // wrymwave
-                visual: {type: "ARROW", size: "m", color: "blue"},
-                hides: ia.FirebirdTrance
+                type: 'gcds',
+                ids: [actionIds.Wyrmwave],
+                visual: {type: 'ARROW', color: 'blue'},
+                hides: actionIds.FirebirdTrance
             },
-            [ia.FirebirdTrance]: {
-                name: "Pheonix", 
+            [actionIds.FirebirdTrance]: {
+                name: 'Pheonix', 
                 order: 1, time: 21, max: 8,
                 combo: true,
-                type: "gcds",
-                ids: [ia.ScarletFlame],
-                visual: {type: "ARROW", size: "m", color: "orange"},
-                hides: ia.SummonBahamut,
+                type: 'gcds',
+                ids: [actionIds.ScarletFlame],
+                visual: {type: 'ARROW', color: 'orange'},
+                hides: actionIds.SummonBahamut,
                 hidden: true
             },
-            [ib.SmnBio3]: {
-                name: "Bio", 
+            [buffIds.SmnBio3]: {
+                name: 'Bio', 
                 order: 2, max: 30,
-                type: "timer",
-                visual: {type: "BAR", icon: "bio", color: "green", danger: true},
+                type: 'timer',
+                visual: {type: 'BAR', color: 'green', danger: true},
             },
-            [ib.Miasma]: {
-                name: "Miasma", 
+            [buffIds.Miasma]: {
+                name: 'Miasma', 
                 order: 3, max: 30,
-                type: "timer",
-                visual: {type: "BAR", icon: "miasma", color: "blue", danger: true},
+                type: 'timer',
+                visual: {type: 'BAR', color: 'blue', danger: true},
             }
         },
         alias: {
-            [ib.SmnBio]: [ib.SmnBio3],
-            [ib.SmnBio2]: [ib.SmnBio3]
+            [buffIds.SmnBio]: [buffIds.SmnBio3],
+            [buffIds.SmnBio2]: [buffIds.SmnBio3]
         }
     },
     RDM: {
         buffs: {
-            [ib.Manification]: {
-                name: "Manification", 
-                order: 0, time: 10, max: 5,
-                type: "gcds",
+            [buffIds.Manafication]: {
+                name: 'Manafication', 
+                order: 0,
+                time: 10, max: 5,
+                type: 'gcds',
                 noRefresh: true,
                 ids: [
-                    ia.Jolt, ia.Verareo, ia.Verthunder, ia.Verfire, ia.Verstone, ia.Vercure,
-                    ia.Verareo2, ia.Verthunder2, ia.Impact, ia.ERiposte, ia.ERedoublement, ia.EZ,
-                    ia.EMoul, ia.EReprise, ia.Verfire, ia.Verholy, ia.Scorch
+                    actionIds.Jolt,
+                    actionIds.Verareo,
+                    actionIds.Verthunder,
+                    actionIds.Verfire,
+                    actionIds.Verstone,
+                    actionIds.Vercure,
+                    actionIds.Verareo2,
+                    actionIds.Verthunder2,
+                    actionIds.Impact,
+                    actionIds.ERiposte,
+                    actionIds.ERedoublement,
+                    actionIds.EZ,
+                    actionIds.EMoul,
+                    actionIds.EReprise,
+                    actionIds.Verfire,
+                    actionIds.Verholy,
+                    actionIds.Scorch
                 ],
-                visual: {type: "ARROW", color: "blue"}
+                visual: {type: 'ARROW', color: 'blue'}
             }
         },
         alias: {}
     },
-    //====================//
-    // BLU
-    //====================//
     BLU: {
         buffs: {
-            [ib.SongOfTorment]: {
-                name: "Song of Torment", 
-                order: 0, max: 30,
-                type: "timer",
-                visual: {type: "BAR", icon: "songoftorment", color: "red", danger: true}
+            [buffIds.SongOfTorment]: {
+                name: 'Song of Torment', 
+                order: 0,
+                max: 30,
+                type: 'timer',
+                visual: {type: 'BAR', color: 'red', danger: true}
             }
         },
         alias: {}
     },
 };
+
+export {gaugeConfig}

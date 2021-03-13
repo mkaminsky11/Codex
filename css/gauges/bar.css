@@ -17,6 +17,7 @@
     position: relative;
     overflow: hidden;
     filter: brightness(1);
+    overflow: hidden;
 }
 .progress-bar-flash {
     animation: flash 2s infinite;

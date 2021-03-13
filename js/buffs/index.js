@@ -1,45 +1,29 @@
+import {User} from '../classes/user.js'
+import {buffConfig} from './buffs.js'
+import {setupBuffsUI, setTimeUI, hide, unHide, buffOnCdUI, buffReadyUI, buffActiveUI} from './visual.js'
+import {getSettings} from './settings.js'
+import {setup} from '../general/init.js'
+
+var user = new User();
+var config = getSettings();
 var REFRESH = config.refresh;
 var SHOW_CD = 30;
 var debug = false;
 
-var user = new User();
-
-function logData(line){
-    switch(line[0]){
-        case "21":
-            logAction(line[2], line[4], line[5], line[6]);
-            break;
-        case "22":
-            logAction(line[2], line[4], line[5], line[6]);
-            break;
-        case "26":
-            gainBuff(line[5], line[7], line[2], parseFloat(line[4]), line[3]);
-            break;
-        case "30":
-            loseBuff(line[5], line[7], line[2], line[3]);
-            break;
-        case "31":
-            parseJob(line[2], line[3]);
-            break;
-        case "33":
-            if(line[3] === "40000010") { reload(); } // on wipe
-            break;
-    }
-}
-function logAction(sourceId, actionId, actionName, targetId){
-    if(user.hasBuff(actionId)) {
+function logAction(sourceId, actionId, actionName, targetId, isAoe){
+    if(user.usesBuff(actionId)) {
         gainBuff(sourceId, targetId, actionId, user.getBuff(actionId).data.duration, actionName);
     }
 }
 function gainBuff(sourceId, targetId, buffId, buffTime, buffName){
-    if(user.hasBuff(buffId)) {
+    if(user.usesBuff(buffId)) {
         var buff = user.getBuff(buffId);
         if(
             (buff.target && user.inParty(sourceId)) ||
             (buff.self   && targetId === user.id)   ||
             (buff.party  && user.inParty(sourceId))
         ) {
-            if(debug) { console.log("BUFF     " + buffName + " - " + buffId); }
+            if(debug) { console.log(`BUFF ${buffId} ${buffName}`); }
             //
             if(buff.data.noRefresh && buff.active) { return; }
             buff.active = true;
@@ -48,14 +32,14 @@ function gainBuff(sourceId, targetId, buffId, buffTime, buffName){
             buff.duration = buff.data.duration;
             unHide(buffId);
             buffActiveUI(buffId);
-            setTimeUI(buffId, buff.data.duration, buff.data.duration);
+            setTimeUI(buffId, buff.data.duration, buff.data.duration, user, config);
             user.resetInterval(buffId);
             user.intervals[buffId] = setInterval(function() {
-                if(user.hasBuff(buffId)) {
+                if(user.usesBuff(buffId)) {
                     var b_ = user.getBuff(buffId);
                     if(b_.active) {
                         var timeLeft = b_.duration - ((new Date()).getTime() - b_.startTime) / 1000;
-                        setTimeUI(buffId, Math.max(0,timeLeft), b_.duration, true);
+                        setTimeUI(buffId, Math.max(0,timeLeft), b_.duration, true, user, config);
                         if(timeLeft <= 0) {
                             cdBuff(sourceId, buffId, buffName);
                         }
@@ -70,7 +54,7 @@ function loseBuff(sourceId, targetId, buffId, buffName){
 }
 
 function cdBuff(sourceId, buffId, buffName) {
-    if(debug) { console.log("LOSEBUFF   " + buffId + " " + buffName); }
+    if(debug) { console.log(`LOSEBUFF ${buffId} ${buffName}`); }
     //
     user.resetInterval(buffId);
     hide(buffId);
@@ -81,11 +65,11 @@ function cdBuff(sourceId, buffId, buffName) {
     buff.duration = buff.data.cd;
     buffOnCdUI(buffId);
     user.intervals[buffId] = setInterval(function() {
-        if(user.hasBuff(buffId)) {
+        if(user.usesBuff(buffId)) {
             var b_ = user.getBuff(buffId);
             if(b_.cd) {
                 var timeLeft = b_.duration - ((new Date()).getTime() - b_.startTime) / 1000;
-                setTimeUI(buffId, Math.max(0,timeLeft), b_.duration, false);
+                setTimeUI(buffId, Math.max(0,timeLeft), b_.duration, false, user, config);
                 if(timeLeft <= SHOW_CD) {
                     unHide(buffId);
                 }
@@ -103,62 +87,49 @@ function readyBuff(sourceId, buffId, buffName) {
     buffReadyUI(buffId);
 }
 
-function parseJob(sourceId, jobString) {
-    if(sourceId == user.id) {
-        var jobId = parseInt(jobString.substr(jobString.length - 2,2),16); // last 2 characters are the job id
-        switchJob(jobId);
-    }
-}
-
 function switchJob(jobId) {
     if(user.setJob(jobId)) {
-        user.initPBuffs(config.all_personals, config.own_personals, config.buffs_disabled);
-        setupBuffsUI();
+        user.initPBuffs(buffConfig, config.all_personals, config.own_personals, config.buffs_disabled);
+        setupBuffsUI(user, config);
     }
-}
-
-function inParty(id) {
-    return (id === me.id || id in me.party);
 }
 
 function reload() {
     user.reset();
-    user.initPBuffs(config.all_personals, config.own_personals, config.buffs_disabled);
-    setupBuffsUI();
+    user.initPBuffs(buffConfig, config.all_personals, config.own_personals, config.buffs_disabled);
+    setupBuffsUI(user, config);
 }
-//addOverlayListener('LogLine', (data) => {console.log(data.line);});
-addOverlayListener('LogLine', (data) => {
-    logData(data.line);
-});
-addOverlayListener('ChangePrimaryPlayer', (data) => {
-    if(user.id !== "" && (data.charID).toString(16).toUpperCase() !== user.id) { location.reload(); }
-});
-addOverlayListener('ChangeZone', (data) => {
-    if(!user.setZone(data.zoneID)){
-        reload();
-    }
-});
-addOverlayListener('PartyChanged', (data) => {
-    user.changeParty(data.party);
-});
-document.addEventListener('onOverlayStateUpdate', (e) => {
-    let docClassList = document.documentElement.classList;
-    if (e.detail.isLocked)
-        docClassList.add('locked');
-    else
-        docClassList.remove('locked');
-});
-startOverlayEvents();
 
-async function init() {
-    let combat = (await callOverlayHandler({ call: 'getCombatants' })).combatants;
-    if(combat.length > 0) {
-        user.init((combat[0].ID).toString(16).toUpperCase());
-        switchJob(combat[0].Job);
-        setupBuffsUI(user.job);
-    }
-    else {
-        setTimeout(function() {init();}, 1000) // retry every second
+function parseJob(sourceId, jobId) {
+    if(sourceId == user.id) {
+        switchJob(jobId);
     }
 }
-init();
+function wipe(){
+    reload();
+}
+function bindPet(ownerId, petId, petName){
+}
+
+setup(
+    logAction,
+    gainBuff,
+    loseBuff,
+    parseJob,
+    bindPet,
+    wipe,
+    // ==========
+    (playerId) => {
+        if(user.id !== '' && playerId !== user.id) { location.reload(); }
+    },
+    (zoneId) => {
+        if(!user.setZone(zoneId)) { reload(); }
+    },
+    (party) => {
+        user.changeParty(party);
+    },
+    (playerId, playerJob) => {
+        user.init(playerId);
+        switchJob(playerJob);
+    }
+)

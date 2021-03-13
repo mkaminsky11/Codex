@@ -3,7 +3,7 @@
     flex-direction: row;
     flex-wrap: wrap;
 }
-/* BUFFS */
+/* ====== BUFFS ===== */
 .buff {
     margin: 5px;
     display: flex;
@@ -36,6 +36,7 @@
     width: 100%;
     height: 100%;
     text-align: center;
+    line-height: 1;
 }
 .buff-ready .pulse {
     animation: pulse 0.5s;
@@ -72,7 +73,14 @@
     background-color: rgba(0,0,0,0.6);
     bottom: 0px;
 }
-/* ON CD */
+.buff-small .buff {
+    width: 30px;
+    height: 20px;
+}
+.buff-small .buff-text {
+    font-size: 16px;
+}
+/* ====== ON CD ======== */
 .buff-cd {
     border-color:black !important;
     filter: brightness(0.8);
@@ -81,15 +89,15 @@
 .buff-cd .buff-img {
     filter: brightness(0.8);
 }
-/* READY */
+/* ======== READY ========= */
 .buff-ready .buff-text {
     display: none;
 }
-/* PERSONAL */
+/* ===== PERSONAL ========== */
 .buff-personal {
     order: 3 !important;
 }
-/* HIDDEN */
+/* ======= HIDDEN ======== */
 .not-ast .buff-ast-only {
     display: none !important;
 }

@@ -30,9 +30,18 @@
                             <span class="row-title">Font Size</span>
                             <input id="codex-fontsize"/>
                         </div>
+                        
                         <div class="settings-row-2 settings-row-2-header row">
                             <span class="row-title">Justify Right</span>
                             <input id="codex-justify-right" type="checkbox"/>
+                        </div>
+                        <div class="settings-row-2 settings-row-2-header row">
+                            <span class="row-title">Reverse</span>
+                            <input id="codex-reverse-row" type="checkbox"/>
+                        </div>
+                        <div class="settings-row-2 settings-row-2-header row">
+                            <span class="row-title">Small Icons</span>
+                            <input id="codex-small-icons" type="checkbox"/>
                         </div>
                         <div class="settings-row-2 settings-row-2-header row">
                             <span class="row-title">Horizontal Gauges</span>
@@ -74,14 +83,14 @@
                         <span class="row-title">Show own personal buffs</span>
                         <input id="codex-own-personals" type="checkbox"/>
                     </div>
+                    <div class="settings-row row">
+                        <span class="row-title">Small buffs</span>
+                        <input id="codex-buffs-small" type="checkbox"/>
+                    </div>
                 </div>
             </div>
         </div>
     </body>
-    <script src="js/general/ids.js"></script>
-    <script src="js/gauges/actions.js"></script>
-    <script src="js/buffs/buffs.js"></script>
-
-    <script src="js/config/config-default.js"></script>
-    <script src="js/config/config-settings.js"></script>
+    
+    <script src="js/config/index.js" type="module"></script>
 </html>

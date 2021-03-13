@@ -24,7 +24,7 @@
     width: 100%;
     height: 100%;
     position: relative;
-    background-image: url(img/tex/wind.png);
+    background-image: url(../../img/glow/tex/wind.png);
     background-size: 94px 58px;
     background-repeat: repeat;
     background-position: 0px 0px;
@@ -32,7 +32,7 @@
     animation: glow-move 0.5s 0s infinite;
     animation-timing-function: linear;
 
-    -webkit-mask-image: url(img/mask/m13.png);
+    -webkit-mask-image: url(../../img/glow/mask/m13.png);
     -webkit-mask-repeat: repeat;
     -webkit-mask-size: 74px 62px;
     -webkit-mask-position: -2px -10px;
@@ -50,59 +50,59 @@
     display: none !important;
 }
 .glow.glow-green .tex {
-    background-image: url(img/tex/green.png)
+    background-image: url(../../img/glow/tex/green.png)
 }
 .glow.glow-blue .tex {
-    background-image: url(img/tex/aura2.png)
+    background-image: url(../../img/glow/tex/aura2.png)
 }
 .glow.glow-yellow .tex {
-    background-image: url(img/tex/cyber.png)
+    background-image: url(../../img/glow/tex/cyber.png)
 }
 .glow.glow-orange .tex {
-    background-image: url(img/tex/fire2.png)
+    background-image: url(../../img/glow/tex/fire2.png)
 }
 .glow.glow-purple .tex {
-    background-image: url(img/tex/purple.png)
+    background-image: url(../../img/glow/tex/purple.png)
 }
 .glow.glow-red .tex {
-    background-image: url(img/tex/fire4.png)
+    background-image: url(../../img/glow/tex/fire4.png)
 }
 .glow.glow-dark .tex {
-    background-image: url(img/tex/dark2.png)
+    background-image: url(../../img/glow/tex/dark2.png)
 }
 .glow.glow-dark2 .tex {
-    background-image: url(img/tex/dark3.png)
+    background-image: url(../../img/glow/tex/dark3.png)
 }
 .glow.glow-rock .tex {
-    background-image: url(img/tex/rock.png)
+    background-image: url(../../img/glow/tex/rock.png)
 }
 .glow.glow-blue2 .tex {
-    background-image: url(img/tex/fireblueblack.png)
+    background-image: url(../../img/glow/tex/fireblueblack.png)
 }
 .glow.glow-fire .tex {
-    background-image: url(img/tex/fire4.png)
+    background-image: url(../../img/glow/tex/fire4.png)
 }
 .glow.glow-sonic .tex {
-    background-image: url(img/tex/sonic.png)
+    background-image: url(../../img/glow/tex/sonic.png)
 }
 .glow.glow-swirl .tex {
-    background-image: url(img/tex/swirl.png)
+    background-image: url(../../img/glow/tex/swirl.png)
 }
 .glow.glow-water .tex {
-    background-image: url(img/tex/water2.png)
+    background-image: url(../../img/glow/tex/water2.png)
 }
 .glow.glow-jewel .tex {
-    background-image: url(img/tex/jewel.png)
+    background-image: url(../../img/glow/tex/jewel.png)
 }
 .glow.glow-prism .tex {
-    background-image: url(img/tex/aura3.png)
+    background-image: url(../../img/glow/tex/aura3.png)
 }
 .glow.glow-fireblue .tex {
-    background-image: url(img/tex/fireblue.png)
+    background-image: url(../../img/glow/tex/fireblue.png)
 }
 .glow.glow-fireblue2 .tex {
-    background-image: url(img/tex/fireblue2.png)
+    background-image: url(../../img/glow/tex/fireblue2.png)
 }
 .glow.glow-rainbow .tex {
-    background-image: url(img/tex/rainbow.png)
+    background-image: url(../../img/glow/tex/rainbow.png)
 }
