@@ -2,6 +2,8 @@
 
 Extra gauges and buff trackers for FFXIV
 
+**❗❗❗ Consider using the [QuickLauncher plugin](https://github.com/0ceal0t/JobBars) instead, as it has more features and is being more actively maintained ❗❗❗**
+
 <img align="right" src="img/docs/alex.gif" height="300px">
 
 ## Installation
