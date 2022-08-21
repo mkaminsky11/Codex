@@ -7,7 +7,7 @@ const buffIds = {
     BloodWeapon: '2e6',
     // WAR
     InnerRelease: '499',
-    StormsEye: '5a',
+    StormsEye: 'a75',
     // PLD
     FightOrFlight: '4c',
     GoringBlade: '2d5',
